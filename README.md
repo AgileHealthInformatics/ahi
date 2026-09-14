@@ -1,205 +1,225 @@
-# Agile Health Informatics Website
+# Agile Health Informatics Ltd Website
 
-This repository contains the public website and interactive reference resources for **Agile Health Informatics Ltd**.
+This repository contains the public website for **Agile Health Informatics Ltd**.
 
-The site is intentionally lightweight. It is built from self-contained HTML files that can be served directly from the repository without a build system, package manager, framework or external deployment pipeline.
+The site is a lightweight static website designed to work directly from GitHub Pages or any conventional static web host. It does not require a build process, package manager, framework or server-side application.
 
-**Public site:** https://agilehealthinformatics.com
+Website: <https://agilehealthinformatics.com/>
 
-## Site structure
+## Purpose
 
-The repository is organised as a small core website with a growing library of specialist healthcare architecture and data resources.
+The website presents the services, experience and public professional resources of Agile Health Informatics Ltd.
 
-```text
-ahi/
-├── CNAME
-├── index.html
-├── services.html
-├── resources.html
-├── about.html
-│
-├── UK_Secondary_Care_Integration_Reference_Atlas_v0.6.html
-│
-├── agile_health_informatics_healthcare_standards_navigator_2026.html
-├── agile_health_informatics_healthcare_interoperability_navigator_2026.html
-├── agile_health_informatics_health_data_lifecycle_navigator_2026.html
-├── agile_health_informatics_health_data_architecture_navigator_2026.html
-├── agile_health_informatics_healthcare_integration_pattern_navigator_2026.html
-├── agile_health_informatics_health_information_model_navigator_2026.html
-├── agile_health_informatics_clinical_terminology_semantics_navigator_2026.html
-├── agile_health_informatics_healthcare_ai_assurance_navigator_2026.html
-│
-├── hdomm-toolkit-agile-health-informatics.html
-└── health_data_operability_workshop_facilitation_guide.html
-```
+The homepage introduces the practice and provides access to:
 
-The repository currently uses a **flat root structure**. This is deliberate: the principal pages and specialist resources can link to one another using simple relative URLs, and each resource remains independently publishable as a single HTML file.
+- advisory services;
+- the public resource library;
+- the Health & Care Computing Professional Development Navigator;
+- information about Agile Health Informatics Ltd and Dr Tito Castillo; and
+- contact and LinkedIn links.
 
-## Core website
+## Main files
 
-The four core pages provide the main navigation and separate the consultancy site from the specialist knowledge resources.
-
-| File | Purpose |
-|---|---|
-| `index.html` | Main holding page. Introduces Agile Health Informatics, summarises the principal service areas and highlights selected resources. |
-| `services.html` | Describes the advisory services, including enterprise architecture, health data, interoperability, secure environments, AI-enabled architecture and transformation readiness. |
-| `resources.html` | Resource library and principal discovery page for navigators, reference atlases, assessment tools and workshop material. |
-| `about.html` | Background on Agile Health Informatics and Dr Tito Castillo, including selected experience and professional qualifications. |
-
-These pages should remain relatively stable and should link into the specialist resources rather than reproducing their content.
-
-## Resource families
-
-### Healthcare navigators
-
-The navigator series provides interactive decision aids for different aspects of healthcare information architecture.
-
-| Resource | File |
-|---|---|
-| Healthcare Standards Navigator | `agile_health_informatics_healthcare_standards_navigator_2026.html` |
-| Healthcare Interoperability Navigator | `agile_health_informatics_healthcare_interoperability_navigator_2026.html` |
-| Health Data Lifecycle Navigator | `agile_health_informatics_health_data_lifecycle_navigator_2026.html` |
-| Health Data Architecture Navigator | `agile_health_informatics_health_data_architecture_navigator_2026.html` |
-| Healthcare Integration Pattern Navigator | `agile_health_informatics_healthcare_integration_pattern_navigator_2026.html` |
-| Health Information Model Navigator | `agile_health_informatics_health_information_model_navigator_2026.html` |
-| Clinical Terminology and Semantics Navigator | `agile_health_informatics_clinical_terminology_semantics_navigator_2026.html` |
-| Healthcare AI Assurance Navigator | `agile_health_informatics_healthcare_ai_assurance_navigator_2026.html` |
-
-The navigators are related, but they are not intended to be one monolithic application. Each addresses a distinct architecture or standards question and can be used independently.
-
-### Reference atlases
-
-Reference atlases compare architectures, capabilities or information flows across environments rather than providing a standards-selection workflow.
-
-Current atlas:
-
-- **UK Secondary Care Integration Reference Atlas**  
-  `UK_Secondary_Care_Integration_Reference_Atlas_v0.6.html`
-
-The atlas compares secondary-care integration capabilities and data flows across England, Wales, Scotland and Northern Ireland and includes a view of structural alignment with the emerging European Health Data Space.
-
-### Assessment and workshop tools
-
-These resources support structured assessment and facilitated analysis.
-
-- **Health Data Operability Maturity Assessment**  
-  `hdomm-toolkit-agile-health-informatics.html`
-
-- **Health Data Operability Workshop Facilitation Guide**  
-  `health_data_operability_workshop_facilitation_guide.html`
-
-These are distinct from the navigator series. They are intended to support assessment, discussion and organisational improvement rather than standards discovery alone.
-
-## Information architecture
-
-The intended site hierarchy is:
+The core site pages are expected to sit in the same directory.
 
 ```text
-Home
-├── Services
-├── Resources
-│   ├── Navigators
-│   ├── Reference Atlases
-│   ├── Assessment Tools
-│   └── Workshop Guides
-└── About
+index.html
+services.html
+resources.html
+about.html
+health_care_computing_professional_development_navigator.html
+README.md
 ```
 
-The design principle is to keep the **main website concise** while allowing the specialist knowledge base to grow independently.
+Additional HTML resources and navigators may also be stored in the same directory.
 
-`resources.html` is therefore the principal catalogue for public resources. Individual resources should not normally become permanent top-level navigation items unless they represent a new major section of the site.
+### `index.html`
 
-## Design and implementation
+The main website homepage.
 
-The site uses a common Agile Health Informatics visual language:
+Its primary navigation contains:
 
-- blue and pale-green brand palette
-- embedded Agile Health Informatics logo
-- responsive layouts
-- accessible semantic HTML
-- light and dark presentation where supported
-- print-friendly styling where useful
-- vanilla JavaScript for interactivity
-- no framework or build dependency
+- **Home** → `index.html`
+- **Services** → `services.html`
+- **Resources** → `resources.html`
+- **Professional Development** → `health_care_computing_professional_development_navigator.html`
+- **About** → `about.html`
+- **Connect** → the contact section on the homepage
 
-Specialist resources are generally designed as **self-contained HTML5 documents**. CSS, JavaScript and visual assets are embedded where practical so that pages remain portable and can also be viewed offline.
+The page also includes featured service areas and selected public resources.
+
+### `services.html`
+
+Describes the principal Agile Health Informatics advisory services, including enterprise architecture, health data architecture, interoperability, secure data environments, AI-enabled architecture and transformation readiness.
+
+### `resources.html`
+
+Provides access to the wider public knowledge base, including navigators, reference resources, assessment tools and analytical publications.
+
+### `about.html`
+
+Provides background on Agile Health Informatics Ltd, the practice and its professional experience.
+
+### `health_care_computing_professional_development_navigator.html`
+
+An interactive, self-directed professional development guide for health and care computing.
+
+The navigator helps users:
+
+- explore 13 connected professional capability domains;
+- choose a Foundation, Practitioner or Specialist / Leadership perspective;
+- select areas of professional interest;
+- identify Core, Develop and Explore priorities;
+- explore specialist and cross-cutting capabilities;
+- review relevant learning and reference resources; and
+- generate a personalised, printable professional development plan.
+
+It is a professional development aid rather than a certification, accreditation scheme or formal course.
+
+The companion Markdown description is:
+
+```text
+health_care_computing_professional_development_navigator.md
+```
+
+If this file is included in the repository, it provides a plain-text explanation of the navigator and instructions for its use.
 
 ## Deployment
 
-`CNAME` maps the repository to:
+The website is designed for direct static deployment.
+
+For GitHub Pages, place the required HTML files in the published branch and directory and ensure that `index.html` is at the root of the published site.
+
+No compilation or build step is required.
+
+Because navigation uses relative links, linked files such as:
 
 ```text
-agilehealthinformatics.com
+health_care_computing_professional_development_navigator.html
 ```
 
-The site is designed to be published directly from the repository root. Relative links between pages therefore assume that the core site pages and specialist HTML resources remain in the same directory.
+must remain in the same directory as `index.html` unless the corresponding links are changed.
 
-When renaming or replacing a published resource, check all relative links before deployment.
+## Local use
 
-## Adding a new resource
+The pages can normally be opened directly in a modern browser.
 
-When adding a new navigator, atlas or assessment resource:
+For example:
 
-1. Add the new self-contained HTML file to the repository root.
-2. Use a descriptive and stable filename.
-3. Add the resource to `resources.html` under the appropriate resource family.
-4. Add it to `index.html` only if it is important enough to feature on the holding page.
-5. Do not automatically add individual resources to the global site navigation.
-6. Check links to the Agile Health Informatics homepage and ensure the common brand treatment is retained.
-7. Test the page at desktop and mobile widths.
-8. Check interactive controls, internal anchors, print behaviour and dark/light presentation where applicable.
-9. Update this README if the repository structure or resource taxonomy changes.
+```text
+index.html
+```
 
-## File naming
+can be opened from the local filesystem.
 
-The repository currently contains both descriptive resource names and year/version-qualified filenames.
+A lightweight local web server can also be used when testing the complete site, for example:
 
-For new resources, prefer filenames that are:
+```bash
+python -m http.server 8000
+```
 
-- descriptive
-- lowercase where practical
-- separated consistently with underscores or hyphens
-- stable enough that external links do not need frequent changes
+Then open:
 
-Published filenames should not be changed casually because LinkedIn posts, search engines and external documents may link directly to them.
+```text
+http://localhost:8000/
+```
 
-Where a resource needs formal versioning, retain the version in the visible resource itself and avoid changing the public filename unless there is a clear reason to expose the version in the URL.
+This is optional. The site itself has no Python dependency.
 
-## Maintenance principles
+## Design and implementation
 
-The repository should remain simple enough to understand without specialist tooling.
+The site uses:
 
-In particular:
+- semantic HTML5;
+- embedded CSS;
+- vanilla JavaScript;
+- responsive layouts;
+- light and dark themes;
+- accessible navigation controls;
+- print styling; and
+- embedded image assets where appropriate.
 
-- keep the core website separate from detailed specialist resources
-- use `resources.html` as the authoritative public resource catalogue
-- avoid duplicating substantial resource content across pages
-- keep relative links valid
-- preserve consistent branding across standalone resources
-- distinguish navigators, atlases and assessment tools rather than treating every resource as a navigator
-- prefer self-contained pages over introducing dependencies without a clear benefit
-- review older resources when standards, legislation or national architectures materially change
+There are no required external JavaScript frameworks, CSS libraries or content-delivery networks.
 
-## Content scope
+The presentation is based on the Agile Health Informatics visual identity:
 
-The website and resources focus on areas including:
+- blue-grey page background;
+- white content surfaces;
+- medium and deep blue hierarchy;
+- lime accent;
+- rounded cards and controls; and
+- a responsive sticky header.
 
-- enterprise architecture
-- healthcare data architecture
-- metadata and semantic interoperability
-- healthcare standards
-- integration and information exchange
-- clinical terminology
-- information modelling
-- data lifecycle and operability
-- secure data and research environments
-- healthcare AI assurance
-- digital transformation and EPR readiness
+## Theme handling
 
-Many resources are analytical or educational rather than formal standards, regulatory guidance or compliance specifications. Where evidence-led comparisons are presented, readers should refer to the source material and limitations stated within the individual resource.
+The colour-theme control switches between light and dark presentation.
 
-## Repository status
+Where browser storage is available, the selected theme is retained using `localStorage`.
 
-This repository is the public website repository for Agile Health Informatics Ltd. The `main` branch contains the currently published site structure.
+## Responsive navigation
 
-The repository is intentionally small and static. If the resource library grows substantially, a later restructuring into directories such as `/navigators/`, `/atlases/` and `/tools/` may become useful, but the current flat structure avoids unnecessary URL migration and keeps deployment straightforward.
+On narrower screens the main navigation collapses behind the menu control.
+
+Any new top-level navigation link should therefore be added inside the existing `siteNav` element so that it participates automatically in both desktop and mobile navigation.
+
+## Adding a new page
+
+For a new top-level resource:
+
+1. Add the HTML file to the same published directory.
+2. Use a stable, descriptive filename.
+3. Add a relative link from the appropriate website page.
+4. Check both desktop and mobile navigation.
+5. Verify that the page works when served from GitHub Pages.
+6. Avoid changing existing filenames unless all incoming links are also updated.
+
+For evergreen resources, filenames should normally avoid dates and version numbers unless the date or version is material to the resource.
+
+## Professional Development Navigator link
+
+The homepage currently contains the following relative destination:
+
+```text
+health_care_computing_professional_development_navigator.html
+```
+
+The visible menu label is:
+
+```text
+Professional Development
+```
+
+This file must therefore be deployed alongside `index.html` for the menu item to resolve correctly.
+
+## Maintenance checks
+
+Before publishing changes, check:
+
+- all top-level navigation links;
+- links from the homepage to featured resources;
+- mobile-menu behaviour;
+- light and dark themes;
+- browser console for JavaScript errors;
+- relative file paths;
+- layout at common mobile and desktop widths;
+- embedded images;
+- print output where relevant; and
+- that the GitHub Pages deployment uses the intended `index.html`.
+
+## Content principles
+
+Public resources should remain:
+
+- professionally presented;
+- evidence-led where analysis is involved;
+- clear about their scope and limitations;
+- vendor-neutral unless a product is specifically being analysed;
+- explicit about whether they are guidance, analysis, reference material or an assessment tool; and
+- clear where a resource does **not** confer certification, accreditation or professional competence.
+
+## Ownership
+
+**Agile Health Informatics Ltd**  
+*creative ideas & solutions*
+
+<https://agilehealthinformatics.com/>
