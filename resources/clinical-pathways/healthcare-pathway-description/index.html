@@ -1,1 +1,346 @@
+<!doctype html>
+<html lang="en-GB" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="description" content="An introduction to the proposed Healthcare Pathway Description Standard (HPDS), a technology-neutral approach to representing healthcare pathways as governed, catalogue-ready business artefacts.">
+<link rel="canonical" href="https://agilehealthinformatics.com/resources/clinical-pathways/healthcare-pathway-description/">
+<title>Healthcare Pathway Description Standard | Agile Health Informatics Ltd</title>
+<style>
+:root{
+--bg:#edf3f8;--surface:#fff;--surface-2:#f5f8fb;--surface-3:#dfe9f3;
+--text:#17324a;--muted:#5b7187;--line:#c7d5e3;
+--brand:#4f7eb1;--brand-deep:#3e6897;--brand-soft:#7399c0;
+--accent:#dce8b2;--accent-strong:#c9dc93;--accent-ink:#4d6220;
+--green:#4d7427;--amber:#946200;
+--shadow:0 12px 30px rgba(42,78,114,.10);--radius:20px;--max:1180px
+}
+[data-theme="dark"]{
+--bg:#0f2032;--surface:#142d45;--surface-2:#193852;--surface-3:#244b6b;
+--text:#edf4fa;--muted:#c3d0dc;--line:#315979;
+--brand:#75a1ce;--brand-deep:#9bbfe0;--brand-soft:#84aacf;
+--accent:#dce8b2;--accent-strong:#e6efc4;--accent-ink:#233211;
+--green:#cfe39a;--amber:#f0cd86;--shadow:none
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.65 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body:before{content:"";position:fixed;left:0;top:0;width:var(--scroll,0%);height:3px;background:var(--accent-strong);z-index:9999}
+a{color:var(--brand-deep);text-decoration-thickness:.08em;text-underline-offset:.18em}a:hover{color:var(--brand)}
+button,input,select{font:inherit}img{max-width:100%;height:auto}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.site-header{position:sticky;top:0;z-index:1000;background:color-mix(in srgb,var(--surface) 92%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid color-mix(in srgb,var(--line) 80%,transparent)}
+.nav-wrap{max-width:var(--max);margin:0 auto;padding:10px 24px;display:flex;align-items:center;gap:18px}
+.brand-link{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text);min-width:260px}
+.brand-link img{width:54px;height:54px;border-radius:12px;box-shadow:0 5px 14px rgba(30,54,82,.15);object-fit:cover}
+.brand-name{line-height:1.08}.brand-name strong{display:block;color:var(--brand-deep);font-size:1rem;letter-spacing:-.015em}.brand-name span{display:block;margin-top:4px;color:var(--muted);font-size:.72rem;letter-spacing:.17em;text-transform:lowercase}
+.site-nav{display:flex;align-items:center;gap:3px;margin-left:auto}
+.site-nav a{padding:9px 9px;border-radius:9px;text-decoration:none;color:var(--muted);font-size:.88rem;font-weight:650;white-space:nowrap}
+.site-nav a:hover,.site-nav a.active{background:var(--surface-3);color:var(--brand-deep)}
+.nav-actions{display:flex;gap:8px;margin-left:4px}.icon-btn,.menu-btn{border:1px solid var(--line);background:var(--surface);color:var(--text);width:40px;height:40px;border-radius:10px;cursor:pointer;display:grid;place-items:center}.menu-btn{display:none}
+.hero{position:relative;overflow:hidden;background:linear-gradient(135deg,var(--brand-deep) 0%,#4f7eb1 62%,#7198c0 100%);color:#fff}
+.hero:before,.hero:after{content:"";position:absolute;border-radius:50%;background:rgba(220,232,178,.14)}
+.hero:before{width:560px;height:560px;right:-210px;top:-240px}.hero:after{width:280px;height:280px;left:52%;bottom:-180px}
+.hero-inner{max-width:var(--max);margin:0 auto;padding:62px 24px 60px;display:grid;grid-template-columns:minmax(0,1.25fr) 280px;gap:44px;align-items:center;position:relative;z-index:1}
+.hero-logo{display:flex;justify-content:flex-end}.hero-logo img{width:245px;border-radius:25px;box-shadow:0 22px 48px rgba(18,32,51,.24)}
+.kicker,.eyebrow,.resource-kicker{font-size:.78rem;text-transform:uppercase;letter-spacing:.14em;font-weight:800}.kicker{color:var(--accent)}.eyebrow{color:var(--brand);margin-bottom:6px}.resource-kicker{color:var(--accent-ink);display:inline-block;margin-bottom:8px}
+h1{margin:12px 0 20px;font-size:clamp(2.5rem,5vw,4.55rem);line-height:1;letter-spacing:-.052em;max-width:900px}
+h2{font-size:clamp(2rem,4vw,3.05rem);line-height:1.08;letter-spacing:-.04em;color:var(--brand-deep);margin:0 0 14px}
+h3{font-size:1.18rem;line-height:1.3;color:var(--brand-deep);margin:0 0 9px}
+h4{font-size:1rem;color:var(--brand-deep);margin:0 0 6px}
+p{margin:0 0 14px}.hero .lead{font-size:clamp(1.08rem,2vw,1.27rem);max-width:820px;color:#edf5fb;margin:0}
+.hero-actions{display:flex;flex-wrap:wrap;gap:11px;margin-top:27px}
+.cta{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:10px 16px;border-radius:11px;font-weight:750;text-decoration:none;border:1px solid rgba(255,255,255,.28)}
+.cta.primary{background:var(--accent);color:#21310f;border-color:var(--accent)}.cta.secondary{background:rgba(255,255,255,.1);color:#fff}.cta.primary:hover{background:var(--accent-strong);color:#21310f}.cta.secondary:hover{background:rgba(255,255,255,.17);color:#fff}
+main{max-width:var(--max);margin:0 auto;padding:32px 24px 70px}section{scroll-margin-top:88px;padding:50px 0;border-bottom:1px solid var(--line)}section:last-child{border-bottom:0}
+.section-head{max-width:890px;margin-bottom:26px}.lede{font-size:1.12rem;color:var(--muted);max-width:870px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
+.grid{display:grid;gap:16px}.grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}.grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}.grid-4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.tags,.pills{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}.tags span,.pills span{display:inline-flex;padding:5px 9px;border-radius:999px;background:var(--surface-3);color:var(--text);font-size:.75rem;font-weight:700}
+.note{padding:17px 18px;border-left:5px solid var(--accent-ink);border-radius:0 14px 14px 0;background:color-mix(in srgb,var(--accent) 20%,var(--surface));color:var(--muted)}
+.status{display:inline-flex;gap:7px;align-items:center;padding:6px 10px;border-radius:999px;background:var(--accent);color:var(--accent-ink);font-size:.76rem;font-weight:850}
+.status:before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent-ink)}
+footer{background:#102b43;color:#dbe8f2}.footer-inner{max-width:var(--max);margin:0 auto;padding:32px 24px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center}
+.footer-brand{display:flex;align-items:center;gap:14px}.footer-brand img{width:62px;height:62px;border-radius:13px}.footer-brand strong{display:block;color:#fff}.footer-brand span{display:block;font-size:.83rem;color:#b9cbda;margin-top:3px}.footer-meta{text-align:right;font-size:.82rem;color:#b9cbda}.footer-meta a{color:#fff}
+:focus-visible{outline:3px solid var(--accent-strong);outline-offset:3px}
+@media(max-width:980px){
+.site-nav{display:none;position:absolute;top:75px;left:14px;right:14px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:8px;box-shadow:var(--shadow);flex-direction:column;align-items:stretch}
+.site-nav.open{display:flex}.menu-btn{display:grid}.brand-link{min-width:0}.hero-inner{grid-template-columns:1fr 210px;gap:28px}.hero-logo img{width:200px}.grid-4{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:680px){
+.nav-wrap{padding:8px 14px}.brand-name span{display:none}.brand-link img{width:48px;height:48px}.hero-inner{padding:46px 18px 50px;grid-template-columns:1fr}.hero-logo{justify-content:flex-start}.hero-logo img{width:150px}
+main{padding:22px 16px 54px}section{padding:40px 0}.grid-2,.grid-3,.grid-4{grid-template-columns:1fr}.footer-inner{grid-template-columns:1fr}.footer-meta{text-align:left}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important;animation:none!important}}
+@media print{.site-header,.hero-actions,.icon-btn,.menu-btn,.controls{display:none!important}body{background:#fff;color:#000}.hero{background:#678eb8!important}.hero-inner{padding:28px;grid-template-columns:1fr}.hero-logo{display:none}.card{box-shadow:none}footer{background:#12304a!important}}
 
+.breadcrumbs{max-width:var(--max);margin:0 auto;padding:16px 24px 0;font-size:.86rem;color:var(--muted)}.breadcrumbs a{color:inherit}
+.status-panel{margin-top:-22px;position:relative;z-index:5}.status-card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px 20px;box-shadow:var(--shadow);display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:start}.status-card p{margin:0;color:var(--muted)}
+.problem-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}.plain-panel{background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+.flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:12px;align-items:stretch;margin-top:24px}.flow-step{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:var(--shadow)}.flow-step strong{display:block;color:var(--brand-deep);font-size:1.05rem;margin-bottom:6px}.flow-arrow{display:grid;place-items:center;color:var(--brand);font-size:1.7rem;font-weight:900}
+.three-way{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.concept-card{position:relative;padding-top:58px}.concept-no{position:absolute;left:22px;top:20px;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--brand);color:#fff;font-size:.82rem;font-weight:850}
+.catalogue-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.catalogue-card{min-height:190px}.catalogue-card ul{margin:.5rem 0 0;padding-left:1.15rem;color:var(--muted)}.catalogue-card li{margin:.32rem 0}
+.relationship{display:grid;grid-template-columns:1fr minmax(280px,.9fr);gap:20px}.relationship-map{background:linear-gradient(145deg,var(--brand-deep),var(--brand));color:#fff;border-radius:var(--radius);padding:22px;display:grid;gap:9px}.relationship-map .centre{background:var(--accent);color:var(--accent-ink);border-radius:14px;padding:18px;font-weight:850;text-align:center}.relationship-map .row{display:grid;grid-template-columns:1fr 1fr;gap:9px}.relationship-map .node{border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.10);border-radius:12px;padding:12px;font-size:.88rem}.relationship-map small{display:block;color:#e6eef5;margin-top:4px}
+.levels{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.level{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:var(--shadow)}.level-num{font-size:2rem;line-height:1;color:var(--brand-deep);font-weight:900}.level strong{display:block;color:var(--brand-deep);margin:8px 0 5px}
+.boundary-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.boundary-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px}.boundary-card strong{color:var(--brand-deep)}
+.demo{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(300px,.75fr);gap:20px;align-items:stretch}.demo-main{background:linear-gradient(145deg,color-mix(in srgb,var(--accent) 20%,var(--surface)),var(--surface));border:1px solid var(--line);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow)}.demo-side{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px}.metric-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:16px}.metric{background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:13px;text-align:center}.metric strong{display:block;color:var(--brand-deep);font-size:1.45rem}.metric span{display:block;color:var(--muted);font-size:.76rem;margin-top:2px}
+.details{margin-top:18px}.details details{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:0 18px}.details details+details{margin-top:10px}.details summary{cursor:pointer;font-weight:800;color:var(--brand-deep);padding:15px 0}.details .detail-body{padding:0 0 16px;color:var(--muted)}
+@media(max-width:980px){.flow{grid-template-columns:1fr}.flow-arrow{transform:rotate(90deg)}.catalogue-grid{grid-template-columns:repeat(2,1fr)}.relationship,.demo{grid-template-columns:1fr}.levels{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:680px){.status-card,.problem-grid,.three-way,.catalogue-grid,.levels,.boundary-grid{grid-template-columns:1fr}.metric-grid{grid-template-columns:1fr}.breadcrumbs{padding:14px 16px 0}.status-panel{margin-top:-12px}}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="nav-wrap">
+    <a class="brand-link" href="/" aria-label="Agile Health Informatics Ltd home">
+      <img alt="Agile Health Informatics Ltd logo" src="data:image/webp;base64,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">
+      <span class="brand-name"><strong>Agile Health Informatics Ltd</strong><span>creative ideas &amp; solutions</span></span>
+    </a>
+    <nav class="site-nav" id="siteNav" aria-label="Primary navigation">
+      <a href="/">Home</a>
+      <a href="/services.html">Services</a>
+      <a href="/resources.html" class="active">Resources</a>
+      <a href="/professional-development.html">Professional Development</a>
+      <a href="/about.html">About</a>
+      <a href="/#contact">Connect</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" id="themeToggle" type="button" aria-label="Switch colour theme" aria-pressed="false">◐</button>
+      <button class="menu-btn" id="menuToggle" type="button" aria-controls="siteNav" aria-expanded="false" aria-label="Open navigation">☰</button>
+    </div>
+  </div>
+</header>
+
+<div class="breadcrumbs"><a href="/">Home</a> / <a href="/resources.html">Resources</a> / Clinical pathways / Healthcare Pathway Description Standard</div>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="kicker">Clinical pathways · Working proposal</div>
+      <h1>Healthcare Pathway Description Standard</h1>
+      <p class="lead">A proposed approach to representing healthcare pathways as governed, technology-neutral business artefacts that can be catalogued, compared, versioned and related to local implementations.</p>
+      <div class="hero-actions">
+        <a class="cta primary" href="#concept">Understand the proposal</a>
+        <a class="cta secondary" href="frailty-multimorbidity-demonstrator/">Explore the demonstrator</a>
+      </div>
+    </div>
+    <div class="hero-logo"><img alt="Agile Health Informatics Ltd logo" src="data:image/webp;base64,UklGRigKAABXRUJQVlA4WAoAAAAQAAAAnwAAnwAAQUxQSC8AAAABUNy2beTJu1Pgf/e6u4H7VERMgPJtLker/sJV7bGjld9+0eI//If/8B/+w3+/BABWUDgg0gkAAJAtAJ0BKqAAoAA+PR6LRKIhoRLqrJQgA8Syt3C6pe3oxOSVzPkh6rDzzK36H/2nrK/1PqT2xvmA/Zv1c/Qd/kfRm9JP1CvQA/VX03f3C+Dj/K/9f9ovZ6/+nsAf//YK+wz+/eFPhr8sZjj4p8d+zf6j+veff9u8DfgVqBel/9H5vb5lwF7B/Xu8r/kPQD5kvcA/lf9Y/3PGDeKewB/Jf6v/mfuX+kr+D/8/+F87P5t/jv+x/i/gE/lf9Q/53947UH7gez6OYY4WP8tNxf66zDwZB0YGqOlJK1gnS2PBZ+fpdLelVE+5z2zcXY1xQtSs1WZYjyMCRc/5ljBQ0yOL/dLh8qVTkaOfqJ0ugfVwxDGRJ+S/IsteWtz4ri4kMTtHdCVlZfeKgbPf8FVyiQx+/c/x1FRU1Di4UrxGNCiywDRTtflm5DjfmuI3D4D6dQrFWgkojIqKa9JUtk4crGwgu+Uw73U5P9VBQIp8Qf48GQdGBq1MO2AA/fKLGeV9kyZZP/0g7/+IO//iDv2zP/8+W/+0P/aH4OABB6ccsA5xhCs9kA2T8W0Mvmj/L1wn+jjJU/VPFwh/J3qmq1oZ2oK9GFG6asr0FUbgbeXqWIfxAsf866bBKRjHwBaEaRsm9GtO/w7fO8LIVCRsvD9TkQI2zGuxuqpzBINCWHZq8BBANMUx1svBpLeI6juu4vBa56X1qogWGqg3o90w9jvqnDb89XvysI1+GXYs+0/h2OpDH1LccCDdCbL6cgiFjNlyGvTnD/3zcGUomvdq6lT2l1NXzlobfRyQosi1c5xW5iPiVheerX1gDTlhaAMJ2vh0QwyN7uWiummkf0oIZTmX68FcT32TZAetPX8MEk+i9q7E1sSIyj9XufL/P0l2+4NY57iRnuYiQnVBFRp7bPBJ1+he8ckZ0kWQgWQQI8METGxGqGppn4e5ZKbBADxnshqWCrqU0Lvo+3L5eeCM7AL4gr4sPyGR8dhv9jOO7mCYY/6l/9WkRJvC65TUR1kx/jkPS5s5iMSJMPESFDlz++yDm0FecxKwe59K4aWumXRXTVT5TrPCXkENhcoU/GsqLXiwyIkq7bFjGdf6BC89n2HLlgmIMxF+o2shpcPZfoVJHvNiSv7YaTU2b6aGfBRd5cHOZZsJg6UNbxceL7+8+DfOZfuah+A85agtL47wbBpOxwokxELLk0Qk5M9M39/SbCPciv6ZnYqGVnmgRNWTvDfbf1wpjHh2tZkjwFh77Foj/iePJYS1d2CcK9IfzkdHIWRwICnDMaEQAOrBf94etDB9M14/mDYFZoUU2yC/LJhYzG+7UiZM+9pUMRQ+U36/8igciOY90l/dhmxrIoJlApTHonq3xHf9XnkxpbEspKC1JBe6j91Hhih0azNG2ZzHcoA632nFmR2o77PvM8gCUtg+nRxCTyyQlmCPzgcBP/833LXJqPjqHBr+hOSFmr42/3mL6LnZZaATJJa7ghttXPLGqZrfoJJyA8EovnunwrRISAuHt9y7shVC0EtOfHcrcahKuqg7XAPvN7TFflm0xaEpluiH7fP56gDH+Vq/UAxz1DQ/g4jbWhft0NkMCrE2IPn2V90VCjpTRusR925C4XCGgZlbsXKtbQ2kULr8AId9fUGt/H/8YQZdAzYQf4VxbUUdif0aQZOgfWr3Vs17Mm3amvkkfV1L3z5glGpAdU1VhVfR+7U7LKO/mtbdd34fIFOZFWh/j8NrUHlj6tYdP1ywOLeUpizv5X/rz4gyscbFACUapkRzGldVmzUTlj1pQtndbiVF9BY/RofiNL/zj0c+q8VOXMvSuy3CDcbD3M/Ef/W21wtxpBPyixhT2iUocixtSlbNR7xr4bTB2+FvBRv/qZ2EweeDnXm/+IIeed86A+TJ1yidXuyIEC7nJrmn+hEIfOjglL74jeJyYwtNJKlsxR4wL4t8cgScvgbFGMxLORI6OfEFPnm5HXzyW2Sg9sdf2ReQSxblJuKRTIVcan50KewKQ2O+h4/3kDn5oUi2MjbrBgq9yNH/W86wvD4/Drbfq0H5dfKQ2x6lp7QVGUbabiRngfbzxPgHDsKG4hBYfBS1LJSqe4l9ZnmdC+sHJ8W4ljK+beVZzxkpIf+x/ZBOzlcBTwUiHvkYZczMzKhek6vioQzJq+9wwiawuYM4J7Dvh/diS5H1Ms7/CsuC8BAlBtvrCNhcJzu3fUI/H6RR+7pNoT8/uoZaBM9lNpdcrFENV8S/9MoY5CiMnAR3vd8l7/IDyxp0qr0FzIfzGGyYujQXxXeVA363CcNNmbG7mlXPTcF3mv+21njxiuaKRlKIbxih2eLNt6P+NwoGxyvmfrezgKsnpoAO8WygD/AZz7emRlh0J20gZ+WcNy4WsnkAN9d6OyOh3uIlPJstrGGQMXKTu8UTeqHkyw4zZBpR//tXvTQ9l0wOazSnmiJR9+179J37Q8f+KW0kdltOCGarCxacOxlTRGJTlXpPmPtxXWsoROHzI6MSBfQXxId5xcVuR8LUG4udUCXXG9exEFfIRdiPjFdhuriw5HoRm3Gz7HWlVFKnb3CZPPhq2TbEJ5SCWpmhxaZdErP12kT8ZHooKMSipFMFG3ZXcOowM6h67bbqT/ub1kLj2MV2thx7qYgbLEqt14BEJ9Ql+U4J84EWMqbUekBcqDZmiKrDgcebl61/d1r2Iebez61a6OwQVTnynvuKEhmmCqleZ2JuNS0SnFY50fL8vRebyVnkybUI7BjuE6Z7mHr2JIW3XXodlGC02ZvZPXiqChbSgdTBAy2wvQLVdGBjo4kWyADrp6WQqtxiJ8ViYrB+lKpx/59fPPxesTqseDJM5qiH2qrY5076d1oUcTSC57z9OBLcH19zAJfzgaLuirLIN3l9JhXsZML8a1Tpi/9T8l908vlhRNF4O+Pwhao3pcAlQnnrt3M15mC9fxQXnzrdnCx1rjAfAP+AEUSERCmyrIU76pGRc7+8pyQUH6+u4bzp9kY9cuVOR3ipVbYv6NCcr/bf728hmqzFcnBLdJi1xEHbwselTNjnsPkQtLnfgsiTkDtw6+DoubnKD6Ifs7w64FyT0XuvfGTRQTwaKoZq5xHGaUt7Ojb5iX8lCOY3H78AEpq2NzwSRrriI8Xk1cLh3wXzcg4PjDBYH621EwQjuw7b87GpX77PdWqzTsS5Y6kmcCSuf5biWWI+WB0E9A78ajmLyNAlYGgVrXPanE2jCmL1r1l9Hbq9aZAE5ddwVVEDM0q1zcXQmoHczxE6ra/g7zmnANdyC9LmWMDLG564Iu8P1xxfETgcuHm3IDUlsg3ahz3jrUCxuSl5T4GyKOy+UZAvThsPMjAfGqUAAAAAAA=="></div>
+  </div>
+</div>
+
+<main>
+<section class="status-panel" aria-label="Working draft status">
+  <div class="status-card">
+    <span class="status">Working proposal</span>
+    <p>HPDS is being developed by Agile Health Informatics Ltd for open review and testing against real pathway catalogues. It has not been submitted to, reviewed by or approved by ISO, IEC or a national standards body. The proposal remains subject to change.</p>
+  </div>
+</section>
+
+<section id="concept" aria-labelledby="problem-heading">
+  <div class="section-head">
+    <div class="eyebrow">The problem</div>
+    <h2 id="problem-heading">Healthcare pathways are important business knowledge, but they are rarely managed like business information.</h2>
+    <p class="lede">Healthcare organisations routinely catalogue applications, interfaces, services, data assets and standards. Pathways are more often distributed across guidance documents, diagrams, spreadsheets, local operating procedures and system configuration. That makes them difficult to discover, compare, govern, reuse and relate consistently to information requirements and technology.</p>
+  </div>
+  <div class="problem-grid">
+    <div class="plain-panel">
+      <h3>What becomes difficult</h3>
+      <p>When pathway meaning is dispersed across documents and systems, important distinctions can become implicit: who is responsible, what information is required, which decisions change the route, what outcome is intended, and which parts belong to local implementation rather than to the pathway itself.</p>
+    </div>
+    <div class="plain-panel">
+      <h3>The proposed response</h3>
+      <p>HPDS treats the pathway definition as a governed business artefact in its own right. It is intended to remain intelligible to clinicians, managers and architects while also supporting structured processing and controlled lifecycle management.</p>
+    </div>
+  </div>
+  <div class="flow" aria-label="Catalogue to implementation concept">
+    <div class="flow-step"><strong>1. Pathway catalogue</strong><span>A governed collection in which pathway definitions can be found, compared and maintained.</span></div>
+    <div class="flow-arrow" aria-hidden="true">→</div>
+    <div class="flow-step"><strong>2. Pathway definition</strong><span>The intended model of care, expressed independently of a particular EPR, workflow engine, supplier or exchange technology.</span></div>
+    <div class="flow-arrow" aria-hidden="true">→</div>
+    <div class="flow-step"><strong>3. Local implementation</strong><span>The services, workforce, applications, interfaces, locations and procedures through which a particular organisation realises the definition.</span></div>
+  </div>
+</section>
+
+<section aria-labelledby="separation-heading">
+  <div class="section-head">
+    <div class="eyebrow">A central distinction</div>
+    <h2 id="separation-heading">Definition, implementation and instance are different things.</h2>
+    <p class="lede">Keeping these layers separate allows the intended model of care to remain stable and comparable even when organisations use different teams, systems and local operating arrangements.</p>
+  </div>
+  <div class="three-way">
+    <article class="card concept-card"><span class="concept-no">1</span><h3>Pathway definition</h3><p>Describes the intended model of care. This is the primary business artefact held in the catalogue and should not be tied to named applications, interfaces, provider locations or local procedures.</p></article>
+    <article class="card concept-card"><span class="concept-no">2</span><h3>Pathway implementation</h3><p>Describes how an organisation or health system realises a pathway definition through particular organisational and technical arrangements, including explicit deviations where they exist.</p></article>
+    <article class="card concept-card"><span class="concept-no">3</span><h3>Pathway instance</h3><p>Represents the actual course of care experienced by an individual. Patient-level instances contain personal health information and sit outside the normative scope of the proposed standard.</p></article>
+  </div>
+</section>
+
+<section aria-labelledby="catalogue-heading">
+  <div class="section-head">
+    <div class="eyebrow">What a catalogue can hold</div>
+    <h2 id="catalogue-heading">A pathway record describes more than a sequence of activities.</h2>
+    <p class="lede">The proposed model brings the principal business concerns of a pathway into one governed description while allowing the level of detail to reflect the purpose of the catalogue.</p>
+  </div>
+  <div class="catalogue-grid">
+    <article class="card catalogue-card"><h3>Identity and governance</h3><ul><li>Persistent identifier and version</li><li>Lifecycle and authority status</li><li>Owner, steward and approvals</li><li>Intended use and provenance</li></ul></article>
+    <article class="card catalogue-card"><h3>Population, entry and exit</h3><ul><li>Target population</li><li>Entry routes and criteria</li><li>Exit routes and criteria</li><li>Transfer and escalation points</li></ul></article>
+    <article class="card catalogue-card"><h3>Pathway behaviour</h3><ul><li>Stages and activities</li><li>Decision points and branches</li><li>Events, timing and exceptions</li><li>Sub-pathways and relationships</li></ul></article>
+    <article class="card catalogue-card"><h3>Roles and services</h3><ul><li>Responsible roles</li><li>Participating services</li><li>Care settings</li><li>Clinical responsibility</li></ul></article>
+    <article class="card catalogue-card"><h3>Information dependencies</h3><ul><li>Information requirements</li><li>Information products</li><li>Clinical concepts and bindings</li><li>Technology-neutral interoperability requirements</li></ul></article>
+    <article class="card catalogue-card"><h3>Outcomes and evidence</h3><ul><li>Expected outcomes</li><li>Measures</li><li>Evidence sources</li><li>Traceability to decisions and activities</li></ul></article>
+  </div>
+</section>
+
+<section aria-labelledby="standards-heading">
+  <div class="section-head">
+    <div class="eyebrow">Relationship with other standards</div>
+    <h2 id="standards-heading">HPDS is intended to complement existing standards, not replace them.</h2>
+    <p class="lede">The proposal occupies a catalogue-oriented business layer. Other standards and modelling languages can provide conceptual foundations, semantic bindings, exchange representations, behavioural models and computable implementation artefacts.</p>
+  </div>
+  <div class="relationship">
+    <div>
+      <div class="card">
+        <h3>Different artefacts answer different questions</h3>
+        <p>ISO 13940 provides a conceptual basis for continuity of care. HL7 FHIR can represent shareable plan definitions and implementation artefacts. BPMN, CMMN and DMN can provide precise behavioural and decision views. WHO SMART Guidelines and Digital Adaptation Kits provide structured, software-neutral guidance artefacts.</p>
+        <p>HPDS proposes the catalogue-ready pathway business artefact that can reference, map to or be realised through those approaches without requiring one of them to serve every purpose.</p>
+      </div>
+    </div>
+    <div class="relationship-map" aria-label="Relationship of HPDS to complementary standards">
+      <div class="centre">HPDS<br><small>Catalogue-ready pathway business artefact</small></div>
+      <div class="row"><div class="node">ISO 13940<small>Continuity-of-care concepts</small></div><div class="node">Clinical terminologies<small>Semantic binding</small></div></div>
+      <div class="row"><div class="node">HL7 FHIR<small>Shareable and implementation artefacts</small></div><div class="node">BPMN · CMMN · DMN<small>Process, case and decision views</small></div></div>
+      <div class="row"><div class="node">SMART Guidelines / DAKs<small>Structured guidance</small></div><div class="node">Architecture models<small>Implementation mapping</small></div></div>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="levels-heading">
+  <div class="section-head">
+    <div class="eyebrow">Proportionate formality</div>
+    <h2 id="levels-heading">Conformance is graded according to intended use.</h2>
+    <p class="lede">The working draft defines four cumulative levels. A higher level is not inherently better. A catalogue used for discovery or commissioning discussion may be fit for purpose without computable expressions.</p>
+  </div>
+  <div class="levels">
+    <article class="level"><div class="level-num">1</div><strong>Catalogue-ready</strong><p>Governed minimum dataset, persistent identity and a human-readable catalogue record.</p></article>
+    <article class="level"><div class="level-num">2</div><strong>Structured</strong><p>Explicit identified elements with complete structural and behavioural relationships.</p></article>
+    <article class="level"><div class="level-num">3</div><strong>Semantically bound</strong><p>Important concepts and criteria linked to versioned semantic resources or declared as local terms.</p></article>
+    <article class="level"><div class="level-num">4</div><strong>Computably specified</strong><p>Criteria and temporal constraints expressed under a declared expression profile where appropriate.</p></article>
+  </div>
+</section>
+
+<section aria-labelledby="boundary-heading">
+  <div class="section-head">
+    <div class="eyebrow">Scope boundary</div>
+    <h2 id="boundary-heading">The proposal deliberately stops short of implementation prescription.</h2>
+    <p class="lede">Its purpose is to make pathway meaning governable and reusable, while leaving clinical authority and technical implementation with the appropriate people and standards.</p>
+  </div>
+  <div class="boundary-grid">
+    <article class="boundary-card"><strong>It does not determine clinical correctness.</strong><p>Conformance to the representation does not establish that the clinical content is safe, appropriate or approved.</p></article>
+    <article class="boundary-card"><strong>It does not represent the patient record.</strong><p>Individual pathway instances and personal health information remain outside the normative pathway definition.</p></article>
+    <article class="boundary-card"><strong>It does not specify transport or APIs.</strong><p>Messages, endpoints, protocols and integration products belong to implementation architecture.</p></article>
+    <article class="boundary-card"><strong>It does not prescribe one modelling technology.</strong><p>The proposal does not require a particular process notation, terminology, information standard or enterprise architecture tool.</p></article>
+  </div>
+</section>
+
+<section id="demonstrator" aria-labelledby="demo-heading">
+  <div class="demo">
+    <div class="demo-main">
+      <div class="eyebrow">See the idea applied</div>
+      <h2 id="demo-heading">Frailty and multimorbidity neighbourhood care demonstrator</h2>
+      <p class="lede">The demonstrator uses a synthetic reference catalogue to show how pathway definitions can remain clinically recognisable while being separated from local delivery arrangements, shared-record capabilities and technical implementation detail.</p>
+      <p>It includes a guided clinical tour, an interactive pathway catalogue, examples of reference versus local delivery, evidence provenance and a technical view of the draft HPDS mapping.</p>
+      <div class="hero-actions" style="margin-top:22px">
+        <a class="cta primary" style="background:var(--brand-deep);border-color:var(--brand-deep);color:#fff" href="frailty-multimorbidity-demonstrator/">Explore the demonstrator</a>
+      </div>
+    </div>
+    <aside class="demo-side" aria-label="Demonstrator summary">
+      <h3>Reference demonstrator</h3>
+      <p>The example is explicitly illustrative. It does not claim local clinical approval or that any locality currently operates the pathways described.</p>
+      <div class="metric-grid">
+        <div class="metric"><strong>35</strong><span>care pathways</span></div>
+        <div class="metric"><strong>9</strong><span>care domains</span></div>
+        <div class="metric"><strong>3</strong><span>governance processes</span></div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<section aria-labelledby="detail-heading">
+  <div class="section-head">
+    <div class="eyebrow">For reviewers and implementers</div>
+    <h2 id="detail-heading">What to test in the working proposal.</h2>
+    <p class="lede">The working draft is intended to be challenged against real pathway catalogues rather than accepted on the basis of the model alone.</p>
+  </div>
+  <div class="details">
+    <details open><summary>Information loss and catalogue usability</summary><div class="detail-body">Can an existing pathway catalogue be mapped into the model without losing clinically or operationally important meaning, and does the resulting representation remain intelligible as a business artefact rather than becoming a technical schema?</div></details>
+    <details><summary>Definition versus implementation</summary><div class="detail-body">Can local provider, workforce, application and interface choices be separated from the pathway definition without making the pathway too abstract to be useful?</div></details>
+    <details><summary>Governance burden</summary><div class="detail-body">Are identity, provenance, approval, lifecycle and versioning requirements proportionate to the value gained from comparison, reuse and traceability?</div></details>
+    <details><summary>Interoperability derivation</summary><div class="detail-body">Can information dependencies between pathway activities, roles and services be translated into useful technology-neutral interoperability requirements before implementation standards are selected?</div></details>
+  </div>
+</section>
+
+<section aria-labelledby="next-heading">
+  <div class="note">
+    <h3 id="next-heading">Working status</h3>
+    <p>The current material should be read as a proposal for review and practical testing. The name “Healthcare Pathway Description Standard” describes the intended subject and form of the work; it does not imply formal standardisation or accreditation.</p>
+    <p style="margin-bottom:0"><a href="/resources.html">← Return to the resource library</a></p>
+  </div>
+</section>
+</main>
+
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img alt="Agile Health Informatics Ltd logo" src="data:image/webp;base64,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">
+      <div><strong>Agile Health Informatics Ltd</strong><span>creative ideas &amp; solutions</span></div>
+    </div>
+    <div class="footer-meta">
+      <div>Independent healthcare architecture, data and informatics resources.</div>
+      <div><a href="/">Home</a> · <a href="/resources.html">Resources</a> · <a href="/#contact">Connect</a></div>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+(function(){
+  const root=document.documentElement;
+  const themeBtn=document.getElementById('themeToggle');
+  const menuBtn=document.getElementById('menuToggle');
+  const nav=document.getElementById('siteNav');
+  const saved=localStorage.getItem('ahi-theme');
+  const initial=saved || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  root.dataset.theme=initial;
+  function syncTheme(){
+    const dark=root.dataset.theme==='dark';
+    themeBtn.setAttribute('aria-pressed',String(dark));
+    themeBtn.setAttribute('aria-label',dark?'Use light theme':'Use dark theme');
+  }
+  syncTheme();
+  themeBtn.addEventListener('click',()=>{
+    root.dataset.theme=root.dataset.theme==='dark'?'light':'dark';
+    localStorage.setItem('ahi-theme',root.dataset.theme);
+    syncTheme();
+  });
+  menuBtn.addEventListener('click',()=>{
+    const open=nav.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded',String(open));
+    menuBtn.setAttribute('aria-label',open?'Close navigation':'Open navigation');
+  });
+  nav.addEventListener('click',e=>{
+    if(e.target.closest('a') && nav.classList.contains('open')){
+      nav.classList.remove('open');menuBtn.setAttribute('aria-expanded','false');
+    }
+  });
+  function progress(){
+    const d=document.documentElement;
+    const max=d.scrollHeight-d.clientHeight;
+    d.style.setProperty('--scroll',max?((d.scrollTop/max)*100)+'%':'0%');
+  }
+  document.addEventListener('scroll',progress,{passive:true});progress();
+})();
+</script>
+
+</body>
+</html>
