@@ -1,0 +1,1076 @@
+<!doctype html>
+<html lang="en-GB" data-theme="light">
+<head><link rel="canonical" href="https://agilehealthinformatics.com/resources/professional-development/health-care-computing/">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="An interactive professional development navigator for health and care computing from Agile Health Informatics Ltd.">
+<title>Health & Care Computing Professional Development Navigator | Agile Health Informatics Ltd</title>
+<style>
+:root{
+  --blue:#245d93; --blue-deep:#153b63; --blue-soft:#eaf3fb; --green:#65ad43;
+  --green-deep:#447f2d; --ink:#182433; --muted:#5e6a77; --paper:#f7f9fb;
+  --card:#ffffff; --line:#d8e1e8; --shadow:0 14px 38px rgba(20,53,84,.10);
+  --chip:#eef4f8; --accent:#0b7680; --warn:#9b6a00; --max:1240px;
+}
+html[data-theme="dark"]{
+  --ink:#edf5fb; --muted:#b7c5d1; --paper:#0d1823; --card:#132332; --line:#2b4052;
+  --blue-soft:#172f44; --chip:#1c3346; --shadow:0 16px 40px rgba(0,0,0,.28);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.55}
+a{color:var(--blue);text-underline-offset:3px}
+button,input,select{font:inherit}
+button{cursor:pointer}
+.skip{position:absolute;left:-9999px;top:0;background:#fff;color:#111;padding:.7rem 1rem;z-index:100}
+.skip:focus{left:1rem;top:1rem}
+.site-header{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--card) 93%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav-wrap{max-width:var(--max);margin:auto;padding:.6rem 1rem;display:flex;align-items:center;gap:1rem}
+.brand{display:flex;align-items:center;gap:.7rem;text-decoration:none;color:var(--ink);min-width:260px}
+.brand svg{width:40px;height:40px;flex:0 0 40px}
+.brand-name{display:flex;flex-direction:column;line-height:1.08}
+.brand-name strong{font-size:.96rem;letter-spacing:.01em}
+.brand-name span{font-size:.72rem;color:var(--muted);font-style:italic;margin-top:.18rem}
+.site-nav{display:flex;gap:.25rem;align-items:center;flex:1;justify-content:center}
+.site-nav a{color:var(--muted);font-size:.88rem;font-weight:650;text-decoration:none;padding:.45rem .58rem;border-radius:.55rem}
+.site-nav a:hover,.site-nav a.active{background:var(--blue-soft);color:var(--blue)}
+.nav-actions{display:flex;gap:.45rem}
+.icon-btn,.menu-btn{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:.65rem;padding:.46rem .65rem}
+.menu-btn{display:none}
+.hero{background:linear-gradient(135deg,var(--blue-deep),var(--blue) 62%,#3984aa);color:white;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;width:420px;height:420px;border:90px solid rgba(101,173,67,.18);border-radius:50%;right:-170px;top:-210px}
+.hero-inner{max-width:var(--max);margin:auto;padding:4.6rem 1.2rem 4.2rem;display:grid;grid-template-columns:minmax(0,1.35fr) minmax(290px,.65fr);gap:3rem;position:relative;z-index:2}
+.kicker{text-transform:uppercase;letter-spacing:.12em;font-weight:750;font-size:.75rem;opacity:.9}
+h1{font-size:clamp(2.4rem,5vw,4.8rem);line-height:1.02;margin:.5rem 0 1rem;max-width:900px}
+.lead{font-size:clamp(1.02rem,1.7vw,1.28rem);max-width:780px;color:#edf6ff;margin:0 0 1.4rem}
+.hero-actions{display:flex;gap:.7rem;flex-wrap:wrap}
+.cta{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;font-weight:750;border-radius:.7rem;padding:.75rem 1rem}
+.cta.primary{background:#fff;color:var(--blue-deep)}
+.cta.secondary{border:1px solid rgba(255,255,255,.55);color:white}
+.hero-panel{align-self:end;background:rgba(7,37,64,.34);border:1px solid rgba(255,255,255,.22);border-radius:1rem;padding:1.1rem}
+.hero-panel strong{display:block;font-size:1.05rem;margin-bottom:.5rem}
+.hero-panel ul{margin:.2rem 0 0;padding-left:1.1rem;color:#edf6ff;font-size:.92rem}
+main{max-width:var(--max);margin:auto;padding:0 1rem 5rem}
+section{scroll-margin-top:78px;padding:3.7rem 0 0}
+.section-head{display:flex;justify-content:space-between;gap:2rem;align-items:end;margin-bottom:1.35rem}
+.eyebrow{font-size:.74rem;text-transform:uppercase;letter-spacing:.11em;color:var(--green-deep);font-weight:800}
+h2{font-size:clamp(1.8rem,3vw,2.6rem);line-height:1.14;margin:.28rem 0 .45rem}
+h3{line-height:1.25}
+.section-intro{color:var(--muted);max-width:850px;margin:0}
+.navigator-shell{display:grid;grid-template-columns:330px minmax(0,1fr);gap:1.4rem;align-items:start}
+.controls{position:sticky;top:82px;background:var(--card);border:1px solid var(--line);border-radius:1rem;padding:1rem;box-shadow:var(--shadow)}
+.control-group+ .control-group{margin-top:1.1rem;padding-top:1rem;border-top:1px solid var(--line)}
+.control-group label,.control-label{display:block;font-weight:780;font-size:.9rem;margin-bottom:.5rem}
+select,.search{width:100%;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:.65rem;padding:.68rem .72rem}
+.chips{display:flex;flex-wrap:wrap;gap:.46rem}
+.chip{border:1px solid var(--line);background:var(--chip);color:var(--ink);border-radius:999px;padding:.44rem .62rem;font-size:.78rem;text-align:left}
+.chip[aria-pressed="true"]{background:var(--blue);color:white;border-color:var(--blue)}
+.reset{width:100%;margin-top:1rem;border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:.65rem;padding:.62rem}
+.route{background:var(--card);border:1px solid var(--line);border-radius:1rem;padding:1.15rem 1.2rem;margin-bottom:1rem;box-shadow:var(--shadow)}
+.route-head{display:flex;justify-content:space-between;align-items:start;gap:1rem}
+.route h3{margin:.2rem 0 .35rem}
+.route p{margin:.25rem 0;color:var(--muted)}
+.route-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;margin-top:1rem}
+.route-step{background:var(--blue-soft);border-radius:.7rem;padding:.7rem}
+.route-step span{font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:750}
+.route-step strong{display:block;font-size:.9rem;margin-top:.2rem}
+.results-meta{color:var(--muted);font-size:.86rem;margin:.65rem 0}
+.domain-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.85rem}
+.domain-card{background:var(--card);border:1px solid var(--line);border-radius:.95rem;padding:1rem;position:relative;box-shadow:0 5px 18px rgba(20,53,84,.05)}
+.domain-card[data-priority="Core"]{border-top:4px solid var(--green)}
+.domain-card[data-priority="Develop"]{border-top:4px solid var(--blue)}
+.domain-card[data-priority="Explore"]{border-top:4px solid #aab7c2}
+.domain-card.hidden{display:none}
+.card-top{display:flex;justify-content:space-between;gap:.75rem}
+.domain-number{font-size:.72rem;font-weight:850;color:var(--blue);letter-spacing:.08em}
+.priority{font-size:.7rem;font-weight:800;border-radius:999px;padding:.28rem .5rem;background:var(--chip);white-space:nowrap}
+.priority.Core{background:#e8f5e2;color:#2f6b24}
+.priority.Develop{background:var(--blue-soft);color:var(--blue)}
+.domain-card h3{font-size:1.05rem;margin:.35rem 0 .45rem}
+.domain-card p{font-size:.89rem;color:var(--muted);margin:.35rem 0}
+.topic-pills{display:flex;flex-wrap:wrap;gap:.35rem;margin:.75rem 0}
+.topic{font-size:.7rem;background:var(--chip);border-radius:999px;padding:.27rem .45rem}
+.card-actions{display:flex;gap:.45rem;margin-top:.7rem}
+.detail-btn{border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:.55rem;padding:.43rem .58rem;font-size:.78rem;font-weight:700}
+.details{display:none;border-top:1px solid var(--line);margin-top:.8rem;padding-top:.8rem}
+.domain-card.open .details{display:block}
+.details strong{color:var(--ink)}
+.level-box{margin-top:.7rem;border-left:3px solid var(--green);padding:.55rem .7rem;background:var(--paper);border-radius:0 .5rem .5rem 0}
+.level-box h4{margin:0 0 .25rem;font-size:.84rem}
+.level-box p{margin:0;font-size:.8rem}
+.band-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.9rem}
+.band{background:var(--card);border:1px solid var(--line);border-radius:.9rem;padding:1rem}
+.band.active{outline:3px solid color-mix(in srgb,var(--green) 35%,transparent);border-color:var(--green)}
+.band .num{width:2rem;height:2rem;border-radius:50%;display:grid;place-items:center;background:var(--blue-soft);color:var(--blue);font-weight:850}
+.band h3{margin:.65rem 0 .25rem}
+.band p{color:var(--muted);font-size:.9rem}
+.map{display:grid;grid-template-columns:repeat(13,1fr);gap:.35rem;align-items:end;min-height:230px;background:var(--card);border:1px solid var(--line);border-radius:1rem;padding:1rem;overflow-x:auto}
+.map button{min-width:58px;border:0;border-radius:.6rem .6rem .35rem .35rem;background:linear-gradient(180deg,var(--blue),var(--blue-deep));color:white;padding:.55rem .35rem;display:flex;flex-direction:column;justify-content:flex-end;gap:.3rem;transition:.2s transform,.2s opacity;box-shadow:0 5px 14px rgba(20,53,84,.16)}
+.map button:hover,.map button:focus{transform:translateY(-4px)}
+.map button.dim{opacity:.32}
+.map small{font-size:.62rem;line-height:1.1}
+.map strong{font-size:.78rem}
+.callout{margin-top:.9rem;border:1px solid var(--line);background:var(--blue-soft);border-radius:.8rem;padding:.9rem 1rem;color:var(--muted)}
+.special-grid,.theme-grid,.gap-grid,.resource-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem}
+.mini-card{background:var(--card);border:1px solid var(--line);border-radius:.85rem;padding:.9rem}
+.mini-card h3{font-size:.96rem;margin:.1rem 0 .35rem}
+.mini-card p{font-size:.84rem;color:var(--muted);margin:0}
+.resource-toolbar{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1rem}
+.resource-card a{font-weight:780;text-decoration:none}
+.resource-card .meta{font-size:.71rem;color:var(--green-deep);text-transform:uppercase;letter-spacing:.07em;font-weight:800;margin-bottom:.25rem}
+.about-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:1rem}
+.about-card{background:var(--card);border:1px solid var(--line);border-radius:1rem;padding:1.1rem}
+.about-card p{color:var(--muted)}
+.about-card ul{padding-left:1.1rem;color:var(--muted)}
+.footer{border-top:1px solid var(--line);margin-top:4rem;padding:2rem 0;color:var(--muted);font-size:.84rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.badge{display:inline-block;background:var(--green);color:white;font-weight:800;border-radius:999px;padding:.25rem .5rem;font-size:.72rem}
+.no-js{background:#fff3cd;color:#594400;border:1px solid #eed17a;padding:.8rem;border-radius:.7rem;margin-top:1rem}
+
+.study-builder{display:grid;grid-template-columns:360px minmax(0,1fr);gap:1rem;align-items:start}
+.study-config,.study-output{background:var(--card);border:1px solid var(--line);border-radius:1rem;padding:1rem;box-shadow:var(--shadow)}
+.study-config h3,.study-output h3{margin:.1rem 0 .7rem}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+.form-grid .full{grid-column:1/-1}
+.field label{display:block;font-size:.78rem;font-weight:780;margin-bottom:.28rem;color:var(--muted)}
+.field input,.field select{width:100%;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:.6rem;padding:.6rem .65rem}
+.plan-help{font-size:.8rem;color:var(--muted);margin:.7rem 0 0}
+.domain-picker{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.45rem;margin:.7rem 0}
+.domain-pick{display:flex;gap:.45rem;align-items:flex-start;border:1px solid var(--line);background:var(--paper);border-radius:.65rem;padding:.55rem;font-size:.78rem}
+.domain-pick input{margin-top:.16rem}
+.plan-actions{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.9rem}
+.plan-actions button{border-radius:.62rem;padding:.58rem .72rem;font-weight:750}
+.plan-primary{border:1px solid var(--blue);background:var(--blue);color:#fff}
+.plan-secondary{border:1px solid var(--line);background:transparent;color:var(--ink)}
+.plan-print{border:1px solid var(--green-deep);background:var(--green);color:#fff}
+.study-output-empty{min-height:260px;display:grid;place-items:center;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:.75rem;padding:1.2rem}
+.plan-header{border-bottom:2px solid var(--blue);padding-bottom:.8rem;margin-bottom:1rem}
+.plan-header h3{font-size:1.35rem;margin:.2rem 0}
+.plan-meta{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem;margin-top:.75rem}
+.plan-meta div{background:var(--paper);border-radius:.55rem;padding:.55rem}
+.plan-meta span{display:block;text-transform:uppercase;font-size:.61rem;letter-spacing:.08em;color:var(--muted);font-weight:800}
+.plan-meta strong{display:block;font-size:.82rem;margin-top:.12rem}
+.plan-rationale{background:var(--blue-soft);border-radius:.7rem;padding:.75rem;margin:.8rem 0;color:var(--muted);font-size:.86rem}
+.week-list{display:grid;gap:.65rem}
+.week-card{border:1px solid var(--line);border-radius:.75rem;padding:.78rem;break-inside:avoid}
+.week-head{display:flex;justify-content:space-between;gap:.75rem;align-items:start}
+.week-no{font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;color:var(--green-deep);font-weight:850}
+.week-card h4{margin:.15rem 0 .35rem;font-size:.98rem}
+.week-dates{font-size:.72rem;color:var(--muted);white-space:nowrap}
+.week-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:.8rem}
+.week-grid p,.week-grid li{font-size:.8rem;color:var(--muted)}
+.week-grid ul{margin:.3rem 0 0;padding-left:1rem}
+.week-tasks{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.55rem}
+.week-task{font-size:.69rem;background:var(--chip);border-radius:999px;padding:.25rem .43rem}
+.plan-check{display:inline-flex;gap:.35rem;align-items:center;font-size:.73rem;color:var(--muted);margin-top:.45rem}
+.plan-check-box{width:13px;height:13px;border:1px solid var(--muted);border-radius:2px;display:inline-block}
+.notes-lines{margin-top:.65rem}
+.notes-lines span{display:block;border-bottom:1px solid var(--line);height:1.15rem}
+.plan-summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:.65rem;margin:1rem 0}
+.plan-summary-card{border:1px solid var(--line);border-radius:.7rem;padding:.7rem}
+.plan-summary-card h4{font-size:.82rem;margin:0 0 .35rem}
+.plan-summary-card p,.plan-summary-card li{font-size:.77rem;color:var(--muted)}
+.plan-summary-card ul{margin:.2rem 0 0;padding-left:1rem}
+.print-only{display:none}
+
+@media(max-width:980px){
+  .site-nav{display:none;position:absolute;left:1rem;right:1rem;top:62px;background:var(--card);border:1px solid var(--line);border-radius:.8rem;padding:.5rem;box-shadow:var(--shadow);flex-direction:column;align-items:stretch}
+  .site-nav.open{display:flex}.menu-btn{display:block}.brand{min-width:0;flex:1}.nav-actions{margin-left:auto}
+  .hero-inner{grid-template-columns:1fr}.hero-panel{max-width:640px}
+  .navigator-shell,.study-builder{grid-template-columns:1fr}.controls{position:static}
+  .domain-grid{grid-template-columns:1fr}.route-steps{grid-template-columns:repeat(2,1fr)}
+  .special-grid,.theme-grid,.gap-grid,.resource-grid{grid-template-columns:repeat(2,1fr)}
+  .about-grid{grid-template-columns:1fr}
+}
+@media(max-width:620px){
+  .brand-name span{display:none}.hero-inner{padding-top:3rem}.section-head{align-items:start;flex-direction:column}
+  .band-grid,.special-grid,.theme-grid,.gap-grid,.resource-grid{grid-template-columns:1fr}.route-steps{grid-template-columns:1fr}.form-grid,.domain-picker,.plan-meta,.week-grid,.plan-summary-grid{grid-template-columns:1fr}
+  .map{grid-template-columns:repeat(13,62px)}
+}
+@media print{
+  .site-header,.controls,.hero-actions,.card-actions,.resource-toolbar,.plan-actions,.study-config{display:none!important}
+  body{background:white;color:#111}.hero{background:white;color:#111;border-bottom:2px solid #111}.lead,.hero-panel ul{color:#333}.hero-panel{background:#f3f3f3;border-color:#ccc}
+  main{max-width:none}.navigator-shell,.study-builder{display:block}.domain-grid,.special-grid,.theme-grid,.gap-grid,.resource-grid{grid-template-columns:1fr 1fr}
+  .domain-card.hidden{display:block}.details{display:block}.footer{color:#333}
+  body.print-plan .site-header,body.print-plan .hero,body.print-plan main>section:not(#study-plan),body.print-plan .footer{display:none!important}
+  body.print-plan main{padding:0;max-width:none}
+  body.print-plan #study-plan{display:block!important;padding:0}
+  body.print-plan #study-plan>.section-head{display:none}
+  body.print-plan .study-output{display:block;border:0;box-shadow:none;padding:0}
+  body.print-plan .study-output-empty{display:none}
+  body.print-plan .print-only{display:block}
+  body.print-plan .plan-header{margin-top:0}
+  body.print-plan .week-card{page-break-inside:avoid;break-inside:avoid;border-color:#aaa}
+  body.print-plan .plan-meta div,.plan-rationale,.week-task{background:#f4f4f4!important;color:#222!important}
+  body.print-plan a{color:#111;text-decoration:none}
+  @page{margin:14mm}
+}
+</style>
+
+<style id="agile-health-informatics-brand">
+:root{
+  --bg:#edf3f8;--surface:#ffffff;--surface-2:#f5f8fb;--surface-3:#dfe9f3;
+  --text:#17324a;--muted:#5b7187;--line:#c7d5e3;--brand:#4f7eb1;--brand-deep:#3e6897;
+  --brand-soft:#7399c0;--accent:#dce8b2;--accent-strong:#c9dc93;--accent-ink:#4d6220;
+  --green:#4d7427;--amber:#946200;--shadow:0 12px 30px rgba(42,78,114,.10);--radius:20px;--max:1180px;
+  --blue:var(--brand);--blue-deep:var(--brand-deep);--blue-soft:var(--surface-3);
+  --green-deep:var(--green);--ink:var(--text);--paper:var(--bg);--card:var(--surface);
+  --chip:color-mix(in srgb,var(--accent) 20%,var(--surface));--warn:var(--amber)
+}
+html[data-theme="dark"]{
+  --bg:#0f2032;--surface:#142d45;--surface-2:#193852;--surface-3:#244b6b;--text:#edf4fa;
+  --muted:#c3d0dc;--line:#315979;--brand:#75a1ce;--brand-deep:#9bbfe0;--brand-soft:#84aacf;
+  --accent:#dce8b2;--accent-strong:#e6efc4;--accent-ink:#233211;--green:#cfe39a;--amber:#f0cd86;--shadow:none
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font:16px/1.65 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif
+}
+body:before{
+  content:"";position:fixed;z-index:9999;left:0;top:0;width:var(--scroll,0%);
+  height:3px;background:var(--accent-strong)
+}
+a{color:var(--brand-deep);text-decoration-thickness:.08em;text-underline-offset:.18em}
+a:hover{color:var(--brand)}
+.site-header{
+  position:sticky;top:0;z-index:1000;
+  background:color-mix(in srgb,var(--surface) 92%,transparent);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid color-mix(in srgb,var(--line) 80%,transparent)
+}
+.nav-wrap{
+  max-width:var(--max);margin:0 auto;padding:10px 24px;
+  display:flex;align-items:center;gap:22px
+}
+.brand-link{
+  display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text);min-width:275px
+}
+.brand-link img{
+  width:54px;height:54px;object-fit:cover;border-radius:12px;
+  box-shadow:0 5px 14px rgba(30,54,82,.15)
+}
+.brand-name{line-height:1.08}
+.brand-name strong{
+  display:block;color:var(--brand-deep);font-size:1rem;letter-spacing:-.015em
+}
+.brand-name span{
+  display:block;margin-top:4px;color:var(--muted);font-size:.72rem;
+  letter-spacing:.17em;text-transform:lowercase;font-style:normal
+}
+.site-nav{display:flex;align-items:center;gap:4px;margin-left:auto}
+.site-nav a{
+  padding:9px 10px;border-radius:9px;text-decoration:none;color:var(--muted);
+  font-size:.88rem;font-weight:650
+}
+.site-nav a:hover,.site-nav a.active{background:var(--surface-3);color:var(--brand-deep)}
+.nav-actions{display:flex;gap:8px;margin-left:6px}
+.icon-btn,.menu-btn{
+  border:1px solid var(--line);background:var(--surface);color:var(--text);
+  width:40px;height:40px;border-radius:10px;cursor:pointer;display:grid;place-items:center;padding:0
+}
+.icon-btn:hover,.menu-btn:hover{border-color:var(--brand);color:var(--brand-deep)}
+
+.hero{
+  position:relative;overflow:hidden;
+  background:linear-gradient(135deg,var(--brand-deep) 0%,#4f7eb1 62%,#7198c0 100%);
+  color:#fff
+}
+.hero:before,.hero:after{
+  content:"";position:absolute;border-radius:50%;
+  background:rgba(220,232,178,.14);pointer-events:none
+}
+.hero:before{width:560px;height:560px;right:-210px;top:-240px}
+.hero:after{width:280px;height:280px;left:52%;bottom:-180px}
+.hero-inner{
+  max-width:var(--max);margin:0 auto;padding:72px 24px 68px;
+  display:grid;grid-template-columns:minmax(0,1.35fr) minmax(280px,.65fr);
+  gap:52px;align-items:center;position:relative;z-index:1
+}
+.kicker{
+  font-size:.82rem;text-transform:uppercase;letter-spacing:.16em;
+  color:var(--accent);font-weight:800
+}
+h1{
+  margin:12px 0 20px;font-size:clamp(2.8rem,6vw,5.3rem);
+  line-height:.98;letter-spacing:-.055em;max-width:900px
+}
+.hero .lead{
+  font-size:clamp(1.1rem,2vw,1.3rem);max-width:850px;color:#edf5fb;margin:0
+}
+.hero-actions{display:flex;flex-wrap:wrap;gap:11px;margin-top:28px}
+.cta{
+  display:inline-flex;align-items:center;justify-content:center;min-height:46px;
+  padding:10px 16px;border-radius:11px;font-weight:750;text-decoration:none;
+  border:1px solid rgba(255,255,255,.28)
+}
+.cta.primary{background:var(--accent);color:#21310f;border-color:var(--accent)}
+.cta.primary:hover{background:var(--accent-strong);color:#21310f}
+.cta.secondary{background:rgba(255,255,255,.1);color:#fff}
+.cta.secondary:hover{background:rgba(255,255,255,.17);color:#fff}
+.hero-panel{
+  align-self:center;background:rgba(255,255,255,.10);
+  border:1px solid rgba(255,255,255,.24);border-radius:18px;
+  padding:20px;box-shadow:none
+}
+.hero-panel strong{color:#fff}
+.hero-panel li{color:#edf5fb}
+
+main{max-width:var(--max);margin:0 auto;padding:30px 24px 70px}
+section{scroll-margin-top:88px;padding:52px 0;border-bottom:1px solid var(--line)}
+section:last-child{border-bottom:0}
+.section-head{max-width:900px;margin-bottom:24px;display:block}
+.eyebrow{
+  font-size:.78rem;text-transform:uppercase;letter-spacing:.14em;
+  color:var(--brand);font-weight:800;margin-bottom:6px
+}
+h2{
+  font-size:clamp(2rem,4vw,3.05rem);line-height:1.08;letter-spacing:-.04em;
+  color:var(--brand-deep);margin:0 0 14px
+}
+h3,h4{color:var(--brand-deep)}
+.section-intro{font-size:1.05rem;color:var(--muted);max-width:900px;margin:0}
+
+.controls,.route,.domain-card,.band,.mini-card,.about-card,.study-config,.study-output{
+  background:var(--surface);border:1px solid var(--line);
+  border-radius:16px;box-shadow:var(--shadow)
+}
+.controls{padding:18px}
+.route,.study-config,.study-output{padding:20px}
+.domain-card,.band,.mini-card,.about-card{padding:18px}
+.domain-card:before,.mini-card:before{
+  content:"";display:block;height:4px;
+  background:linear-gradient(90deg,var(--accent),var(--brand-soft));
+  margin:-18px -18px 16px;border-radius:16px 16px 0 0
+}
+.domain-card[data-priority="Core"]{border-top:1px solid var(--line)}
+.domain-card[data-priority="Develop"]{border-top:1px solid var(--line)}
+.domain-card[data-priority="Explore"]{border-top:1px solid var(--line)}
+.priority.Core{background:color-mix(in srgb,var(--accent) 70%,var(--surface));color:var(--accent-ink)}
+.priority.Develop{background:var(--surface-3);color:var(--brand-deep)}
+.priority.Explore{background:var(--surface-2);color:var(--muted)}
+.domain-number{color:var(--brand);font-weight:850}
+.domain-card h3,.band h3,.mini-card h3,.about-card h3,.study-config h3,.study-output h3{
+  color:var(--brand-deep)
+}
+.domain-card p,.band p,.mini-card p,.about-card p,.route p,.study-config p,.study-output p{
+  color:var(--muted)
+}
+.chip,.topic,.week-task{
+  border:1px solid color-mix(in srgb,var(--line) 82%,var(--accent));
+  background:color-mix(in srgb,var(--accent) 20%,var(--surface));
+  color:var(--text)
+}
+.chip[aria-pressed="true"]{background:var(--brand-deep);color:#fff;border-color:var(--brand-deep)}
+select,.search,.field input,.field select{
+  border:1px solid var(--line);background:var(--surface);color:var(--text);
+  border-radius:9px;min-height:44px
+}
+.reset,.detail-btn,.plan-secondary{
+  border:1px solid var(--line);background:var(--surface);color:var(--text);
+  border-radius:9px
+}
+.reset:hover,.detail-btn:hover,.plan-secondary:hover{
+  border-color:var(--brand);color:var(--brand-deep)
+}
+.plan-primary{background:var(--brand-deep);border-color:var(--brand-deep);color:#fff}
+.plan-print{background:var(--accent);border-color:var(--accent);color:#21310f}
+.plan-primary:hover{background:var(--brand);border-color:var(--brand)}
+.plan-print:hover{background:var(--accent-strong)}
+.route-step,.level-box,.plan-meta div,.plan-rationale{
+  background:var(--surface-2);border:1px solid var(--line)
+}
+.route-step span,.plan-meta span{color:var(--muted)}
+.route-step strong,.plan-meta strong{color:var(--brand-deep)}
+.badge{background:var(--accent);color:#21310f}
+.band .num{
+  background:var(--surface-3);color:var(--brand-deep);
+  width:2.15rem;height:2.15rem
+}
+.band.active{
+  outline:3px solid color-mix(in srgb,var(--accent-strong) 65%,transparent);
+  border-color:var(--accent-strong)
+}
+.map{
+  background:var(--surface);border:1px solid var(--line);border-radius:16px;
+  box-shadow:var(--shadow)
+}
+.map button{
+  background:linear-gradient(180deg,var(--brand),var(--brand-deep));box-shadow:none
+}
+.callout{
+  border-left:5px solid var(--brand);background:var(--surface-2);
+  padding:1rem 1.1rem;margin:1rem 0;border-radius:0 12px 12px 0;
+  border-top:0;border-right:0;border-bottom:0;color:var(--muted)
+}
+.domain-pick,.week-card,.plan-summary-card{
+  background:var(--surface);border-color:var(--line)
+}
+.study-output-empty{background:var(--surface-2)}
+.week-no{color:var(--brand)}
+.week-card h4,.plan-summary-card h4{color:var(--brand-deep)}
+.footer{
+  margin-top:20px;background:linear-gradient(135deg,var(--brand-deep),var(--brand));
+  color:#eaf2f8;border-top:0;padding:30px 24px;border-radius:18px
+}
+.footer strong{color:#fff}
+
+@media(max-width:980px){
+  .hero-inner{grid-template-columns:1fr;gap:28px}
+  .site-nav{
+    position:absolute;top:75px;left:16px;right:16px;display:none;
+    flex-direction:column;align-items:stretch;background:var(--surface);
+    border:1px solid var(--line);border-radius:14px;padding:8px;box-shadow:var(--shadow)
+  }
+  .site-nav.open{display:flex}
+  .site-nav a{padding:11px 12px}
+  .menu-btn{display:grid}
+  .brand-link{min-width:0}
+}
+@media(max-width:680px){
+  .nav-wrap{padding:9px 14px}
+  .brand-name span{display:none}
+  .brand-link img{width:46px;height:46px}
+  .brand-name strong{font-size:.92rem}
+  .hero-inner{padding:50px 18px}
+  h1{font-size:clamp(2.4rem,12vw,4rem)}
+  main{padding:24px 16px 55px}
+  section{padding:42px 0}
+  .nav-actions{margin-left:auto}
+}
+@media print{
+  body:before{display:none!important}
+  .footer{background:#5f83ad!important;color:#fff!important}
+  .controls,.route,.domain-card,.band,.mini-card,.about-card,.study-output,.study-config{
+    box-shadow:none
+  }
+  body.print-plan .footer{display:none!important}
+}
+</style>
+
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="nav-wrap">
+    <a class="brand-link" href="https://agilehealthinformatics.com/" aria-label="Agile Health Informatics Ltd home">
+      <img alt="Agile Health Informatics Ltd logo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA+gAAAPoCAYAAABNo9TkAAAgAElEQVR4nOzdbWyd53kn+Et8EQ959HZMJjUNi7DZVoyZbCBKOykibmY2kt1i1FoYyEUcwBmM1WQ7gJvdDpAG3S7QTJsCsws4BWYxdrAYOFEKxIAdrPxBRrQ7sKQBWlABupUodGo6dABKEA3TdkiReiF5KFLUfmCoSLFIHh6el/sc/n5A4Eg853luW6TI/3Pd93VFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANxvy1ov+J0/e+NOJRYCAAAAm1lDtRcAAAAACOgAAACQBAEdAAAAEiCgAwAAQAIEdAAAAEiAgA4AAAAJENABAAAgAQI6AAAAJEBABwAAgAQI6AAAAJAAAR0AAAASIKADAABAAgR0AAAASICADgAAAAkQ0AEAACABAjoAAAAkQEAHAACABAjoAAAAkAABHQAAABIgoAMAAEACBHQAAABIgIAOAAAACRDQAQAAIAECOgAAACRAQAcAAIAECOgAAACQAAEdAAAAEiCgAwAAQAIEdAAAAEiAgA4AAAAJENABAAAgAQI6AAAAJEBABwAAgAQI6AAAAJAAAR0AAAASIKADAABAAgR0AAAASICADgAAAAkQ0AEAACABAjoAAAAkQEAHAACABAjoAAAAkAABHQAAABIgoAMAAEACBHQAAABIgIAOAAAACRDQAQAAIAECOgAAACRAQAcAAIAECOgAAACQAAEdAAAAEiCgAwAAQAIEdAAAAEiAgA4AAAAJENABAAAgAQI6AAAAJEBABwAAgAQI6AAAAJAAAR0AAAASIKADAABAAgR0AAAASICADgAAAAkQ0AEAACABAjoAAAAkQEAHAACABAjoAAAAkAABHQAAABIgoAMAAEACBHQAAABIgIAOAAAACRDQAQAAIAECOgAAACRAQAcAAIAECOgAAACQAAEdAAAAEiCgAwAAQAIEdAAAAEiAgA4AAAAJENABAAAgAQI6AAAAJEBABwAAgAQI6AAAAJAAAR0AAAASIKADAABAAgR0AAAASICADgAAAAkQ0AEAACABAjoAAAAkQEAHAACABAjoAAAAkAABHQAAABIgoAMAAEACBHQAAABIgIAOAAAACRDQAQAAIAECOgAAACRAQAcAAIAECOgAAACQAAEdAAAAEiCgAwAAQAIEdAAAAEiAgA4AAAAJENABAAAgAQI6AAAAJEBABwAAgAQI6AAAAJAAAR0AAAASIKADAABAAgR0AAAASICADgAAAAkQ0AEAACABAjoAAAAkQEAHAACABAjoAAAAkAABHQAAABIgoAMAAEACBHQAAABIgIAOAAAACRDQAQAAIAECOgAAACRAQAcAAIAECOgAAACQAAEdAAAAEiCgAwAAQAIEdAAAAEiAgA4AAAAJENABAAAgAQI6AAAAJEBABwAAgAQI6AAAAJAAAR0AAAASIKADAABAAgR0AAAASICADgAAAAkQ0AEAACABAjoAAAAkQEAHAACABAjoAAAAkAABHQAAABIgoAMAAEACBHQAAABIgIAOAAAACRDQAQAAIAECOgAAACRAQAcAAIAECOgAAACQAAEdAAAAEiCgAwAAQAIEdAAAAEiAgA4AAAAJENABAAAgAQI6AAAAJEBABwAAgAQI6AAAAJAAAR0AAAASIKADAABAAgR0AAAASICADgAAAAkQ0AEAACABAjoAAAAkQEAHAACABAjoAAAAkAABHQAAABIgoAMAAEACBHQAAABIgIAOAAAACRDQAQAAIAECOgAAACRAQAcAAIAECOgAAACQAAEdAAAAEiCgAwAAQAIEdAAAAEiAgA4AAAAJENABAAAgAQI6AAAAJEBABwAAgAQI6AAAAJAAAR0AAAASIKADAABAAgR0AAAASICADgAAAAkQ0AEAACABAjoAAAAkQEAHAACABAjoAAAAkAABHQAAABIgoAMAAEACBHQAAABIgIAOAAAACRDQAQAAIAECOgAAACRAQAcAAIAECOgAAACQAAEdAAAAEiCgAwAAQAIEdAAAAEiAgA4AAAAJENABAAAgAQI6AAAAJEBABwAAgAQI6AAAAJAAAR0AAAASIKADAABAAgR0AAAASICADgAAAAkQ0AEAACABAjoAAAAkQEAHAACABAjoAAAAkAABHQAAABIgoAMAAEACBHQAAABIgIAOAAAACRDQAQAAIAECOgAAACRAQAcAAIAECOgAAACQAAEdAAAAEiCgAwAAQAIEdAAAAEiAgA4AAAAJENABAAAgAQI6AAAAJEBABwAAgAQI6AAAAJAAAR0AAAASIKADAABAAgR0AAAASICADgAAAAkQ0AEAACABAjoAAAAkQEAHAACABAjoAAAAkAABHQAAABIgoAMAAEACBHQA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/+ewbNu6URylG6TMXiL+/vn4Pulm+mz0lmwrLxF31fJwMzVzW/x9YVO/m9r7N0n0jlhSplaaj9yV+6s2ydTMnWX/e+8fctOzcnEokvR71kzN3JZrwahcC0blX/6wYMl3a7XE69jfF079C1nQ7lPR23fF9ZWNy/axHR5dkO4LIfnVuzMSXribk2P57/8ckqnZRXFVbpSKrasfh4nf6x/+eMv07zV6+67844p7g8i9e5e/LyzvfDAr75//Uq59cVsqtpaIy7nJ9POyYcMGCc/HGhI3bFi9v3CshyUi73xws6B7WqK378of/rgg/v6wyN27Er0jq67na8Go/MtAWDrfn5V//nR+1e//68C8/C8P2uWdD24W3DZP6X7Pv3h7ytKFC2fnFuUf/zmsW1/RvoM3fztj6XE47BvizxUr6y7Do7eSPj+08/2r96blXwbm48fy2efR+JQKs0Vv35VLf1yQ+6s26Z73QqsnZFKegjesezZn8gzNxfM2HFmUm3OLUlZasqp+rJ2TX7w9LZMzxd9gUYhSToh99K9/m/7eJAAAAAAAICuseAQAAAAAgAII6AAAAAAAKICADgAAAACAAjoVfy0AAAf3SURBVAjoAAAAAAAogIAOAAAAAIACCOgAAAAAACiAgA4AAAAAgAII6AAAAAAAKICADgAAAACAAgjoAAAAAAAogIAOAAAAAIACCOgAAAAAACiAgA4AAAAAgAII6AAAAAAAKICADgAAAACAAgjoAAAAAAAogIAOAAAAAIACCOgAAAAAACiAgA4AAAAAgAII6AAAAAAAKICADgAAAACAAgjoAAAAAAAogIAOAAAAAIACCOgAAAAAACiAgA4AAAAAgAII6AAAAAAAKICADgAAAACAAgjoAAAAAAAogIAOAAAAAIACCOgAAAAAACiAgA4AAAAAgAII6AAAAAAAKICADgAAAACAAgjoAAAAAAAogIAOAAAAAIACCOgAAAAAACiAgA4AAAAAgAII6AAAAAAAKICADgAAAACAAgjoAAAAAAAogIAOAAAAAIACCOgAAAAAACiAgA4AAAAAgAII6AAAAAAAKICADgAAAACAAgjoAAAAAAAogIAOAAAAAIACCOgAAAAAACiAgA4AAAAAgAII6AAAAAAAKICADgAAAACAAgjoAAAAAAAogIAOAAAAAIACCOgAAAAAACiAgA4AAAAAgAII6AAAAAAAKICADgAAAACAAgjoAAAAAAAogIAOAAAAAIACCOgAAAAAACiAgA4AAAAAgAII6AAAAAAAKICADgAAAACAAgjoAAAAAAAogIAOAAAAAIACCOgAAAAAACiAgA4AAAAAgAII6AAAAAAAKICADgAAAACAAgjoAAAAAAAogIAOAAAAAIACCOgAAAAAACiAgA4AAAAAgAII6AAAAAAAKICADgAAAACAAgjoAAAAAAAogIAOAAAAAIACCOgAAAAAACiAgA4AAAAAgAII6AAAAAAAKICADgAAAACAAgjoAAAAAAAogIAOAAAAAIACCOgAAAAAACiAgA4AAAAAgAII6AAAAAAAKICADgAAAACAAgjoAAAAAAAogIAOAAAAAIACCOgAAAAAACiAgA4AAAAAgAII6AAAAAAAKICADgAAAACAAgjoAAAAAAAogIAOAAAAAIACCOgAAAAAACiAgA4AAAAAgAII6AAAAAAAKICADgAAAACAAgjoAAAAAAAogIAOAAAAAIACCOgAAAAAACiAgA4AAAAAgAII6AAAAAAAKICADgAAAACAAgjoAAAAAAAogIAOAAAAAIACCOgAAAAAACiAgA4AAAAAgAII6AAAAAAAKICADgAAAACAAgjoAAAAAAAogIAOAAAAAIACCOgAAAAAACiAgA4AAAAAgAII6AAAAAAAKICADgAAAACAAgjoAAAAAAAogIAOAAAAAIACCOgAAAAAACiAgA4AAAAAgAII6AAAAAAAKICADgAAAACAAgjoAAAAAAAogIAOAAAAAIACCOgAAAAAACiAgA4AAAAAgAII6AAAAAAAKICADgAAAACAAgjoAAAAAAAogIAOAAAAAIACCOgAAAAAACiAgA4AAAAAgAII6AAAAAAAKICADgAAAACAAgjoAAAAAAAogIAOAAAAAIACCOgAAAAAACiAgA4AAAAAgAII6AAAAAAAKICADgAAAACAAgjoAAAAAAAogIAOAAAAAIACCOgAAAAAACiAgA4AAAAAgAII6AAAAAAAKICADgAAAACAAgjoAAAAAAAogIAOAAAAAIACCOgAAAAAACiAgA4AAAAAgAII6AAAAAAAKICADgAAAACAAgjoAAAAAAAogIAOAAAAAIACCOgAAAAAACiAgA4AAAAAgAII6AAAAAAAKICADgAAAACAAgjoAAAAAAAogIAOAAAAAIACCOgAAAAAACiAgA4AAAAAgAII6AAAAAAAKICADgAAAACAAgjoAAAAAAAogIAOAAAAAIACCOgAAAAAACiAgA4AAAAAgAII6AAAAAAAKICADgAAAACAAgjoAPD/t1/HAgAAAACD/K2nsaMsAgCAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAAUEHAACAgQDZsKEt/Jy3kAAAAABJRU5ErkJggg==">
+      <span class="brand-name"><strong>Agile Health Informatics Ltd</strong><span>creative ideas &amp; solutions</span></span>
+    </a>
+    <nav class="site-nav" id="siteNav" aria-label="Page navigation">
+      <a href="https://agilehealthinformatics.com/">Home</a>
+      <a href="#navigator">Navigator</a>
+      <a href="#study-plan">Study plan</a>
+      <a href="#levels">Experience</a>
+      <a href="#map">Capability map</a>
+      <a href="#specialisms">Specialisms</a>
+      <a href="#themes">Themes</a>
+      <a href="#resources">Resources</a>
+      <a href="#about">About</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" id="themeToggle" type="button" aria-label="Use dark theme" aria-pressed="false">◐</button>
+      <button class="menu-btn" id="menuBtn" type="button" aria-label="Open navigation" aria-expanded="false">☰</button>
+    </div>
+  </div>
+</header>
+
+<div class="hero" id="top">
+  <div class="hero-inner">
+    <div>
+      <div class="kicker">Agile Health Informatics Ltd · Professional resource</div>
+      <h1>Health &amp; Care Computing Professional Development Navigator</h1>
+      <p class="lead">Explore the professional disciplines of health and care computing according to your experience, interests and intended direction of development. The guide is vendor-neutral and designed as a map of enduring professional capability, not a checklist of products, courses or certificates.</p>
+      <div class="hero-actions">
+        <a class="cta primary" href="#navigator">Build my route</a>
+        <a class="cta secondary" href="#map">Explore all 13 domains</a>
+      </div>
+    </div>
+    <aside class="hero-panel">
+      <strong>Use this navigator to</strong>
+      <ul>
+        <li>start at foundation, practitioner or specialist / leadership level;</li>
+        <li>focus on one or several areas of professional interest;</li>
+        <li>see core, developing and exploratory domains in a personalised order;</li>
+        <li>connect specialist interests to cross-cutting safety, governance and data concerns;</li>
+        <li>find relevant standards bodies, professional references and learning resources.</li>
+      </ul>
+    </aside>
+  </div>
+</div>
+
+<main id="main">
+<section id="navigator">
+  <div class="section-head">
+    <div>
+      <div class="eyebrow">Personalised development route</div>
+      <h2>Build a route through the field</h2>
+      <p class="section-intro">Choose the level that best describes the depth you need now, then select the areas you want to explore. The navigator does not hide the rest of the guide. It changes the order and emphasis so that adjacent and foundational disciplines remain visible.</p>
+    </div>
+  </div>
+  <div class="navigator-shell">
+    <aside class="controls" aria-label="development navigator controls">
+      <div class="control-group">
+        <label for="levelSelect">Experience / intended depth</label>
+        <select id="levelSelect">
+          <option value="foundation">Foundation</option>
+          <option value="practitioner" selected>Practitioner</option>
+          <option value="leadership">Specialist / leadership</option>
+        </select>
+      </div>
+      <div class="control-group">
+        <span class="control-label">Areas of interest</span>
+        <div class="chips" id="interestChips"></div>
+      </div>
+      <div class="control-group">
+        <label for="domainSearch">Search the guide</label>
+        <input class="search" id="domainSearch" type="search" placeholder="e.g. FHIR, safety, OMOP, workflow">
+      </div>
+      <button class="reset" id="resetFilters" type="button">Reset interests and search</button>
+    </aside>
+    <div>
+      <div class="route" id="routeSummary" aria-live="polite"></div>
+      <div class="results-meta" id="resultsMeta" aria-live="polite"></div>
+      <div class="domain-grid" id="domainGrid"></div>
+    </div>
+  </div>
+</section>
+
+<section id="study-plan">
+  <div class="section-head">
+    <div>
+      <div class="eyebrow">Personal development plan</div>
+      <h2>Turn the guide into a development plan you can follow</h2>
+      <p class="section-intro">Create a self-directed development plan from the same experience level and interests used in the navigator. Recommended domains are selected automatically, but you can change them before generating a printable week-by-week plan.</p>
+    </div>
+  </div>
+  <div class="study-builder">
+    <aside class="study-config" aria-label="Development plan settings">
+      <h3>Plan settings</h3>
+      <div class="form-grid">
+        <div class="field full">
+          <label for="learnerName">Name, role or plan owner</label>
+          <input id="learnerName" type="text" placeholder="Optional">
+        </div>
+        <div class="field full">
+          <label for="planTitle">Plan title</label>
+          <input id="planTitle" type="text" value="Health & Care Computing Development Plan">
+        </div>
+        <div class="field">
+          <label for="planDuration">Duration</label>
+          <select id="planDuration">
+            <option value="4">4 weeks</option>
+            <option value="6">6 weeks</option>
+            <option value="8" selected>8 weeks</option>
+            <option value="12">12 weeks</option>
+            <option value="16">16 weeks</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="weeklyHours">Development time</label>
+          <select id="weeklyHours">
+            <option value="2">2 hours / week</option>
+            <option value="4" selected>4 hours / week</option>
+            <option value="6">6 hours / week</option>
+            <option value="8">8 hours / week</option>
+          </select>
+        </div>
+        <div class="field full">
+          <label for="startDate">Start date</label>
+          <input id="startDate" type="date">
+        </div>
+      </div>
+      <p class="plan-help"><strong>Current level:</strong> <span id="plannerLevelText">Practitioner</span>. Change this in the main Navigator and the plan will follow it.</p>
+      <div class="control-group">
+        <span class="control-label">Domains to include</span>
+        <div class="domain-picker" id="planDomainPicker"></div>
+        <button class="reset" id="recommendDomains" type="button">Use navigator recommendations</button>
+      </div>
+      <div class="plan-actions">
+        <button class="plan-primary" id="generatePlan" type="button">Generate development plan</button>
+        <button class="plan-print" id="printPlan" type="button" disabled>Print development plan</button>
+        <button class="plan-secondary" id="clearPlan" type="button">Clear</button>
+      </div>
+      <p class="plan-help">The plan is a professional development aid. It does not claim accreditation, prescribe a single learning provider or replace role-specific regulatory requirements.</p>
+    </aside>
+    <div class="study-output" id="studyOutput">
+      <div class="study-output-empty">
+        <div>
+          <strong>Your development plan will appear here.</strong>
+          <p>Select or accept the recommended domains, choose the time available, then generate the plan.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="levels">
+  <div class="section-head">
+    <div>
+      <div class="eyebrow">Experience model</div>
+      <h2>Depth is domain-specific</h2>
+      <p class="section-intro">The three levels are indicative rather than rigid. A senior practitioner may be a specialist in one domain and legitimately at foundation level in another.</p>
+    </div>
+  </div>
+  <div class="band-grid" id="levelBands"></div>
+</section>
+
+<section id="map">
+  <div class="section-head">
+    <div>
+      <div class="eyebrow">Whole capability map</div>
+      <h2>Thirteen connected capability domains</h2>
+      <p class="section-intro">The ordering moves from shared foundations through cross-cutting professional disciplines to specialist practice. It is not a hierarchy. Most roles draw on several domains at once.</p>
+    </div>
+  </div>
+  <div class="map" id="capabilityMap" aria-label="Interactive capability map"></div>
+  <div class="callout" id="mapDetail"><strong>Select a domain</strong> to see why it matters and how it connects to the rest of the guide.</div>
+</section>
+
+<section id="specialisms">
+  <div class="section-head">
+    <div>
+      <div class="eyebrow">Specialist practice</div>
+      <h2>Where general informatics meets operational reality</h2>
+      <p class="section-intro">These fields have substantial bodies of specialist knowledge in their own right. The navigator keeps them connected to generic capabilities rather than treating them as isolated silos.</p>
+    </div>
+  </div>
+  <div class="special-grid" id="specialGrid"></div>
+</section>
+
+<section id="themes">
+  <div class="section-head">
+    <div>
+      <div class="eyebrow">Cross-cutting themes</div>
+      <h2>Concerns that follow every domain</h2>
+      <p class="section-intro">These are not separate specialisms. They are recurring professional obligations that should shape work regardless of the practitioner's primary role.</p>
+    </div>
+  </div>
+  <div class="theme-grid" id="themeGrid"></div>
+</section>
+
+<section id="future">
+  <div class="section-head">
+    <div>
+      <div class="eyebrow">Emerging capability</div>
+      <h2>Areas where workforce maturity remains uneven</h2>
+      <p class="section-intro">The guide identifies several areas in which strategic ambition is ahead of broadly distributed workforce capability. These are useful signals for development planning and succession.</p>
+    </div>
+  </div>
+  <div class="gap-grid" id="gapGrid"></div>
+</section>
+
+<section id="resources">
+  <div class="section-head">
+    <div>
+      <div class="eyebrow">Learning and reference</div>
+      <h2>Resources aligned to the route you choose</h2>
+      <p class="section-intro">The resources are illustrative rather than exhaustive. Availability, course structure and deep links can change, so current provider information should be checked before committing to a programme.</p>
+    </div>
+  </div>
+  <div class="resource-toolbar">
+    <span class="badge" id="resourceLevelBadge">Practitioner</span>
+    <span id="resourceInterestText" class="results-meta">Showing resources relevant across the guide</span>
+  </div>
+  <div class="resource-grid" id="resourceGrid"></div>
+</section>
+
+<section id="about">
+  <div class="section-head">
+    <div>
+      <div class="eyebrow">Purpose and context</div>
+      <h2>What this guide is for</h2>
+    </div>
+  </div>
+  <div class="about-grid">
+    <article class="about-card">
+      <h3>A professional map, not a course catalogue</h3>
+      <p>Modern health and care depends on computing, information, governance, architectural and operational disciplines that many professionals were never formally trained in. The guide provides a coherent map so that people can navigate the field, identify adjacent capabilities and plan their own development.</p>
+      <p>No prior computer-science education is assumed. The guide is intended for clinicians and managers acquiring digital responsibilities, architects, analysts, engineers and operations staff broadening their range, governance and safety practitioners developing adjacent knowledge, and anyone using it to structure self-directed professional development.</p>
+      <p>The framing is deliberately vendor-neutral. Named standards, methods and resources are included to support conceptual understanding and applied capability rather than product-specific knowledge.</p>
+    </article>
+    <article class="about-card">
+      <h3>Professional context</h3>
+      <p>Health and care computing has broadened beyond the deployment of individual electronic patient record systems. Interoperability, shared data, secondary use, AI assurance, digital safety, resilience and cross-organisational architecture now place wider demands on the workforce.</p>
+      <p>The Quintuple Aim offers a useful test of relevance: population health, experience of care, efficiency, workforce wellbeing and equity all depend materially on the quality, interoperability and ethical use of information.</p>
+      <p>FEDIP, SFIA and related occupational frameworks can provide external professional context, but this navigator is not a registration or accreditation scheme.</p>
+    </article>
+  </div>
+  <div class="no-js"><strong>Scope note:</strong> this is an interactive professional development guide, not a statutory competency standard, regulatory instrument or substitute for role-specific professional requirements.</div>
+</section>
+
+<footer class="footer">
+  <div><strong>Agile Health Informatics Ltd</strong> · Creative ideas &amp; solutions for health data and digital transformation.</div>
+  <div>Based on an independently developed professional development guide to health and care computing.</div>
+</footer>
+</main>
+
+<script>
+const domains = [{"id": "foundations", "number": "01", "title": "Foundations of health and care informatics", "summary": "The shared conceptual vocabulary for health and care computing: clinical and administrative data, the structure of health and care, major information-system types, policy and regulation, and the academic roots of informatics.", "why": "Provides a common frame of reference. It is the natural starting point for people entering informatics, clinicians or managers taking on digital responsibilities, and technologists moving into health and care.", "roles": ["Clinicians moving into digital roles", "Managers with digital responsibilities", "New informatics practitioners", "Technologists entering health and care"], "adjacent": ["Health policy", "Health services research", "Clinical practice", "Public health", "Human factors"], "topics": ["Clinical and administrative data", "EPRs and departmental systems", "Shared care records and registries", "Research databases", "Policy and regulation", "History and foundations of informatics"], "interests": ["clinical", "data", "architecture", "governance", "analytics", "ai", "delivery", "specialist"], "levelWeight": {"foundation": 5, "practitioner": 2, "leadership": 2}}, {"id": "terminology", "number": "02", "title": "Clinical terminology, coding and semantic standards", "summary": "The representation of clinical meaning using terminologies and classifications such as SNOMED CT, ICD, OPCS, dm+d and LOINC, together with mapping and semantic consistency across systems.", "why": "Clinical data only remains useful when its meaning is captured consistently and preserved across organisational and system boundaries.", "roles": ["Clinical informatics leads", "Terminologists", "Data architects", "Analytics teams", "Population health teams", "System designers and commissioners"], "adjacent": ["Data modelling", "Information governance", "Clinical safety", "Knowledge representation", "Natural language processing"], "topics": ["SNOMED CT", "ICD-10 and ICD-11", "OPCS-4", "dm+d", "LOINC", "Terminology mapping", "Semantic fidelity"], "interests": ["clinical", "data", "architecture", "analytics", "ai"], "levelWeight": {"foundation": 3, "practitioner": 4, "leadership": 3}}, {"id": "governance", "number": "03", "title": "Information governance, ethics and data protection", "summary": "The legal, policy and ethical basis for using health and care information, including data protection, confidentiality, Caldicott principles, assurance and governance for direct care, secondary use and research.", "why": "Good practice requires more than formal compliance. Professionals need to identify competing interests and design information use that is defensible to patients, clinicians, the public and regulators.", "roles": ["Information governance leads", "Caldicott Guardians", "Data protection officers", "Research informatics leads", "Senior information risk owners", "System designers and procurers"], "adjacent": ["Clinical ethics", "Public engagement", "Cyber security", "Records management", "Research governance"], "topics": ["UK GDPR and Data Protection Act", "Common law confidentiality", "Caldicott principles", "DSP Toolkit", "Ethics", "Research and secondary use governance"], "interests": ["governance", "clinical", "data", "analytics", "ai", "delivery"], "levelWeight": {"foundation": 4, "practitioner": 4, "leadership": 5}}, {"id": "interoperability", "number": "04", "title": "Interoperability and technical standards", "summary": "The ability of different systems to exchange information and make appropriate use of it across syntactic, semantic, organisational and legal or policy boundaries.", "why": "Integrated care, shared records, analytics and research data flows depend on interoperability that works in practice, not merely on successful data transport.", "roles": ["Solution architects", "Integration engineers", "Interoperability leads", "Standards developers", "Procurement teams", "Clinical and operational leaders"], "adjacent": ["Enterprise architecture", "Terminology", "Clinical safety", "Information governance", "Testing and conformance"], "topics": ["HL7 FHIR", "HL7 v2", "CDA", "openEHR", "DICOM", "IHE profiles", "Syntactic and semantic interoperability", "Conformance"], "interests": ["architecture", "data", "clinical", "delivery", "analytics"], "levelWeight": {"foundation": 4, "practitioner": 5, "leadership": 4}}, {"id": "architecture", "number": "05", "title": "Enterprise and solution architecture", "summary": "The disciplined description of organisations, systems and change across business, information, application and technology domains, with solution and information architecture providing more focused views.", "why": "Health and care systems are too complex for informal description to remain a sufficient basis for design, procurement, assurance or cross-organisational change.", "roles": ["Enterprise architects", "Solution architects", "Technical design authorities", "Digital programme leads", "Product managers", "Service designers", "Senior clinical and operational decision-makers"], "adjacent": ["Interoperability", "Business analysis", "Service design", "Product management", "Supplier management", "Benefits realisation"], "topics": ["TOGAF", "ArchiMate", "UML", "BPMN", "Information architecture", "Product and service design", "Supplier dependencies", "Benefits realisation"], "interests": ["architecture", "delivery", "data", "governance", "clinical"], "levelWeight": {"foundation": 2, "practitioner": 4, "leadership": 5}}, {"id": "data-management", "number": "06", "title": "Data management, modelling and quality", "summary": "The management of data as an organisational asset across planning, capture, modelling, metadata, master and reference data, lineage, provenance, quality, storage and retirement.", "why": "Analytics, research, decision support and operational reporting are constrained by the structure, meaning, provenance and fitness of the data they consume.", "roles": ["Data architects", "Data managers", "Master data managers", "Data quality leads", "BI developers", "Information analysts"], "adjacent": ["Terminology", "Interoperability", "Analytics", "Information governance", "Records management"], "topics": ["Conceptual and logical data modelling", "Metadata management", "Master and reference data", "Lineage and provenance", "Data quality dimensions", "OMOP and common data models", "Trusted and secure data environments", "Privacy-enhancing technologies"], "interests": ["data", "analytics", "architecture", "governance", "ai"], "levelWeight": {"foundation": 3, "practitioner": 5, "leadership": 5}}, {"id": "analytics", "number": "07", "title": "Analytics, business intelligence and population health", "summary": "The generation of insight from health and care data, spanning operational reporting, BI, performance management, clinical audit, population health, epidemiology, health economics and outcomes research.", "why": "Decisions affecting outcomes and system performance increasingly depend on analysis, while poor methods or weak data can misdirect resources and reinforce inequalities.", "roles": ["Analysts", "BI developers", "Data scientists", "Public health intelligence specialists", "Analytic leaders", "Research teams"], "adjacent": ["Data management", "Information governance", "Terminology", "Statistics", "Epidemiology", "Research methods"], "topics": ["Descriptive analytics", "Visualisation", "Risk stratification", "Predictive modelling", "Simulation", "Causal inference", "Warehouses and lakehouses", "Trusted research environments", "OMOP and OHDSI"], "interests": ["analytics", "data", "clinical", "governance", "ai"], "levelWeight": {"foundation": 2, "practitioner": 5, "leadership": 4}}, {"id": "safety-human-factors", "number": "08", "title": "Clinical safety and human factors", "summary": "The systematic anticipation, prevention, detection and management of harm arising from health information technology, combined with design that fits human cognitive, physical and organisational characteristics.", "why": "Digital failures and poor interaction design can cause direct patient harm, clinician burden, alert fatigue and loss of trust.", "roles": ["Clinical Safety Officers", "Clinical informaticians", "Digital programme leads", "Designers", "Developers", "Procurement teams"], "adjacent": ["Clinical practice", "Design", "Change management", "Training", "Risk management", "AI assurance"], "topics": ["DCB 0129", "DCB 0160", "Hazard logs", "Safety cases", "Human factors", "Usability", "Alert fatigue", "Documentation burden"], "interests": ["governance", "clinical", "ai", "delivery"], "levelWeight": {"foundation": 4, "practitioner": 5, "leadership": 5}}, {"id": "cyber", "number": "09", "title": "Cyber security and information assurance", "summary": "Protection of confidentiality, integrity and availability across health information and the digital services on which safe care depends.", "why": "Cyber incidents can expose sensitive data, disrupt clinical operations and create direct safety consequences. Secure operation is a shared professional responsibility.", "roles": ["CISOs", "Security architects", "Security operations teams", "Information governance leads", "Senior information risk owners", "Digital leaders"], "adjacent": ["Information governance", "Infrastructure and cloud", "Business continuity", "Clinical safety", "Supplier management"], "topics": ["NCSC risk management", "ISO/IEC 27001", "DSP Toolkit", "Identity and access management", "Vulnerability management", "Security monitoring", "Incident response", "Business continuity", "Supply-chain risk"], "interests": ["governance", "delivery", "architecture", "data", "clinical"], "levelWeight": {"foundation": 4, "practitioner": 4, "leadership": 5}}, {"id": "ai", "number": "10", "title": "Artificial intelligence and clinical decision support", "summary": "Responsible identification, procurement, assurance, deployment and monitoring of AI and decision-support tools, from rules and statistical models to machine learning and generative AI.", "why": "AI adoption is moving faster than mature assurance practice. Important risks include bias, uneven performance, drift, inappropriate reliance and erosion of clinical judgement.", "roles": ["Clinical informaticians", "AI leads", "Procurement teams", "Clinical Safety Officers", "Data and analytics teams", "Senior digital and clinical leaders"], "adjacent": ["Clinical safety", "Information governance", "Ethics", "Statistics", "Terminology", "Human factors"], "topics": ["AI as a medical device", "MHRA oversight", "NICE evidence standards", "Bias and fairness", "Subpopulation performance", "Model drift", "Clinical oversight", "Generative AI assurance"], "interests": ["ai", "clinical", "governance", "analytics", "data"], "levelWeight": {"foundation": 2, "practitioner": 4, "leadership": 5}}, {"id": "workflow", "number": "11", "title": "Workflow, process and pathway modelling", "summary": "Explicit description and analysis of care processes, workflows and pathways, including requirements engineering, business analysis, user research, service design, adoption and benefits realisation.", "why": "Digital change succeeds when technology is designed around the work it must support. Automating an inefficient or misunderstood process rarely realises the intended benefit.", "roles": ["Business analysts", "Requirements engineers", "Service designers", "Digital programme leads", "Clinical informaticians", "Operational managers"], "adjacent": ["Enterprise architecture", "Human factors", "Change management", "Clinical practice", "Product management"], "topics": ["BPMN and pathway modelling", "User research", "Service design", "Requirements engineering", "Functional and non-functional requirements", "Traceability", "Adoption and training", "Benefits realisation"], "interests": ["delivery", "clinical", "architecture", "governance"], "levelWeight": {"foundation": 2, "practitioner": 5, "leadership": 4}}, {"id": "operations", "number": "12", "title": "Operational, infrastructure and service management", "summary": "The disciplines that make digital services dependable: infrastructure and cloud, platforms, identity, observability, IT service management, release, continuity, supplier management, testing, assurance and validation.", "why": "A digital service only creates value when it can be operated, changed, supported, recovered and assured safely in real clinical and organisational conditions.", "roles": ["Infrastructure and cloud teams", "Service managers", "Platform teams", "Test and QA leads", "Service introduction teams", "Product and delivery leaders", "Supplier managers"], "adjacent": ["Cyber security", "Clinical safety", "Requirements engineering", "Architecture", "Supplier management"], "topics": ["Cloud operating models", "ITIL", "Monitoring and observability", "Change and release", "Capacity and performance", "Disaster recovery", "Supplier management", "Integration and interoperability testing", "User acceptance", "Operational acceptance"], "interests": ["delivery", "architecture", "governance", "clinical"], "levelWeight": {"foundation": 2, "practitioner": 5, "leadership": 4}}, {"id": "specialist", "number": "13", "title": "Specialist clinical and operational informatics", "summary": "Domain-specific informatics traditions in which generic disciplines such as interoperability, data management, governance, safety and AI meet specialist operational practice.", "why": "Specialist domains bring distinctive data, workflow, safety and infrastructure requirements that general informatics knowledge alone cannot fully address.", "roles": ["Imaging informatics specialists", "Pathology informatics specialists", "Pharmacy informatics specialists", "Records professionals", "Genomic informaticians", "Research informaticians", "Clinical decision-support specialists"], "adjacent": ["Clinical and scientific specialties", "Data management", "AI assurance", "Research governance", "Clinical safety"], "topics": ["Imaging informatics", "Pathology informatics", "Pharmacy informatics", "Records and document management", "Genomic informatics", "Research informatics", "Clinical decision support"], "interests": ["specialist", "clinical", "data", "analytics", "ai"], "levelWeight": {"foundation": 1, "practitioner": 3, "leadership": 4}}];
+const specialisms = [{"title": "Imaging informatics", "text": "DICOM-based capture, storage and distribution, PACS and vendor-neutral archives, cloud imaging and AI-assisted interpretation, with strong links to cyber security, AI assurance and enterprise architecture.", "tags": ["specialist", "clinical", "ai", "architecture"]}, {"title": "Pathology informatics", "text": "Digital histopathology, whole-slide imaging, networked reporting, large-scale image storage and the integration of pathology data with clinical, genomic and research datasets.", "tags": ["specialist", "clinical", "data", "ai"]}, {"title": "Pharmacy informatics", "text": "Electronic prescribing and medicines administration, dm+d, decision support, medicines optimisation and the safe integration of prescribing workflows with wider clinical systems.", "tags": ["specialist", "clinical", "ai", "data"]}, {"title": "Records and document management", "text": "The lifecycle of clinical and corporate records, retention, access regimes and the governance of correspondence, scanned documents, voice and video alongside structured data.", "tags": ["specialist", "governance", "data"]}, {"title": "Genomic informatics", "text": "Genomic data structures, GA4GH standards, long-lived and familial information, storage, clinical and research integration, governance and personalised care.", "tags": ["specialist", "data", "analytics", "governance"]}, {"title": "Research informatics", "text": "Trusted research environments, federated analysis, OMOP, consent and access, privacy-enhancing technologies and the reuse of routinely collected data for research.", "tags": ["specialist", "analytics", "data", "governance"]}, {"title": "Clinical decision support", "text": "Rules, prompts, alerts, statistical models and AI-driven recommendations at the point of care, with attention to knowledge representation, terminology, workflow, usability and safety.", "tags": ["specialist", "clinical", "ai", "governance"]}];
+const themes = [{"id": "quality", "title": "Data quality and provenance", "text": "Treat fitness for purpose, capture consistency, lineage and provenance as first-order concerns wherever data is handled."}, {"id": "accountability", "title": "Governance and accountability", "text": "Identify the relevant information, clinical, corporate and research governance arrangements, and recognise when existing arrangements are inadequate."}, {"id": "xinterop", "title": "Interoperability", "text": "Assume information will cross systems and organisational boundaries, and understand what that means even when integration is not the primary role."}, {"id": "xsafety", "title": "Clinical safety", "text": "Clinical safety is a shared responsibility wherever digital technology touches care, not solely the concern of a designated safety role."}, {"id": "human", "title": "Human factors and usability", "text": "Systems are used by people. Human factors, usability and informatics design are central to benefit realisation and harm avoidance."}, {"id": "sociotech", "title": "Socio-technical systems thinking", "text": "A new digital system changes work, roles, relationships and organisational behaviour. Those dimensions are integral to the system."}, {"id": "ethics", "title": "Ethics, trust and consent", "text": "The legitimacy of health and care informatics depends on trustworthy professional conduct and defensible arrangements for information use."}, {"id": "equity", "title": "Equity and inclusion", "text": "Digital systems can distribute benefit unevenly. Professionals should ask who benefits, who does not and what design or data choices cause the difference."}, {"id": "resilience", "title": "Operational resilience", "text": "Business continuity, disaster recovery and resilience are central to safe digital operation and should influence design decisions from the outset."}];
+const gaps = [{"title": "AI assurance in clinical settings", "text": "Capability remains thin across training-data assessment, fairness, subpopulation performance, drift monitoring and meaningful clinical oversight.", "tags": ["ai", "governance", "clinical"]}, {"title": "Privacy-enhancing and federated technologies", "text": "Workforce capability in trusted environments, federated analytics, differential privacy, synthetic data and privacy-preserving linkage is still maturing.", "tags": ["data", "analytics", "governance"]}, {"title": "Genomic and multi-omic informatics", "text": "Clinical use is expanding faster than generalist familiarity with its data structures, standards, ethics and analytic methods.", "tags": ["specialist", "data", "analytics"]}, {"title": "Real-world evidence and continuous evaluation", "text": "Routinely collected data creates new evaluation opportunities, but capability at the boundary of analytics, epidemiology, statistics and digital infrastructure remains uneven.", "tags": ["analytics", "data", "clinical"]}, {"title": "Patient-facing digital tools and personal health records", "text": "Patient-facing tools are changing the boundary of the health record, while capability in inclusion, assurance and equitable access is still developing.", "tags": ["clinical", "delivery", "governance"]}, {"title": "Sustainability and environmental impact", "text": "Cloud, AI workloads, data storage and service design all have environmental consequences that are not yet routinely integrated into professional practice.", "tags": ["architecture", "delivery", "ai"]}, {"title": "Cross-organisational architecture", "text": "Federated architecture, shared data design and inter-organisational governance are increasingly necessary for integrated care but remain unevenly distributed capabilities.", "tags": ["architecture", "data", "governance"]}, {"title": "Workforce planning and succession", "text": "Several critical disciplines rely on relatively small expert communities, making succession and capability transfer a strategic concern.", "tags": ["delivery", "specialist", "governance"]}];
+const resources = [{"name": "FEDIP", "url": "https://www.fedip.org/", "type": "Professional reference", "interests": ["clinical", "data", "architecture", "governance", "analytics", "ai", "delivery", "specialist"], "levels": ["foundation", "practitioner", "leadership"], "note": "Professional benchmark and occupational context for health and care informatics."}, {"name": "SFIA", "url": "https://sfia-online.org/", "type": "Professional reference", "interests": ["delivery", "architecture", "data", "analytics", "governance", "ai"], "levels": ["foundation", "practitioner", "leadership"], "note": "Skills framework that can be used to describe digital capability and responsibility."}, {"name": "NHS England", "url": "https://www.england.nhs.uk/", "type": "Professional reference", "interests": ["clinical", "data", "architecture", "governance", "analytics", "ai", "delivery", "specialist"], "levels": ["foundation", "practitioner", "leadership"], "note": "National policy, standards, clinical safety and digital guidance for England."}, {"name": "Information Commissioner's Office", "url": "https://ico.org.uk/", "type": "Professional reference", "interests": ["governance", "data", "analytics", "ai"], "levels": ["foundation", "practitioner", "leadership"], "note": "Authoritative UK data protection guidance."}, {"name": "National Cyber Security Centre", "url": "https://www.ncsc.gov.uk/", "type": "Professional reference", "interests": ["governance", "delivery", "architecture"], "levels": ["foundation", "practitioner", "leadership"], "note": "Authoritative UK cyber-security guidance and practical risk-management resources."}, {"name": "NICE", "url": "https://www.nice.org.uk/", "type": "Professional reference", "interests": ["ai", "clinical", "governance"], "levels": ["foundation", "practitioner", "leadership"], "note": "Evidence standards and wider evidence guidance relevant to digital health technologies."}, {"name": "HL7 International", "url": "https://www.hl7.org/", "type": "Standards body", "interests": ["architecture", "data", "clinical"], "levels": ["foundation", "practitioner", "leadership"], "note": "Source of HL7 interoperability standards including FHIR and Version 2."}, {"name": "HL7 UK", "url": "https://www.hl7.org.uk/", "type": "Standards body", "interests": ["architecture", "data", "clinical"], "levels": ["foundation", "practitioner", "leadership"], "note": "UK HL7 community and national implementation resources."}, {"name": "SNOMED International", "url": "https://www.snomed.org/", "type": "Standards body", "interests": ["data", "clinical", "analytics", "ai"], "levels": ["foundation", "practitioner", "leadership"], "note": "SNOMED CT specifications, implementation guidance and training."}, {"name": "openEHR International", "url": "https://www.openehr.org/", "type": "Standards body", "interests": ["data", "architecture", "clinical"], "levels": ["foundation", "practitioner", "leadership"], "note": "Specifications, archetypes and templates for clinical information modelling."}, {"name": "Integrating the Healthcare Enterprise", "url": "https://www.ihe.net/", "type": "Standards body", "interests": ["architecture", "clinical", "data"], "levels": ["foundation", "practitioner", "leadership"], "note": "Profiles that combine standards into implementable clinical interoperability patterns."}, {"name": "The Open Group", "url": "https://www.opengroup.org/", "type": "Standards body", "interests": ["architecture", "delivery"], "levels": ["practitioner", "leadership"], "note": "TOGAF, ArchiMate and related architecture standards."}, {"name": "Object Management Group", "url": "https://www.omg.org/", "type": "Standards body", "interests": ["delivery", "architecture"], "levels": ["practitioner", "leadership"], "note": "BPMN, UML and related modelling standards."}, {"name": "DAMA International", "url": "https://www.dama.org/", "type": "Professional reference", "interests": ["data", "analytics", "architecture"], "levels": ["foundation", "practitioner", "leadership"], "note": "Data-management body of knowledge and professional development routes."}, {"name": "Health Data Research UK", "url": "https://www.hdruk.ac.uk/", "type": "Research and learning", "interests": ["analytics", "data", "specialist"], "levels": ["foundation", "practitioner", "leadership"], "note": "UK health-data-science programmes, infrastructure and learning resources."}, {"name": "OHDSI", "url": "https://www.ohdsi.org/", "type": "Research and learning", "interests": ["analytics", "data", "specialist"], "levels": ["practitioner", "leadership"], "note": "International open-science community for OMOP and observational health-data methods."}, {"name": "e-Learning for Healthcare", "url": "https://www.e-lfh.org.uk/", "type": "Structured learning", "interests": ["clinical", "governance", "delivery", "data"], "levels": ["foundation", "practitioner"], "note": "Broad health and care learning catalogue, including informatics and clinical-safety content."}, {"name": "HDR UK Futures", "url": "https://hdruklearn.org/", "type": "Structured learning", "interests": ["analytics", "data", "specialist"], "levels": ["foundation", "practitioner"], "note": "Online learning for health data science and related capabilities."}, {"name": "EHDEN Academy", "url": "https://academy.ehden.eu/", "type": "Structured learning", "interests": ["analytics", "data", "specialist"], "levels": ["practitioner", "leadership"], "note": "Structured learning on OMOP, ETL and the OHDSI tool stack."}, {"name": "The Book of OHDSI", "url": "https://book.ohdsi.org/", "type": "Structured learning", "interests": ["analytics", "data", "specialist"], "levels": ["foundation", "practitioner", "leadership"], "note": "Open online reference covering OHDSI methods, tools and practice."}, {"name": "Alan Turing Institute", "url": "https://www.turing.ac.uk/", "type": "Structured learning", "interests": ["ai", "analytics", "governance"], "levels": ["foundation", "practitioner", "leadership"], "note": "AI, data science and assurance material, including health-related work."}, {"name": "Government Analysis Function", "url": "https://analysisfunction.civilservice.gov.uk/", "type": "Structured learning", "interests": ["analytics", "data"], "levels": ["foundation", "practitioner", "leadership"], "note": "Cross-government analysis methodology, quality and professional resources."}];
+const interestLabels = {"clinical": "Clinical & care informatics", "data": "Data, semantics & information quality", "architecture": "Architecture & interoperability", "governance": "Governance, safety & assurance", "analytics": "Analytics, research & population health", "ai": "AI & decision support", "delivery": "Process, delivery & operations", "specialist": "Specialist informatics"};
+const levelCopy = {"foundation": {"title": "Foundation", "tag": "Build conceptual literacy", "description": "For people entering health and care informatics, clinicians or managers acquiring digital responsibilities, and experienced practitioners moving into an unfamiliar domain.", "outcome": "Understand the language of the field, recognise why each discipline matters, participate intelligently in cross-domain discussions and know when specialist input is required."}, "practitioner": {"title": "Practitioner", "tag": "Apply and lead defined work", "description": "For people with operational responsibility in a defined informatics domain who need depth in their main discipline and working capability across adjacent areas.", "outcome": "Apply relevant standards and methods, produce defensible artefacts and evidence, understand cross-cutting risks and lead specific pieces of work to an agreed professional standard."}, "leadership": {"title": "Specialist / leadership", "tag": "Shape, assure and extend practice", "description": "For specialists developing authoritative depth and for leaders who commission, direct and assure work across multiple domains.", "outcome": "Exercise professional judgement across ambiguity, govern and assure practice, contribute to methods or standards, develop others and connect specialist depth with wider system outcomes."}};
+
+let state = { level:"practitioner", interests:new Set(), search:"" };
+
+function esc(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[m]))}
+
+function priorityFor(d){
+  let score = d.levelWeight[state.level] || 0;
+  for(const i of state.interests){ if(d.interests.includes(i)) score += 3; }
+  if(state.interests.size===0) score += 1;
+  if(score>=7) return ["Core",score];
+  if(score>=4) return ["Develop",score];
+  return ["Explore",score];
+}
+function domainMatchesSearch(d){
+  if(!state.search) return true;
+  const hay=[d.title,d.summary,d.why,...d.roles,...d.adjacent,...d.topics].join(" ").toLowerCase();
+  return hay.includes(state.search.toLowerCase());
+}
+function levelGuidance(d){
+  const focus = d.topics.slice(0,4).join(", ");
+  if(state.level==="foundation") return `Build vocabulary and conceptual literacy in ${focus}. Be able to explain why the domain matters, recognise common artefacts and know when specialist support is required.`;
+  if(state.level==="practitioner") return `Develop applied capability in ${focus}. Use relevant standards and methods in real work, produce evidence that can be reviewed, and manage dependencies on adjacent domains.`;
+  return `Exercise authoritative judgement across ${focus}. Assure trade-offs, shape local practice, mentor others and connect specialist decisions to wider clinical, organisational and regulatory outcomes.`;
+}
+function renderInterests(){
+  const root=document.getElementById("interestChips");
+  root.innerHTML=Object.entries(interestLabels).map(([k,v])=>`<button type="button" class="chip" data-interest="${k}" aria-pressed="${state.interests.has(k)}">${esc(v)}</button>`).join("");
+  root.querySelectorAll("button").forEach(b=>b.addEventListener("click",()=>{
+    const k=b.dataset.interest;
+    state.interests.has(k)?state.interests.delete(k):state.interests.add(k);
+    renderAll();
+    recommendPlanDomains();
+  }));
+}
+function renderRoute(){
+  const level=levelCopy[state.level];
+  let ranked=domains.map(d=>({d,p:priorityFor(d)})).filter(x=>domainMatchesSearch(x.d)).sort((a,b)=>b.p[1]-a.p[1]||a.d.number.localeCompare(b.d.number));
+  const picks=ranked.slice(0,4);
+  const ints=[...state.interests].map(i=>interestLabels[i]);
+  const interestText=ints.length?ints.join(", "):"the whole guide";
+  document.getElementById("routeSummary").innerHTML=`
+    <div class="route-head"><div><div class="eyebrow">${esc(level.title)} route</div><h3>${esc(level.tag)}</h3></div><span class="badge">${esc(level.title)}</span></div>
+    <p>${esc(level.description)}</p>
+    <p><strong>Target outcome:</strong> ${esc(level.outcome)}</p>
+    <p><strong>Current focus:</strong> ${esc(interestText)}.</p>
+    <div class="route-steps">${picks.map((x,i)=>`<div class="route-step"><span>Step ${i+1}</span><strong>${esc(x.d.title)}</strong></div>`).join("")}</div>`;
+}
+function renderDomains(){
+  const root=document.getElementById("domainGrid");
+  const ranked=domains.map(d=>({d,p:priorityFor(d)}))
+    .sort((a,b)=>b.p[1]-a.p[1]||a.d.number.localeCompare(b.d.number));
+  let visible=0;
+  root.innerHTML=ranked.map(({d,p})=>{
+    const match=domainMatchesSearch(d); if(match) visible++;
+    const [priority]=p;
+    return `<article class="domain-card ${match?"":"hidden"}" data-id="${d.id}" data-priority="${priority}">
+      <div class="card-top"><div class="domain-number">DOMAIN ${d.number}</div><span class="priority ${priority}">${priority}</span></div>
+      <h3>${esc(d.title)}</h3>
+      <p>${esc(d.summary)}</p>
+      <div class="topic-pills">${d.topics.slice(0,5).map(t=>`<span class="topic">${esc(t)}</span>`).join("")}</div>
+      <div class="card-actions"><button type="button" class="detail-btn" aria-expanded="false">Show detail</button></div>
+      <div class="details">
+        <p><strong>Why it matters:</strong> ${esc(d.why)}</p>
+        <p><strong>Typical roles:</strong> ${esc(d.roles.join("; "))}</p>
+        <p><strong>Adjacent disciplines:</strong> ${esc(d.adjacent.join("; "))}</p>
+        <div class="level-box"><h4>At ${esc(levelCopy[state.level].title.toLowerCase())} level</h4><p>${esc(levelGuidance(d))}</p></div>
+      </div>
+    </article>`;
+  }).join("");
+  root.querySelectorAll(".domain-card").forEach(card=>{
+    const btn=card.querySelector(".detail-btn");
+    btn.addEventListener("click",()=>{
+      const open=card.classList.toggle("open");
+      btn.textContent=open?"Hide detail":"Show detail";
+      btn.setAttribute("aria-expanded",String(open));
+    });
+  });
+  document.getElementById("resultsMeta").textContent=`${visible} of ${domains.length} domains shown${state.search?` for “${state.search}”`:""}. Cards are ordered by relevance to the selected level and interests.`;
+}
+function renderLevels(){
+  const root=document.getElementById("levelBands");
+  const order=["foundation","practitioner","leadership"];
+  root.innerHTML=order.map((k,i)=>{
+    const l=levelCopy[k];
+    return `<article class="band ${state.level===k?"active":""}"><div class="num">${i+1}</div><h3>${esc(l.title)}</h3><p><strong>${esc(l.tag)}</strong></p><p>${esc(l.description)}</p><p>${esc(l.outcome)}</p></article>`;
+  }).join("");
+}
+function renderMap(){
+  const root=document.getElementById("capabilityMap");
+  const maxW=5;
+  root.innerHTML=domains.map(d=>{
+    const [p,s]=priorityFor(d); const h=80 + Math.min(maxW,s)*23;
+    return `<button type="button" style="height:${h}px" data-id="${d.id}" class="${state.interests.size && p==="Explore"?"dim":""}" aria-label="${esc(d.title)}"><strong>${d.number}</strong><small>${esc(d.title)}</small></button>`;
+  }).join("");
+  root.querySelectorAll("button").forEach(b=>b.addEventListener("click",()=>{
+    const d=domains.find(x=>x.id===b.dataset.id);
+    document.getElementById("mapDetail").innerHTML=`<strong>${esc(d.title)}</strong><br>${esc(d.why)}<br><span class="results-meta"><strong>Adjacent:</strong> ${esc(d.adjacent.join(", "))}</span>`;
+  }));
+}
+function relevantToInterests(tags){
+  if(state.interests.size===0) return true;
+  return [...state.interests].some(i=>tags.includes(i));
+}
+function renderSpecialisms(){
+  document.getElementById("specialGrid").innerHTML=specialisms
+    .slice().sort((a,b)=>(relevantToInterests(b.tags)?1:0)-(relevantToInterests(a.tags)?1:0))
+    .map(s=>`<article class="mini-card" style="${state.interests.size&&!relevantToInterests(s.tags)?"opacity:.5":""}"><h3>${esc(s.title)}</h3><p>${esc(s.text)}</p></article>`).join("");
+}
+function renderThemes(){
+  document.getElementById("themeGrid").innerHTML=themes.map(t=>`<article class="mini-card"><h3>${esc(t.title)}</h3><p>${esc(t.text)}</p></article>`).join("");
+}
+function renderGaps(){
+  document.getElementById("gapGrid").innerHTML=gaps
+    .slice().sort((a,b)=>(relevantToInterests(b.tags)?1:0)-(relevantToInterests(a.tags)?1:0))
+    .map(g=>`<article class="mini-card" style="${state.interests.size&&!relevantToInterests(g.tags)?"opacity:.5":""}"><h3>${esc(g.title)}</h3><p>${esc(g.text)}</p></article>`).join("");
+}
+function renderResources(){
+  const matches=resources.filter(r=>r.levels.includes(state.level) && relevantToInterests(r.interests));
+  document.getElementById("resourceGrid").innerHTML=matches.map(r=>`<article class="mini-card resource-card"><div class="meta">${esc(r.type)}</div><h3><a href="${r.url}" target="_blank" rel="noopener">${esc(r.name)}</a></h3><p>${esc(r.note)}</p></article>`).join("");
+  document.getElementById("resourceLevelBadge").textContent=levelCopy[state.level].title;
+  document.getElementById("resourceInterestText").textContent=state.interests.size?`Filtered to ${[...state.interests].map(i=>interestLabels[i]).join(", ")}`:"Showing resources relevant across the guide";
+}
+function renderAll(){
+  renderInterests(); renderRoute(); renderDomains(); renderLevels(); renderMap(); renderSpecialisms(); renderThemes(); renderGaps(); renderResources();
+}
+document.getElementById("levelSelect").addEventListener("change",e=>{state.level=e.target.value;renderAll();syncPlannerToNavigator();recommendPlanDomains()});
+document.getElementById("domainSearch").addEventListener("input",e=>{state.search=e.target.value.trim();renderRoute();renderDomains()});
+document.getElementById("resetFilters").addEventListener("click",()=>{state.interests.clear();state.search="";document.getElementById("domainSearch").value="";renderAll();recommendPlanDomains()});
+
+
+let planState = { selectedDomains:new Set(), generated:false };
+
+function recommendPlanDomains(){
+  const ranked=domains.map(d=>({d,p:priorityFor(d)}))
+    .sort((a,b)=>b.p[1]-a.p[1]||a.d.number.localeCompare(b.d.number));
+  const target = state.interests.size===0 ? 7 : 6;
+  const chosen = ranked.filter(x=>x.p[0]!=="Explore").slice(0,target).map(x=>x.d.id);
+  if(!chosen.includes("foundations") && state.level==="foundation") chosen.unshift("foundations");
+  planState.selectedDomains = new Set(chosen.slice(0,8));
+  planState.generated=false;
+  const printButton=document.getElementById("printPlan");
+  if(printButton)printButton.disabled=true;
+  renderPlanDomainPicker();
+}
+function renderPlanDomainPicker(){
+  const root=document.getElementById("planDomainPicker");
+  if(!root)return;
+  root.innerHTML=domains.map(d=>`<label class="domain-pick"><input type="checkbox" value="${d.id}" ${planState.selectedDomains.has(d.id)?"checked":""}><span><strong>${d.number}</strong> ${esc(d.title)}</span></label>`).join("");
+  root.querySelectorAll("input").forEach(cb=>cb.addEventListener("change",()=>{
+    cb.checked?planState.selectedDomains.add(cb.value):planState.selectedDomains.delete(cb.value);
+  }));
+}
+function formatDate(d){
+  return new Intl.DateTimeFormat("en-GB",{day:"numeric",month:"short",year:"numeric"}).format(d);
+}
+function addDays(d,n){const x=new Date(d);x.setDate(x.getDate()+n);return x}
+function splitHours(hours){
+  const conceptual=Math.max(.5,Math.round(hours*.35*2)/2);
+  const applied=Math.max(.5,Math.round(hours*.4*2)/2);
+  const reflection=Math.max(.5,Math.round((hours-conceptual-applied)*2)/2);
+  return {conceptual,applied,reflection};
+}
+function resourcesForDomain(d){
+  const matches=resources.filter(r=>r.levels.includes(state.level) && r.interests.some(i=>d.interests.includes(i)));
+  return matches.slice(0,3);
+}
+function buildWeeks(selected,duration){
+  const weeks=[];
+  if(!selected.length)return weeks;
+  const baseDate=document.getElementById("startDate").value ? new Date(document.getElementById("startDate").value+"T12:00:00") : null;
+  const ordered=selected.slice().sort((a,b)=>{
+    const pa=priorityFor(a)[1], pb=priorityFor(b)[1];
+    return pb-pa || a.number.localeCompare(b.number);
+  });
+  for(let w=0;w<duration;w++){
+    const domain=ordered[w % ordered.length];
+    let phase, focus, objective;
+    if(w===0){
+      phase="Orientation";
+      focus=domain;
+      objective=state.level==="foundation"
+        ? `Establish the core vocabulary of ${domain.title.toLowerCase()} and relate it to health and care practice.`
+        : `Establish the scope, principal methods and professional boundaries of ${domain.title.toLowerCase()}.`;
+    }else if(w===duration-1){
+      phase="Consolidation";
+      focus=domain;
+      objective=`Consolidate learning across ${ordered.length} selected domains, identify remaining gaps and record evidence of development.`;
+    }else if(w>=Math.ceil(duration*.65)){
+      phase="Integration";
+      focus=domain;
+      objective=`Apply ${domain.title.toLowerCase()} alongside adjacent disciplines and test how the combined capability affects real professional judgement.`;
+    }else{
+      phase="Core development";
+      focus=domain;
+      objective=levelGuidance(domain);
+    }
+    const dateText=baseDate ? `${formatDate(addDays(baseDate,w*7))} – ${formatDate(addDays(baseDate,w*7+6))}` : "";
+    weeks.push({week:w+1,phase,domain:focus,objective,dateText});
+  }
+  return weeks;
+}
+function generateStudyPlan(){
+  const selected=[...planState.selectedDomains].map(id=>domains.find(d=>d.id===id)).filter(Boolean);
+  if(!selected.length){
+    alert("Select at least one capability domain.");
+    return;
+  }
+  const duration=Number(document.getElementById("planDuration").value);
+  const hours=Number(document.getElementById("weeklyHours").value);
+  const owner=document.getElementById("learnerName").value.trim();
+  const title=document.getElementById("planTitle").value.trim() || "Health & Care Computing Development Plan";
+  const weeks=buildWeeks(selected,duration);
+  const split=splitHours(hours);
+  const interests=[...state.interests].map(i=>interestLabels[i]);
+  const allResources=[];
+  selected.forEach(d=>resourcesForDomain(d).forEach(r=>{if(!allResources.some(x=>x.name===r.name))allResources.push(r)}));
+  const level=levelCopy[state.level];
+  const domainNames=selected.map(d=>d.title);
+  const rationale=interests.length
+    ? `This plan emphasises ${interests.join(", ")} at ${level.title.toLowerCase()} level while retaining adjacent capabilities needed for coherent practice.`
+    : `This plan provides a broad ${level.title.toLowerCase()} route across the selected health and care computing domains.`;
+  const output=document.getElementById("studyOutput");
+  output.innerHTML=`
+    <div class="print-only"><div style="font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;font-weight:800;color:#555">Agile Health Informatics Ltd · Professional resource</div></div>
+    <div class="plan-header">
+      <div class="eyebrow">Personal development plan</div>
+      <h3>${esc(title)}</h3>
+      ${owner?`<div class="results-meta"><strong>Plan owner:</strong> ${esc(owner)}</div>`:""}
+      <div class="plan-meta">
+        <div><span>Level</span><strong>${esc(level.title)}</strong></div>
+        <div><span>Duration</span><strong>${duration} weeks</strong></div>
+        <div><span>Development time</span><strong>${hours} hours / week</strong></div>
+        <div><span>Total planned time</span><strong>${duration*hours} hours</strong></div>
+      </div>
+    </div>
+    <div class="plan-rationale"><strong>Plan rationale:</strong> ${esc(rationale)}</div>
+    <div class="plan-summary-grid">
+      <div class="plan-summary-card"><h4>Learning outcome</h4><p>${esc(level.outcome)}</p></div>
+      <div class="plan-summary-card"><h4>Selected capability domains</h4><ul>${domainNames.map(n=>`<li>${esc(n)}</li>`).join("")}</ul></div>
+    </div>
+    <div class="week-list">
+      ${weeks.map(w=>{
+        const res=resourcesForDomain(w.domain);
+        return `<article class="week-card">
+          <div class="week-head">
+            <div><div class="week-no">Week ${w.week} · ${esc(w.phase)}</div><h4>${esc(w.domain.title)}</h4></div>
+            ${w.dateText?`<div class="week-dates">${esc(w.dateText)}</div>`:""}
+          </div>
+          <div class="week-grid">
+            <div>
+              <p><strong>Objective:</strong> ${esc(w.objective)}</p>
+              <p><strong>Key topics:</strong> ${esc(w.domain.topics.slice(0,6).join("; "))}</p>
+              <div class="week-tasks">
+                <span class="week-task">${split.conceptual}h concepts / reading</span>
+                <span class="week-task">${split.applied}h applied learning</span>
+                <span class="week-task">${split.reflection}h reflection / evidence</span>
+              </div>
+              <div class="plan-check"><span class="plan-check-box"></span> Completed / evidence recorded</div>
+            </div>
+            <div>
+              <p><strong>Suggested references:</strong></p>
+              <ul>${res.length?res.map(r=>`<li><a href="${r.url}">${esc(r.name)}</a> — ${esc(r.note)}</li>`).join(""):"<li>Use the authoritative standards and professional references identified in this domain.</li>"}</ul>
+              <p><strong>Adjacent disciplines:</strong> ${esc(w.domain.adjacent.slice(0,5).join("; "))}</p>
+            </div>
+          </div>
+          <div class="notes-lines" aria-label="Notes and evidence"><span></span><span></span></div>
+        </article>`;
+      }).join("")}
+    </div>
+    <div class="plan-summary-grid">
+      <div class="plan-summary-card"><h4>Useful reference organisations</h4><ul>${allResources.slice(0,8).map(r=>`<li><a href="${r.url}">${esc(r.name)}</a></li>`).join("")}</ul></div>
+      <div class="plan-summary-card"><h4>End-of-plan review</h4><ul><li>What can I now explain or apply confidently?</li><li>What evidence have I produced?</li><li>Which adjacent domain now needs deeper study?</li><li>Which capability should move into my next development cycle?</li></ul></div>
+    </div>
+    <div class="results-meta">Generated from the Health &amp; Care Computing Professional Development Navigator. This is a development aid rather than an accreditation or competency award.</div>`;
+  planState.generated=true;
+  document.getElementById("printPlan").disabled=false;
+  savePlanSettings();
+}
+function savePlanSettings(){
+  const data={
+    owner:document.getElementById("learnerName").value,
+    title:document.getElementById("planTitle").value,
+    duration:document.getElementById("planDuration").value,
+    hours:document.getElementById("weeklyHours").value,
+    start:document.getElementById("startDate").value,
+    domains:[...planState.selectedDomains]
+  };
+  try{localStorage.setItem("ahi-study-plan",JSON.stringify(data))}catch(e){}
+}
+function loadPlanSettings(){
+  let d=null; try{d=JSON.parse(localStorage.getItem("ahi-study-plan")||"null")}catch(e){}
+  if(!d){recommendPlanDomains();return}
+  document.getElementById("learnerName").value=d.owner||"";
+  document.getElementById("planTitle").value=d.title||"Health & Care Computing Development Plan";
+  document.getElementById("planDuration").value=d.duration||"8";
+  document.getElementById("weeklyHours").value=d.hours||"4";
+  document.getElementById("startDate").value=d.start||"";
+  planState.selectedDomains=new Set((d.domains||[]).filter(id=>domains.some(x=>x.id===id)));
+  if(!planState.selectedDomains.size) recommendPlanDomains(); else renderPlanDomainPicker();
+}
+function syncPlannerToNavigator(){
+  const el=document.getElementById("plannerLevelText");
+  if(el)el.textContent=levelCopy[state.level].title;
+}
+document.getElementById("recommendDomains").addEventListener("click",recommendPlanDomains);
+document.getElementById("generatePlan").addEventListener("click",generateStudyPlan);
+document.getElementById("printPlan").addEventListener("click",()=>{
+  if(!planState.generated)return;
+  document.body.classList.add("print-plan");
+  window.print();
+});
+window.addEventListener("afterprint",()=>document.body.classList.remove("print-plan"));
+document.getElementById("clearPlan").addEventListener("click",()=>{
+  document.getElementById("studyOutput").innerHTML='<div class="study-output-empty"><div><strong>Your development plan will appear here.</strong><p>Select or accept the recommended domains, choose the time available, then generate the plan.</p></div></div>';
+  planState.generated=false;
+  document.getElementById("printPlan").disabled=true;
+  try{localStorage.removeItem("ahi-study-plan")}catch(e){}
+  recommendPlanDomains();
+});
+["learnerName","planTitle","planDuration","weeklyHours","startDate"].forEach(id=>document.getElementById(id).addEventListener("change",savePlanSettings));
+loadPlanSettings();
+syncPlannerToNavigator();
+
+const themeToggle=document.getElementById("themeToggle");
+function setTheme(theme){
+  document.documentElement.dataset.theme=theme;
+  try{localStorage.setItem("ahi-theme",theme)}catch(e){}
+  themeToggle.setAttribute("aria-pressed",theme==="dark"?"true":"false");
+  themeToggle.setAttribute("aria-label",theme==="dark"?"Use light theme":"Use dark theme");
+  themeToggle.textContent=theme==="dark"?"☀":"◐";
+}
+let saved=null; try{saved=localStorage.getItem("ahi-theme")}catch(e){}
+setTheme(saved || ((window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light"));
+themeToggle.addEventListener("click",()=>setTheme(document.documentElement.dataset.theme==="dark"?"light":"dark"));
+
+const menuBtn=document.getElementById("menuBtn"), siteNav=document.getElementById("siteNav");
+menuBtn.addEventListener("click",()=>{const open=siteNav.classList.toggle("open");menuBtn.setAttribute("aria-expanded",String(open))});
+siteNav.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>{siteNav.classList.remove("open");menuBtn.setAttribute("aria-expanded","false")}));
+
+const navLinks=[...document.querySelectorAll(".site-nav a[href^='#']")];
+const navSections=navLinks.map(a=>document.querySelector(a.getAttribute("href"))).filter(Boolean);
+if("IntersectionObserver" in window){
+  const io=new IntersectionObserver(entries=>{
+    const vis=entries.filter(e=>e.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];
+    if(!vis)return;
+    navLinks.forEach(a=>a.classList.toggle("active",a.getAttribute("href")==="#"+vis.target.id));
+  },{rootMargin:"-20% 0px -65% 0px",threshold:[0,.2,.5]});
+  navSections.forEach(s=>io.observe(s));
+}
+renderAll();
+
+window.addEventListener("scroll",()=>{
+  const h=document.documentElement;
+  const total=h.scrollHeight-h.clientHeight;
+  const pct=total>0?(h.scrollTop/total)*100:0;
+  document.body.style.setProperty("--scroll",pct+"%");
+},{passive:true});
+
+</script>
+</body>
+</html>
