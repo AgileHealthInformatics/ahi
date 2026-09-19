@@ -23,13 +23,20 @@ Website: <https://agilehealthinformatics.com/>
     ├── atlases/
     ├── assessments/
     ├── guides/
-    └── professional-development/
+    ├── professional-development/
+    └── clinical-pathways/
+        └── healthcare-pathway-description/
+            ├── index.html
+            ├── README.md
+            └── frailty-multimorbidity-demonstrator/
+                └── index.html
 ```
 
 The repository follows a simple rule:
 
 > **The root contains the corporate website. `/resources` contains substantive
-> publications. Each publication owns its own directory.**
+> publications. Each publication owns its own directory. Supporting demonstrators
+> may be nested beneath the resource they explain.**
 
 ## Corporate pages
 
@@ -56,6 +63,8 @@ Repository-facing documentation for these pages is held under `docs/site/`.
 | Health Data Operability Maturity Assessment | `/resources/assessments/health-data-operability/` | `hdomm-toolkit-agile-health-informatics.html` |
 | Health & Care Computing Professional Development Navigator | `/resources/professional-development/health-care-computing/` | `health_care_computing_professional_development_navigator.html` |
 | Health Data Operability Workshop Facilitation Guide | `/resources/guides/health-data-operability-workshop/` | `health_data_operability_workshop_facilitation_guide.html` |
+| Healthcare Pathway Description Standard | `/resources/clinical-pathways/healthcare-pathway-description/` | — |
+| Frailty and Multimorbidity Pathway Demonstrator | `/resources/clinical-pathways/healthcare-pathway-description/frailty-multimorbidity-demonstrator/` | `HPDS_Frailty_Neighbourhood_Clinical_Explainer.html` |
 
 ## Legacy links
 
