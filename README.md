@@ -23,20 +23,13 @@ Website: <https://agilehealthinformatics.com/>
     ├── atlases/
     ├── assessments/
     ├── guides/
-    ├── professional-development/
-    └── clinical-pathways/
-        └── healthcare-pathway-description/
-            ├── index.html
-            ├── README.md
-            └── frailty-multimorbidity-demonstrator/
-                └── index.html
+    └── professional-development/
 ```
 
 The repository follows a simple rule:
 
 > **The root contains the corporate website. `/resources` contains substantive
-> publications. Each publication owns its own directory. Supporting demonstrators
-> may be nested beneath the resource they explain.**
+> publications. Each publication owns its own directory.**
 
 ## Corporate pages
 
@@ -60,10 +53,10 @@ Repository-facing documentation for these pages is held under `docs/site/`.
 | Healthcare Integration Pattern Navigator | `/resources/navigators/integration-patterns/` | `agile_health_informatics_healthcare_integration_pattern_navigator_2026.html` |
 | Healthcare Interoperability Navigator | `/resources/navigators/healthcare-interoperability/` | `agile_health_informatics_healthcare_interoperability_navigator_2026.html` |
 | Healthcare Standards Navigator | `/resources/navigators/healthcare-standards/` | `agile_health_informatics_healthcare_standards_navigator_2026.html` |
+| Modern NHS Digital Workforce Navigator | `/resources/navigators/modern-nhs-digital-workforce/` | — |
 | Health Data Operability Maturity Assessment | `/resources/assessments/health-data-operability/` | `hdomm-toolkit-agile-health-informatics.html` |
 | Health & Care Computing Professional Development Navigator | `/resources/professional-development/health-care-computing/` | `health_care_computing_professional_development_navigator.html` |
 | Health Data Operability Workshop Facilitation Guide | `/resources/guides/health-data-operability-workshop/` | `health_data_operability_workshop_facilitation_guide.html` |
-| Healthcare Pathway Description Standard | `/resources/clinical-pathways/healthcare-pathway-description/` | — |
 | Frailty and Multimorbidity Pathway Demonstrator | `/resources/clinical-pathways/healthcare-pathway-description/frailty-multimorbidity-demonstrator/` | `HPDS_Frailty_Neighbourhood_Clinical_Explainer.html` |
 
 ## Legacy links
