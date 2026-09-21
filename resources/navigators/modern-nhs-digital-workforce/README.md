@@ -1,59 +1,44 @@
 # Modern NHS Digital Workforce Navigator
 
-Interactive Agile Health Informatics Ltd resource for exploring digital, data, architecture, AI, cyber and clinical informatics workforce roles needed by a modern NHS organisation.
+Interactive Agile Health Informatics resource describing selected digital, data, architecture, AI, cyber and clinical informatics roles needed by a modern NHS organisation.
 
-## Intended site location
+## Purpose
+
+The navigator helps users:
+
+- explore specialist workforce roles and likely experience requirements;
+- compare recruitment difficulty, retention pressure and the importance of continuity;
+- review indicative England Agenda for Change pay ranges alongside external market benchmarks;
+- use a decision aid to identify likely capability needs;
+- compare substantive, fixed-term, contractor and managed-service resourcing models;
+- examine illustrative substantive-versus-contract cost differences; and
+- identify workforce anti-patterns that can create capability debt.
+
+Recruitment and retention scores are evidence-informed professional judgements rather than measured vacancy statistics. Salary and contract figures are planning benchmarks, not recommended pay or job-evaluation outcomes.
+
+## Website location
+
+Recommended location:
 
 `/resources/navigators/modern-nhs-digital-workforce/`
 
-The accompanying `index.html` is self-contained and uses the Agile Health Informatics website design system, including the standard colour variables, responsive header, theme control, print treatment and root-relative site navigation.
+Files:
 
-## What the navigator does
+- `index.html`
+- `README.md`
 
-The resource:
+## Design
 
-- describes 15 specialist workforce roles across six capability families;
-- estimates recruitment difficulty, retention pressure and continuity value;
-- records likely Agenda for Change ranges using England 2026/27 as a consistent comparator;
-- provides external market salary and contractor-rate benchmarks where a meaningful comparator exists;
-- includes an interactive recruitment-difficulty versus retention-risk landscape;
-- provides a decision aid for identifying likely roles and an appropriate employment model;
-- compares substantive employment and contract staffing using adjustable planning assumptions;
-- describes workforce anti-patterns and capability-debt risks.
+The page follows the current Agile Health Informatics website design system and reuses the standard site header, embedded logo, navigation, blue resource hero, breadcrumbs, card treatment, responsive breakpoints, dark mode using the `ahi-theme` localStorage key, print treatment and footer.
 
-## Interpretation
+The page is self-contained HTML5 with embedded CSS, JavaScript and SVG. No framework is required.
 
-Recruitment and retention scores are analytical judgements informed by labour-market evidence and contemporary NHS recruitment examples. They are not vacancy statistics or NHS-wide workforce ratings.
+## Interaction
 
-Agenda for Change ranges are indicative role comparators only. Actual NHS banding must follow job evaluation. Scotland, Wales and Northern Ireland have separate pay arrangements.
+The workforce landscape plots recruitment difficulty against retention risk. Point size represents the value of continuity. To avoid label collisions, only the selected role is labelled; roles sharing the same score are offset slightly around the common grid point.
 
-The substantive-versus-contract calculator is a planning aid. Contractor rates are annualised at 220 days. The user-selected substantive on-cost percentage is illustrative and should be replaced with local finance assumptions for a business case.
-
-## Design and interaction
-
-The page follows the Agile Health Informatics navigator design system:
-
-- blue resource hero with lime accent;
-- pale blue-grey page background and rounded white/dark-blue surfaces;
-- maximum content width of 1180px;
-- system fonts;
-- standard site navigation and route back to the Resource library;
-- light/dark theme using `data-theme` and localStorage key `ahi-theme`;
-- responsive breakpoints around 980px and 680px;
-- print styles that remove interactive navigation and retain core content;
-- keyboard-operable native controls and visible focus states.
-
-The workforce landscape deliberately avoids permanent labels on every point. Roles sharing the same recruitment/retention coordinates are separated visually, while the selected role alone is labelled and described in a persistent detail panel.
+The role catalogue supports search and filtering. The decision aid combines capability need, duration, urgency and the value of institutional knowledge. The cost comparison annualises contractor rates on a 220-day assumption and applies a user-set substantive employment on-cost percentage.
 
 ## Maintenance
 
-Review at least annually, and earlier when any of the following materially changes:
-
-- Agenda for Change pay scales;
-- NHS Recruitment and Retention Premium practice;
-- Government Digital and Data Profession capability definitions;
-- market salary or contractor-rate benchmarks;
-- emergence of new AI, data or cyber roles;
-- material changes to NHS workforce or operating-model expectations.
-
-When updating salary or market evidence, retain the source date and distinguish sourced facts from professional assessment.
+Workforce market information changes quickly. Review pay scales, Recruitment and Retention Premia examples, external salary/rate benchmarks and role assumptions before republishing material updates.
