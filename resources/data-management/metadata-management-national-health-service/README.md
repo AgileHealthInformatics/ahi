@@ -55,6 +55,10 @@ Review cited standards and regulatory references before republishing after Octob
 
 ## Placeholder and author conventions
 
-The web version preserves the strategy's institutional-placeholder convention: terms in square brackets identify where an adopting country should substitute its own institutions. The currently defined placeholders are `[national health authority]`, `[Catalogue operator]`, `[national data standards board]` and `[Commissioning bodies]`.
+The web version uses square brackets for any role or institution that an adopting country is expected to allocate to a named body or organisation.
 
-Author credentials on the web page are limited to **FBCS CITP**. References to CDMP and CHCIO have been removed from the webpage.
+This includes explicit institutional placeholders such as `[national health authority]` and `[national data standards board]`, and functional roles such as `[registration authority]`, `[registry operator]`, `[catalogue operator]`, `[governance forum]`, `[domain stewards]`, `[authoritative publisher]`, `[reference data publisher]`, `[national terminology release centre]`, `[specification publishers]`, `[approving body]` and `[commissioning bodies]`.
+
+The brackets therefore indicate **local substitution or assignment**, not only national-level bodies.
+
+Author credentials on the web page remain limited to **FBCS CITP**. References to CDMP and CHCIO remain removed.
