@@ -52,3 +52,9 @@ The resource presents the strategy as a proposal, not adopted national policy. R
 ## Maintenance
 
 Review cited standards and regulatory references before republishing after October 2026. Preserve the distinction between semantic/descriptive metadata and technical metadata, and keep the strategy’s proposed architecture separate from claims about implemented national services.
+
+## Placeholder and author conventions
+
+The web version preserves the strategy's institutional-placeholder convention: terms in square brackets identify where an adopting country should substitute its own institutions. The currently defined placeholders are `[national health authority]`, `[Catalogue operator]`, `[national data standards board]` and `[Commissioning bodies]`.
+
+Author credentials on the web page are limited to **FBCS CITP**. References to CDMP and CHCIO have been removed from the webpage.
