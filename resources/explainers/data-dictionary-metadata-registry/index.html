@@ -1,1 +1,730 @@
+<!doctype html>
+<html lang="en-GB" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="An interactive healthcare explainer showing how a data dictionary, metadata registry, data catalogue, terminology service, reference data and data contracts work together.">
+<link rel="canonical" href="https://agilehealthinformatics.com/resources/explainers/data-dictionary-metadata-registry/">
+<title>Data Dictionary and Metadata Registry Explainer | Agile Health Informatics Ltd</title>
+<style>
+:root{
+  --ink:#17302a; --muted:#5e706b; --line:#d7e2de; --bg:#f6f9f8; --card:#fff;
+  --green:#08634d; --green2:#0d8a69; --mint:#eaf6f2; --teal:#0b7680; --tealbg:#eaf7f8;
+  --purple:#6551a6; --purplebg:#f2effb; --blue:#3569b8; --bluebg:#eef4fd;
+  --amber:#8c6105; --amberbg:#fff6da; --red:#a33a31; --redbg:#fff0ee;
+  --shadow:0 8px 24px rgba(13,56,46,.08)
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:var(--bg);line-height:1.55}
+button,input,select{font:inherit}
+.topbar{background:linear-gradient(135deg,#083d34,#08705a 72%,#0a7e68);color:#fff}
+.topin{max-width:1480px;margin:auto;padding:34px 24px 30px}
+.eyebrow{font-size:12px;font-weight:850;letter-spacing:.13em;text-transform:uppercase;opacity:.86}
+.topbar h1{font-size:clamp(30px,4.4vw,52px);line-height:1.08;margin:6px 0 10px;max-width:1100px}
+.topbar p{max-width:1100px;margin:0;color:#e8fff7;font-size:17px}
+.statusline{display:flex;flex-wrap:wrap;gap:8px;margin-top:17px}.pill{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:5px 10px;font-size:12px;font-weight:760;border:1px solid transparent}.pill.light{background:#ffffff18;color:#fff;border-color:#ffffff35}.pill.green{background:#e7f4ed;color:#246447}.pill.purple{background:var(--purplebg);color:var(--purple)}.pill.teal{background:var(--tealbg);color:var(--teal)}.pill.blue{background:var(--bluebg);color:var(--blue)}.pill.amber{background:var(--amberbg);color:var(--amber)}
+.wrap{max-width:1480px;margin:auto;padding:0 24px 70px}
+.tabs{position:sticky;top:0;z-index:30;background:rgba(246,249,248,.96);backdrop-filter:blur(9px);border-bottom:1px solid var(--line);margin:0 -24px;padding:0 24px}
+.tabrow{display:flex;gap:2px;overflow:auto;max-width:1480px;margin:auto}
+.tab{border:0;background:transparent;padding:15px 15px;font-weight:780;color:#526661;white-space:nowrap;cursor:pointer;border-bottom:3px solid transparent}.tab.active{color:var(--green);border-bottom-color:var(--green)}
+.section{display:none;padding-top:28px}.section.active{display:block}
+h2{font-size:29px;line-height:1.18;margin:24px 0 10px}h3{font-size:19px;margin:0 0 8px}.lede{font-size:17px;color:#405850;max-width:1050px}.small{font-size:13px;color:var(--muted)}.muted{color:var(--muted)}.kicker{font-size:12px;text-transform:uppercase;letter-spacing:.08em;font-weight:850;color:var(--green)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:17px;padding:19px;box-shadow:var(--shadow)}
+.grid{display:grid;gap:16px}.grid2{grid-template-columns:repeat(2,minmax(0,1fr))}.grid3{grid-template-columns:repeat(3,minmax(0,1fr))}.grid4{grid-template-columns:repeat(4,minmax(0,1fr))}.grid5{grid-template-columns:repeat(5,minmax(0,1fr))}
+.notice{background:var(--amberbg);border:1px solid #ead28c;border-radius:14px;padding:14px 16px;color:#6b5008;margin:18px 0}.callout{background:#edf8f6;border-left:4px solid var(--green2);border-radius:10px;padding:13px 15px}.callout.blue{background:var(--bluebg);border-left-color:var(--blue)}.callout.purple{background:var(--purplebg);border-left-color:var(--purple)}.callout.amber{background:var(--amberbg);border-left-color:var(--amber)}
+.service{min-height:285px;border-top:5px solid var(--green)}.service.registry{border-top-color:var(--purple)}.service.cts{border-top-color:var(--teal)}.service.ref{border-top-color:var(--blue)}.service.contract{border-top-color:var(--amber)}
+.service .bigq{font-size:21px;font-weight:850;margin:8px 0 10px}.service ul{margin:8px 0 0;padding-left:19px}.service li{margin:6px 0}.service .analogy{margin-top:14px;padding:10px;border-radius:10px;background:#f6f9f8;font-size:13px}
+.diagram{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px;overflow:auto;box-shadow:var(--shadow)}.diagram svg{min-width:1030px;width:100%;height:auto;display:block}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:15px 0}.select,.search{border:1px solid #b9cac4;background:#fff;color:var(--ink);border-radius:10px;padding:10px 11px}.select{min-width:260px}.search{min-width:250px;flex:1}.btn{border:1px solid #aac1ba;background:#fff;color:var(--green);border-radius:10px;padding:9px 12px;font-weight:760;cursor:pointer}.btn.primary{background:var(--green);color:#fff;border-color:var(--green)}
+.story{display:grid;grid-template-columns:260px 1fr;gap:0;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff;box-shadow:var(--shadow)}.storyLabel{font-weight:850;background:#f3f8f6;padding:14px;border-bottom:1px solid var(--line)}.storyBody{padding:14px;border-bottom:1px solid var(--line)}.storyLabel.last,.storyBody.last{border-bottom:0}.storyBody code,.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;background:#f0f4f3;border-radius:6px;padding:2px 6px;font-size:12px}.storyBody ul{margin:5px 0;padding-left:18px}
+.contractHeader{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:start}.contractMeta{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}.contractTableWrap,.tableWrap{background:#fff;border:1px solid var(--line);border-radius:15px;overflow:auto;box-shadow:var(--shadow)}table{border-collapse:collapse;width:100%;font-size:13px}th{position:sticky;top:0;background:#edf5f2;color:#244d42;text-align:left;padding:10px;border-bottom:1px solid var(--line);white-space:nowrap;z-index:2}td{padding:10px;border-bottom:1px solid #e8efec;vertical-align:top}.term{font-weight:820;color:#164f40}.nowrap{white-space:nowrap}.sourceTag{display:inline-block;font-size:11px;background:#edf4f2;border:1px solid #d0e0db;border-radius:999px;padding:2px 7px;margin:1px 2px 1px 0}
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:16px}.good,.bad{border-radius:15px;padding:16px;border:1px solid}.good{background:#edf8f3;border-color:#bcdcca}.bad{background:var(--redbg);border-color:#e5bcb7}.good h3{color:#176244}.bad h3{color:#8b332c}
+.objectBox{border:1px solid var(--line);border-radius:12px;padding:11px;margin:8px 0;background:#fbfdfc}.objectType{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);font-weight:850}.registryChain{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.chainBox{background:#fff;border:1px solid var(--line);border-radius:13px;padding:12px;position:relative}.chainBox:not(:last-child):after{content:'→';position:absolute;right:-18px;top:42%;font-size:20px;color:var(--purple);font-weight:900;z-index:3}.chainBox strong{display:block;margin-bottom:5px}
+.flow{display:grid;grid-template-columns:repeat(9,1fr);gap:8px}.step{background:#fff;border:1px solid var(--line);border-radius:13px;padding:12px;min-height:132px;position:relative}.step:not(:last-child):after{content:'→';position:absolute;right:-16px;top:45%;font-size:19px;color:var(--green);font-weight:900;z-index:2}.step .n{width:25px;height:25px;border-radius:50%;display:grid;place-items:center;background:var(--green);color:#fff;font-weight:850;margin-bottom:8px}
+.quiz{display:grid;grid-template-columns:1fr 230px;gap:12px;align-items:center;padding:13px;border:1px solid var(--line);border-radius:12px;background:#fff;margin:9px 0}.quizBtns{display:flex;gap:5px;flex-wrap:wrap}.quizBtn{border:1px solid #c3d0cc;background:#fff;border-radius:8px;padding:6px 8px;font-size:12px;cursor:pointer}.quizAnswer{display:none;margin-top:7px;font-size:13px}.quiz.answered .quizAnswer{display:block}.quizBtn.correct{background:#e6f5ec;border-color:#89c4a3;color:#195f3d}.quizBtn.wrong{background:#fff0ee;border-color:#e2aaa4;color:#8d2f28}
+.accordion{background:#fff;border:1px solid var(--line);border-radius:14px;margin:10px 0;overflow:hidden}.accordion button{width:100%;border:0;background:#fff;text-align:left;padding:14px 16px;font-weight:800;color:var(--ink);cursor:pointer;display:flex;justify-content:space-between;gap:12px}.accordion .content{display:none;padding:0 16px 15px;color:#405850}.accordion.open .content{display:block}.accordion.open button{background:#f2f7f5}
+.catGrid{grid-template-columns:minmax(0,1.45fr) minmax(320px,.55fr)}
+#catBody tr{cursor:pointer}#catBody tr:focus{outline:2px solid var(--green);outline-offset:-2px;background:#f2f7f5}
+@media(max-width:1150px){.catGrid{grid-template-columns:1fr}}
+.service.catalogue{border-top-color:#5e706b}
+.catGrid>*,.dictGrid>*{min-width:0}.dictGrid{grid-template-columns:minmax(240px,.42fr) minmax(0,1fr)}@media(max-width:900px){.dictGrid{grid-template-columns:1fr}}.objectBox{overflow-x:auto}.code{overflow-wrap:anywhere}
+.st{display:inline-block;border-radius:999px;padding:2px 9px;font-size:11px;font-weight:800;border:1px solid}.st-standard{background:#e6f5ec;color:#195f3d;border-color:#9fd0b4}.st-qualified{background:var(--tealbg);color:var(--teal);border-color:#9fd3d7}.st-recorded{background:var(--bluebg);color:var(--blue);border-color:#b4c9ec}.st-candidate{background:var(--amberbg);color:var(--amber);border-color:#ead28c}.st-retired{background:var(--redbg);color:var(--red);border-color:#e5bcb7}
+.match{display:inline-block;font-size:11px;font-weight:760;border-radius:6px;padding:1px 6px;background:#edf4f2;color:#244d42}.m-lossy{background:var(--redbg);color:var(--red)}.m-narrower,.m-broader{background:var(--amberbg);color:var(--amber)}
+table.kv th{position:static;background:none;border:0;padding:3px 10px 3px 0;color:var(--muted);font-weight:700;width:38%}table.kv td{border:0;padding:3px 0}
+table.mini{font-size:12px}table.mini th{position:static;padding:6px}table.mini td{padding:6px}
+.roleBar{display:flex;gap:5px;flex-wrap:wrap}.roleBtn{border:1px solid #aac1ba;background:#fff;color:var(--green);border-radius:999px;padding:8px 12px;font-weight:760;cursor:pointer}.roleBtn.active{background:var(--green);color:#fff;border-color:var(--green)}
+.dictList,.assetList{display:grid;gap:8px;align-content:start}.dictItem,.assetCard{background:#fff;border:1px solid var(--line);border-radius:12px;padding:11px 13px;cursor:pointer;display:flex;flex-direction:column;gap:3px}.dictItem:hover,.assetCard:hover{border-color:#9fbfb5}.dictItem.selected,.assetCard.selected,#regBody tr.selected{outline:2px solid var(--green);outline-offset:-2px;background:#f2f7f5}.dictItem:focus,.assetCard:focus{outline:2px solid var(--green)}
+#regBody tr{cursor:pointer}#regBody tr:focus{outline:2px solid var(--green);outline-offset:-2px}
+.xlink{color:var(--green);font-weight:700;text-decoration:underline;text-underline-offset:2px}a.code{text-decoration:none}
+.footer{margin-top:36px;padding-top:18px;border-top:1px solid var(--line);color:#687b76;font-size:12px}
+@media(max-width:1150px){.grid5{grid-template-columns:repeat(2,1fr)}.grid4,.grid3{grid-template-columns:repeat(2,1fr)}.flow{grid-template-columns:repeat(3,1fr)}.step:nth-child(3n):after{display:none}.registryChain{grid-template-columns:repeat(2,1fr)}.chainBox:nth-child(2):after{display:none}}
+@media(max-width:760px){.wrap{padding:0 14px 55px}.topin{padding:25px 14px}.tabs{margin:0 -14px;padding:0 10px}.grid2,.grid3,.grid4,.grid5,.compare{grid-template-columns:1fr}.story{grid-template-columns:1fr}.storyLabel{border-bottom:0}.registryChain,.flow{grid-template-columns:1fr}.chainBox:after,.step:after{display:none!important}.quiz{grid-template-columns:1fr}.select{min-width:0;width:100%}.contractHeader{grid-template-columns:1fr}}
+@media print{.tabs,.toolbar,.quizBtns,.btn{display:none!important}.section{display:block!important}.topbar{background:#fff;color:#000}.topbar p{color:#333}.pill.light{color:#333;border-color:#bbb}.card,.diagram,.tableWrap,.contractTableWrap{box-shadow:none}.wrap{max-width:none}}
 
+/* Agile Health Informatics site design tokens and shared page components */
+:root{
+  --bg:#edf3f8;--surface:#fff;--surface-2:#f5f8fb;--surface-3:#dfe9f3;
+  --text:#17324a;--muted:#5b7187;--line:#c7d5e3;
+  --brand:#4f7eb1;--brand-deep:#3e6897;--brand-soft:#7399c0;
+  --accent:#dce8b2;--accent-strong:#c9dc93;--accent-ink:#4d6220;
+  --green:#4d7427;--amber:#946200;--shadow:0 12px 30px rgba(42,78,114,.10);--radius:20px;--max:1180px;
+  --ink:var(--text);--card:var(--surface);--green2:var(--brand);--mint:var(--surface-2);
+  --teal:var(--brand-deep);--tealbg:var(--surface-2);--purple:var(--brand-deep);--purplebg:var(--surface-2);
+  --blue:var(--brand);--bluebg:var(--surface-2);--amberbg:#fff6da;--red:#9b413a;--redbg:#fff0ee;
+}
+[data-theme="dark"]{
+  --bg:#0f2032;--surface:#142d45;--surface-2:#193852;--surface-3:#244b6b;
+  --text:#edf4fa;--muted:#c3d0dc;--line:#315979;--brand:#75a1ce;--brand-deep:#9bbfe0;--brand-soft:#84aacf;
+  --accent:#dce8b2;--accent-strong:#e6efc4;--accent-ink:#233211;--green:#cfe39a;--amber:#f0cd86;--shadow:none;
+  --ink:var(--text);--card:var(--surface);--green2:var(--brand);--mint:var(--surface-2);
+  --teal:var(--brand-deep);--tealbg:var(--surface-2);--purple:var(--brand-deep);--purplebg:var(--surface-2);
+  --blue:var(--brand);--bluebg:var(--surface-2);--amberbg:#423719;--red:#f0a9a1;--redbg:#402a2c;
+}
+body{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--text);background:var(--bg)}
+a{color:var(--brand-deep)}a:hover{color:var(--brand)}
+.site-header{position:sticky;top:0;z-index:1000;background:color-mix(in srgb,var(--surface) 92%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid color-mix(in srgb,var(--line) 80%,transparent)}
+.nav-wrap{max-width:var(--max);margin:0 auto;padding:8px 24px;display:flex;align-items:center;gap:18px}
+.brand-link{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text);min-width:260px}
+.brand-link img{width:54px;height:54px;border-radius:12px;box-shadow:0 5px 14px rgba(30,54,82,.15);object-fit:cover}
+.brand-name{line-height:1.08}.brand-name strong{display:block;color:var(--brand-deep);font-size:1rem;letter-spacing:-.015em}.brand-name span{display:block;margin-top:4px;color:var(--muted);font-size:.72rem;letter-spacing:.17em;text-transform:lowercase}
+.site-nav{display:flex;align-items:center;gap:3px;margin-left:auto}.site-nav a{padding:9px;border-radius:9px;text-decoration:none;color:var(--muted);font-size:.88rem;font-weight:650;white-space:nowrap}.site-nav a:hover,.site-nav a.active{background:var(--surface-3);color:var(--brand-deep)}
+.nav-actions{display:flex;gap:8px;margin-left:4px}.icon-btn,.menu-btn{border:1px solid var(--line);background:var(--surface);color:var(--text);width:40px;height:40px;border-radius:10px;cursor:pointer;display:grid;place-items:center}.menu-btn{display:none}
+.breadcrumbs{max-width:var(--max);margin:0 auto;padding:14px 24px 0;color:var(--muted);font-size:.86rem}.breadcrumbs a{color:var(--muted)}
+.topbar{background:linear-gradient(135deg,var(--brand-deep),var(--brand) 64%,var(--brand-soft));color:#fff}
+.topin{max-width:var(--max);margin:auto;padding:48px 24px 40px}.topbar h1{font-size:clamp(2.15rem,4.2vw,3.65rem);line-height:1.05;letter-spacing:-.04em;margin:10px 0 16px;max-width:1000px}.topbar p{max-width:930px;color:#f0f6fb;font-size:1.12rem}
+.eyebrow{font-size:.78rem;letter-spacing:.14em}.statusline{gap:8px;margin-top:20px}.pill.light{background:rgba(255,255,255,.13);color:#fff;border-color:rgba(255,255,255,.34)}
+.wrap{max-width:var(--max);padding:0 24px 54px}.tabs{top:72px;background:color-mix(in srgb,var(--bg) 94%,transparent);backdrop-filter:blur(10px);border-bottom-color:var(--line);margin:0 -24px;padding:0 24px}.tabrow{max-width:var(--max)}.tab{color:var(--muted)}.tab.active{color:var(--brand-deep);border-bottom-color:var(--accent-strong)}
+h2{color:var(--brand-deep);letter-spacing:-.025em}.lede{color:var(--muted)}
+.card,.diagram,.tableWrap,.contractTableWrap,.story,.accordion,.chainBox,.step,.quiz,.dictItem,.assetCard{background:var(--surface);border-color:var(--line);box-shadow:var(--shadow)}
+.storyLabel{background:var(--surface-2);color:var(--text)}.storyBody{border-color:var(--line)}
+th{background:var(--surface-3);color:var(--brand-deep);border-color:var(--line)}td{border-color:var(--line)}
+.code,.storyBody code{background:var(--surface-2);color:var(--text)}.objectBox{background:var(--surface-2);border-color:var(--line)}
+.toolbar input,.toolbar select,.select,.search,.btn,.quizBtn,.roleBtn,.accordion button{background:var(--surface);color:var(--text);border-color:var(--line)}
+.btn,.roleBtn{color:var(--brand-deep)}.btn.primary,.roleBtn.active,.step .n{background:var(--brand-deep);border-color:var(--brand-deep);color:#fff}
+.callout{background:var(--surface-2);border-left-color:var(--brand)}.callout.blue,.callout.purple{background:var(--surface-2);border-left-color:var(--brand-soft)}
+.notice{background:color-mix(in srgb,var(--accent) 24%,var(--surface));border-color:var(--accent-strong);color:var(--text)}
+.accordion.open button{background:var(--surface-2)}.footer{border-color:var(--line);color:var(--muted)}
+.closing-note{margin-top:28px;padding:18px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface-2);color:var(--muted);font-size:.9rem}
+footer{background:#102b43;color:#dbe8f2;margin-top:24px}.footer-inner{max-width:var(--max);margin:0 auto;padding:30px 24px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center}.footer-brand{display:flex;align-items:center;gap:14px}.footer-brand img{width:62px;height:62px;border-radius:13px}.footer-brand strong{display:block;color:#fff}.footer-brand span{display:block;font-size:.83rem;color:#b9cbda;margin-top:3px}.footer-meta{text-align:right;font-size:.82rem;color:#b9cbda}.footer-meta a{color:#fff}
+:focus-visible{outline:3px solid var(--accent-strong);outline-offset:3px}
+/* Keep the complete explainer readable without JavaScript; tabs apply after script initialisation. */
+.section{display:block}.js .section{display:none}.js .section.active{display:block}
+@media(max-width:980px){.site-nav{display:none;position:absolute;top:68px;left:14px;right:14px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:8px;box-shadow:var(--shadow);flex-direction:column;align-items:stretch}.site-nav.open{display:flex}.menu-btn{display:grid}.brand-link{min-width:0}.site-nav a{white-space:normal}.footer-inner{grid-template-columns:1fr}.footer-meta{text-align:left}}
+@media(max-width:680px){.nav-wrap{padding:8px 14px}.brand-name span{display:none}.brand-link img{width:48px;height:48px}.breadcrumbs{padding:12px 16px 0}.topin{padding:36px 16px 32px}.wrap{padding:0 14px 45px}.tabs{top:64px;margin:0 -14px;padding:0 8px}.tab{padding:12px 10px}.footer-inner{padding:26px 16px}.statusline{gap:6px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important;animation:none!important}}
+@media print{.site-header,.breadcrumbs,.tabs,.toolbar,.quizBtns,.btn,.nav-actions,footer{display:none!important}.section,.js .section{display:block!important}.topbar{background:#fff;color:#000;border-bottom:1px solid #aaa}.topbar p{color:#333}.pill.light{color:#333;border-color:#bbb}.wrap{max-width:none}.card,.diagram,.tableWrap,.contractTableWrap{box-shadow:none}}
+
+</style>
+</head>
+<body>
+<header class="site-header"><div class="nav-wrap"><a aria-label="Agile Health Informatics Ltd home" class="brand-link" href="/"><img alt="Agile Health Informatics Ltd logo" src="data:image/webp;base64,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"/><span class="brand-name"><strong>Agile Health Informatics Ltd</strong><span>creative ideas &amp; solutions</span></span></a><nav aria-label="Primary navigation" class="site-nav" id="siteNav"><a href="/">Home</a><a href="/services.html">Services</a><a class="active" href="/resources.html" aria-current="page">Resources</a><a href="/professional-development.html">Professional Development</a><a href="/about.html">About</a><a href="/#contact">Connect</a></nav><div class="nav-actions"><button aria-label="Switch colour theme" aria-pressed="false" class="icon-btn" id="themeToggle" type="button">◐</button><button aria-controls="siteNav" aria-expanded="false" aria-label="Open navigation" class="menu-btn" id="menuToggle" type="button">☰</button></div></div></header>
+<nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/resources.html">Resources</a> / Data dictionary and metadata registry</nav>
+<header class="topbar">
+  <div class="topin">
+    <div class="eyebrow">Interactive explainer · generic healthcare examples</div>
+    <h1>How a Metadata Registry, Data Dictionary, Data Catalogue, Terminology Service and Data Contract fit together</h1>
+    <p>These concepts are often described with abstract language. This demonstrator starts with the practical questions that each service answers, then follows example data fields through a working registry, the dictionary published from it, a data catalogue and the data contracts that apply them.</p>
+    <div class="statusline">
+      <span class="pill light">Organisation-neutral</span>
+      <span class="pill light">Healthcare examples</span>
+      <span class="pill light">For policy, clinical, data and digital professionals</span>
+    </div>
+  </div>
+</header>
+<div class="wrap">
+<nav class="tabs" aria-label="Explainer sections"><div class="tabrow">
+  <button class="tab active" data-tab="start" aria-controls="start" aria-pressed="true">Start here</button>
+  <button class="tab" data-tab="boundaries" aria-controls="boundaries" aria-pressed="false">What belongs where?</button>
+  <button class="tab" data-tab="field" aria-controls="field" aria-pressed="false">Follow one field</button>
+  <button class="tab" data-tab="registry" aria-controls="registry" aria-pressed="false">Registry</button>
+  <button class="tab" data-tab="dictionary" aria-controls="dictionary" aria-pressed="false">Dictionary</button>
+  <button class="tab" data-tab="catalogue" aria-controls="catalogue" aria-pressed="false">Data catalogue</button>
+  <button class="tab" data-tab="contracts" aria-controls="contracts" aria-pressed="false">Data contracts</button>
+  <button class="tab" data-tab="lifecycle" aria-controls="lifecycle" aria-pressed="false">Governance & lifecycle</button>
+  <button class="tab" data-tab="questions" aria-controls="questions" aria-pressed="false">Common questions</button>
+</div></nav>
+
+<section id="start" class="section active">
+  <h2>Start with six different questions</h2>
+  <p class="lede">The easiest way to understand the architecture is to stop thinking about products and start with the question a user is trying to answer. The services overlap, but they are not interchangeable. Each has a different job.</p>
+
+  <div class="grid grid3" style="margin-top:18px">
+    <div class="card service">
+      <span class="pill green">Data Dictionary</span>
+      <div class="bigq">“What does this data item mean?”</div>
+      <p>A human-readable publication of agreed data definitions. It helps clinicians, analysts, programme teams and suppliers understand a field consistently.</p>
+      <ul><li>Plain-language definition</li><li>Business context</li><li>Data type and examples</li><li>Owner or steward</li><li>Links to controlled values</li></ul>
+      <div class="analogy"><strong>Think of it as:</strong> the published glossary people consult.</div>
+    </div>
+    <div class="card service registry">
+      <span class="pill purple">Metadata Registry</span>
+      <div class="bigq">“What is the governed record behind that definition?”</div>
+      <p>The controlled system of record for metadata. It gives the definition an identifier, version, status, provenance and formal relationships to other metadata.</p>
+      <ul><li>Persistent identifiers</li><li>Versions and lifecycle status</li><li>Approval history</li><li>Concept and representation</li><li>Machine-readable relationships</li></ul>
+      <div class="analogy"><strong>Think of it as:</strong> the governed catalogue database behind the published glossary.</div>
+    </div>
+    <div class="card service cts">
+      <span class="pill teal">Terminology Service / CTS</span>
+      <div class="bigq">“Which clinical concepts, codes and value sets are available?”</div>
+      <p>A terminology service manages controlled clinical vocabularies, value sets and maps. It is where the meaning of clinical codes is maintained and versioned. The binding recorded in the registry or a contract decides which of them are permitted in a particular field.</p>
+      <ul><li>Code systems</li><li>Value sets</li><li>Synonyms and hierarchy</li><li>Terminology versions</li><li>Mappings and validation</li></ul>
+      <div class="analogy"><strong>Think of it as:</strong> the authoritative vocabulary service, not a copy of the vocabulary inside the dictionary.</div>
+    </div>
+    <div class="card service ref">
+      <span class="pill blue">Reference Data Service</span>
+      <div class="bigq">“Which shared operational values are valid?”</div>
+      <p>A reference-data service supplies reusable lists such as organisations, facilities, countries, care settings or service types. These values may be used by many systems.</p>
+      <ul><li>Organisations and sites</li><li>Geographies</li><li>Service classifications</li><li>Identifier namespaces</li><li>Operational code lists</li></ul>
+      <div class="analogy"><strong>Think of it as:</strong> the authoritative list provider for reusable operational values.</div>
+    </div>
+    <div class="card service contract">
+      <span class="pill amber">Data Contract</span>
+      <div class="bigq">“What must a producer supply, and what may a consumer rely on?”</div>
+      <p>A context-specific agreement for a data product, feed or API. It reuses governed definitions and then adds obligations such as required fields, quality rules and timeliness.</p>
+      <ul><li>Required and optional fields</li><li>Quality and completeness rules</li><li>Timeliness and frequency</li><li>Version compatibility</li><li>Change and support arrangements</li></ul>
+      <div class="analogy"><strong>Think of it as:</strong> the rules of use for a particular exchange or dataset.</div>
+    </div>
+    <div class="card service catalogue">
+      <span class="pill" style="background:#eef1f0;color:#405850">Data Catalogue</span>
+      <div class="bigq">“What data assets exist, and where?”</div>
+      <p>A catalogue helps people discover feeds, datasets, tables and reports, with their owners, locations, access routes and sensitivity. It points to registry definitions for the meaning of each field rather than defining fields itself.</p>
+      <ul><li>Asset descriptions and owners</li><li>Location and access route</li><li>Refresh and sensitivity</li><li>Link to any data contract</li><li>Field-to-registry mappings</li></ul>
+      <div class="analogy"><strong>Think of it as:</strong> the library index that tells you which books exist and where they are shelved.</div>
+    </div>
+  </div>
+
+  <div class="notice"><strong>The critical design principle:</strong> define once, reference many times. A data contract should reference the registered data element. The registered data element should reference a terminology value set or reference-data list. The dictionary should publish those relationships for people to understand. None of these layers should create its own conflicting copy.</div>
+
+  <h2>The whole pattern in one picture</h2>
+  <div class="diagram" aria-label="Relationship diagram">
+    <svg viewBox="0 0 1220 520" role="img" aria-labelledby="diagTitle diagDesc">
+      <title id="diagTitle">Relationship between dictionary, registry, terminology, reference data and contracts</title>
+      <desc id="diagDesc">A metadata registry is the governed metadata system of record. A data dictionary is published from it. Terminology and reference data services remain authoritative for controlled values. Data contracts reference the registered definitions and bindings for a particular data exchange.</desc>
+      <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#49665e"/></marker></defs>
+      <rect x="405" y="55" rx="18" width="410" height="125" fill="#f2effb" stroke="#6551a6" stroke-width="2"/>
+      <text x="610" y="92" text-anchor="middle" font-size="25" font-weight="800" fill="#43377d">Metadata Registry</text>
+      <text x="610" y="121" text-anchor="middle" font-size="15" fill="#4c5360">governed metadata system of record</text>
+      <text x="610" y="147" text-anchor="middle" font-size="14" fill="#4c5360">IDs · versions · status · provenance · relationships · bindings</text>
+
+      <rect x="55" y="225" rx="18" width="300" height="120" fill="#e7f4ed" stroke="#08634d" stroke-width="2"/>
+      <text x="205" y="263" text-anchor="middle" font-size="22" font-weight="800" fill="#08634d">Data Dictionary</text>
+      <text x="205" y="291" text-anchor="middle" font-size="14" fill="#4c615b">human-readable publication</text>
+      <text x="205" y="315" text-anchor="middle" font-size="13" fill="#4c615b">meaning · scope · examples · ownership</text>
+
+      <rect x="460" y="255" rx="18" width="300" height="110" fill="#eaf7f8" stroke="#0b7680" stroke-width="2"/>
+      <text x="610" y="292" text-anchor="middle" font-size="21" font-weight="800" fill="#0b7680">Terminology Service / CTS</text>
+      <text x="610" y="320" text-anchor="middle" font-size="13" fill="#476366">clinical concepts · value sets · maps</text>
+      <text x="610" y="343" text-anchor="middle" font-size="13" fill="#476366">versioned terminology content</text>
+
+      <rect x="865" y="255" rx="18" width="300" height="110" fill="#eef4fd" stroke="#3569b8" stroke-width="2"/>
+      <text x="1015" y="292" text-anchor="middle" font-size="21" font-weight="800" fill="#3569b8">Reference Data Service</text>
+      <text x="1015" y="320" text-anchor="middle" font-size="13" fill="#50617a">organisations · locations · shared lists</text>
+      <text x="1015" y="343" text-anchor="middle" font-size="13" fill="#50617a">authoritative operational values</text>
+
+      <rect x="370" y="415" rx="18" width="480" height="82" fill="#fff6da" stroke="#8c6105" stroke-width="2"/>
+      <text x="610" y="447" text-anchor="middle" font-size="22" font-weight="800" fill="#7b5505">Data Contract</text>
+      <text x="610" y="473" text-anchor="middle" font-size="13" fill="#6c5c32">applies the registered definitions to one API, feed, dataset or data product</text>
+
+      <path d="M405 117 C300 130 235 165 215 225" stroke="#49665e" fill="none" stroke-width="2" marker-end="url(#arrow)"/>
+      <text x="270" y="159" font-size="13" fill="#49665e">publishes a view</text>
+      <path d="M555 180 C540 205 545 225 570 255" stroke="#49665e" fill="none" stroke-width="2" marker-end="url(#arrow)"/>
+      <text x="450" y="222" font-size="13" fill="#49665e">stores binding to</text>
+      <path d="M720 180 C845 197 931 219 970 255" stroke="#49665e" fill="none" stroke-width="2" marker-end="url(#arrow)"/>
+      <text x="828" y="211" font-size="13" fill="#49665e">stores reference to</text>
+      <path d="M540 180 C470 275 465 350 515 415" stroke="#49665e" fill="none" stroke-width="2" marker-end="url(#arrow)"/>
+      <text x="390" y="365" font-size="13" fill="#49665e">contract references registered IDs</text>
+      <rect x="895" y="40" rx="18" width="290" height="105" fill="#f3f5f4" stroke="#5e706b" stroke-width="2"/>
+      <text x="1040" y="76" text-anchor="middle" font-size="21" font-weight="800" fill="#405850">Data Catalogue</text>
+      <text x="1040" y="102" text-anchor="middle" font-size="13" fill="#5e706b">feeds · datasets · tables · reports</text>
+      <text x="1040" y="124" text-anchor="middle" font-size="13" fill="#5e706b">what exists, who owns it, where it is</text>
+      <path d="M895 95 L819 103" stroke="#49665e" fill="none" stroke-width="2" marker-end="url(#arrow)"/>
+      <text x="826" y="78" font-size="12" fill="#49665e">fields map to</text>
+      <text x="826" y="92" font-size="12" fill="#49665e">registered IDs</text>
+      <path d="M610 365 L610 415" stroke="#49665e" fill="none" stroke-width="2" marker-end="url(#arrow)"/>
+      <path d="M1015 365 C985 405 900 430 850 447" stroke="#49665e" fill="none" stroke-width="2" marker-end="url(#arrow)"/>
+    </svg>
+  </div>
+
+  <div class="grid2" style="margin-top:18px">
+    <div class="callout"><strong>The dictionary is not usually a second master store.</strong> A mature design treats it as one or more user-friendly views published from the registry. That prevents the human definition and the machine-governed definition drifting apart.</div>
+    <div class="callout blue"><strong>The registry should not copy every code list.</strong> It should record which controlled vocabulary or reference list applies, including the version or binding strength where relevant. The owning service remains authoritative for the values.</div>
+  </div>
+</section>
+
+<section id="boundaries" class="section">
+  <h2>What belongs where?</h2>
+  <p class="lede">A common cause of confusion is that the same data item appears in several places. That is intentional. Each service holds a different kind of information about the same thing. The test is not “where does the field appear?” but “which service is authoritative for this aspect?”</p>
+
+  <div class="toolbar"><label for="boundarySelect"><strong>Choose an example:</strong></label><select id="boundarySelect" class="select"></select></div>
+  <div id="boundaryStory" class="story"></div>
+
+  <h2>Three boundaries that matter</h2>
+  <div class="grid3">
+    <div class="card"><h3>Meaning versus permissible values</h3><p>The dictionary explains what <em>diagnosis</em> means in this organisation. The terminology service supplies the permissible diagnosis concepts and codes. Copying the entire diagnosis terminology into the dictionary would create a second, quickly outdated source.</p></div>
+    <div class="card"><h3>Definition versus representation</h3><p>The concept “date of birth” is independent of whether one interface sends <span class="code">YYYY-MM-DD</span> and another system stores a database date type. The registry can separate the concept from each technical representation while the dictionary presents the common meaning.</p></div>
+    <div class="card"><h3>Reusable metadata versus context-specific rules</h3><p>The dictionary may say what “discharge destination” means. A specific discharge feed may make it mandatory, require delivery within five minutes and limit it to a particular value set. Those are contract rules, because they apply to that specific exchange.</p></div>
+  </div>
+
+  <h2>Try the “where should this live?” check</h2>
+  <p class="small">Choose an answer. Some organisations may implement the boundary differently, but the explanations show the preferred separation of concerns.</p>
+  <div id="quizArea"></div>
+</section>
+
+<section id="field" class="section">
+  <h2>Follow one field from concept to use</h2>
+  <p class="lede">The abstract terms become easier when we follow a single field. Select an example below. The same field is shown as a plain-language definition, a governed registry record, a controlled-value binding and a contract obligation.</p>
+  <div class="toolbar"><label for="fieldSelect"><strong>Data field:</strong></label><select id="fieldSelect" class="select"></select></div>
+  <div id="fieldWalkthrough"></div>
+
+  <h2>Inside a metadata registry</h2>
+  <p>A registry can model a data element as several related objects rather than as one long spreadsheet row. This may look unnecessarily formal until definitions have to be reused across hundreds of systems. The separation lets the same business concept use different representations without redefining the concept.</p>
+  <div class="registryChain">
+    <div class="chainBox"><span class="pill purple">1</span><strong>Object class</strong><span class="small">The kind of thing being described, such as Person, Encounter, Observation or Organisation.</span></div>
+    <div class="chainBox"><span class="pill purple">2</span><strong>Property</strong><span class="small">The characteristic of that thing, such as date of birth, start time, status or identifier.</span></div>
+    <div class="chainBox"><span class="pill purple">3</span><strong>Data Element Concept</strong><span class="small">Object class + property. This captures meaning without yet fixing the technical representation.</span></div>
+    <div class="chainBox"><span class="pill purple">4</span><strong>Data Element + Value Domain</strong><span class="small">The concept combined with an allowed representation, datatype, unit, terminology or reference-data binding.</span></div>
+  </div>
+  <div class="callout purple" style="margin-top:16px"><strong>Why this helps:</strong> “Person date of birth” can remain one stable concept while different systems map their local fields to it. A registry can record those mappings, versions and contexts rather than forcing every system to adopt the same physical database design.</div>
+</section>
+
+<section id="registry" class="section">
+  <h2>Metadata registry: the governed record</h2>
+  <p class="lede">This tab shows how a registry works in practice. Every record has a persistent identifier, version, registration status, steward, value-domain binding, relationships, implementation mappings and change history. The Dictionary and Data catalogue tabs read from these records; they do not hold their own copies.</p>
+  <div class="notice"><strong>Illustrative records.</strong> The stewards, dates, versions, approval decisions, value-set identifiers and local systems are made up for teaching. They do not describe any real registry. Registration statuses follow ISO/IEC 11179 terms: <em>Candidate</em>, <em>Recorded</em>, <em>Qualified</em>, <em>Standard</em> and <em>Retired</em>.</div>
+  <div class="toolbar"><input id="regSearch" class="search" placeholder="Search identifiers, names, stewards or definitions" aria-label="Search the registry"><select id="regStatus" class="select" aria-label="Filter by registration status"><option value="">All registration statuses</option></select></div>
+  <div class="grid catGrid">
+    <div class="tableWrap"><table><thead><tr><th>Registry ID</th><th>Data element</th><th>Version</th><th>Status</th><th>Steward</th></tr></thead><tbody id="regBody"></tbody></table></div>
+    <div id="regDetail" class="card" aria-live="polite"></div>
+  </div>
+
+  <h2>Common value-domain patterns</h2>
+  <div class="grid4">
+    <div class="card"><h3>Primitive value</h3><p>A date, integer, decimal, Boolean or text value. The registry defines datatype and format. No external code list may be needed.</p><span class="sourceTag">date of birth</span> <span class="sourceTag">discharge date and time</span></div>
+    <div class="card"><h3>Terminology-coded value</h3><p>The field carries a concept selected from a controlled clinical vocabulary or value set managed by a terminology service.</p><span class="sourceTag">diagnosis</span> <span class="sourceTag">laboratory test</span></div>
+    <div class="card"><h3>Reference-data value</h3><p>The field selects from an authoritative operational list such as an organisation, facility, country or care setting.</p><span class="sourceTag">organisation identifier</span> <span class="sourceTag">care setting</span></div>
+    <div class="card"><h3>Composite value</h3><p>The meaning depends on several linked elements, such as a measured value plus unit, method and effective time.</p><span class="sourceTag">laboratory result</span> <span class="sourceTag">blood pressure</span></div>
+  </div>
+</section>
+
+<section id="dictionary" class="section">
+  <h2>Data dictionary: the published view</h2>
+  <p class="lede">The dictionary is generated from the registry. It publishes only records at <em>Standard</em> or <em>Qualified</em> status, and it presents the same record at the level of detail each reader needs. Change the reader below: the definition stays the same and the detail around it changes.</p>
+  <div class="toolbar">
+    <input id="dictSearch" class="search" placeholder="Search published entries" aria-label="Search the dictionary">
+    <div class="roleBar" role="group" aria-label="Reader">
+      <button class="roleBtn active" data-role="clinical" aria-pressed="true">Clinical reader</button>
+      <button class="roleBtn" data-role="analyst" aria-pressed="false">Analyst</button>
+      <button class="roleBtn" data-role="integration" aria-pressed="false">Integration engineer</button>
+    </div>
+  </div>
+  <div class="grid dictGrid"><div><div id="dictList" class="dictList"></div><div id="dictExcluded" class="small" style="margin-top:12px"></div></div>
+    <div id="dictDetail" class="card" aria-live="polite"></div>
+  </div>
+</section>
+
+<section id="catalogue" class="section">
+  <h2>Data catalogue: what exists, and where</h2>
+  <p class="lede">A catalogue describes data assets: feeds, datasets, tables and reports. It tells users what exists, who owns it, where it is held and how to get it. It does not define what the fields mean. Instead, each asset maps its local fields to registry elements, so anyone who finds a dataset can see which governed definitions it uses and how well each field matches.</p>
+  <div class="notice"><strong>Illustrative assets.</strong> The assets, owners and local field names are made up. Four of the assets have data contracts. The other two do not, which is common in practice.</div>
+  <div class="toolbar"><input id="catSearch" class="search" placeholder="Search assets, owners or fields" aria-label="Search the catalogue"><select id="catType" class="select" aria-label="Filter by asset type"><option value="">All asset types</option></select></div>
+  <div class="grid dictGrid">
+    <div id="catList" class="assetList"></div>
+    <div id="catDetail" class="card" aria-live="polite"></div>
+  </div>
+</section>
+
+<section id="contracts" class="section">
+  <h2>Data contracts make the metadata operational</h2>
+  <p class="lede">A data contract is the point where shared definitions become obligations for a particular data product, feed or API. It is not the place to invent new meanings. It should reference the registered definitions, then add the rules that a producer and consumer need in that context.</p>
+
+  <div class="grid2">
+    <div class="card"><h3>A contract usually answers</h3><ul><li>Who produces the data and who consumes it?</li><li>What business purpose is the exchange serving?</li><li>Which registered data elements are in scope?</li><li>Which are required, optional or conditionally required?</li><li>Which terminology or reference-data bindings apply?</li><li>What quality, timeliness and completeness can consumers rely on?</li><li>What versioning and change-notice rules apply?</li><li>What happens when validation fails?</li></ul></div>
+    <div class="card"><h3>A contract should not become</h3><ul><li>a second data dictionary;</li><li>a copied terminology value set that silently becomes stale;</li><li>a substitute for the source system's clinical or business rules;</li><li>a vague statement that “data will be high quality” without measurable criteria;</li><li>an interface specification with no semantic identifiers;</li><li>a permanent promise that prevents controlled evolution.</li></ul><p class="small"><strong>Note:</strong> “contract” here means a governed data agreement. Procurement or legal documents may reference it, but the concept is broader than a legal contract.</p></div>
+  </div>
+
+  <div class="toolbar"><label for="contractSelect"><strong>Worked contract:</strong></label><select id="contractSelect" class="select"></select></div>
+  <div id="contractPanel"></div>
+
+  <h2>Why referencing matters</h2>
+  <div class="compare">
+    <div class="bad"><h3>Fragile pattern</h3><p>Every interface document contains its own definition of “care setting”, copies a list of codes into an appendix and uses locally invented names. Six months later the values differ between interfaces and no one can tell which list is current.</p><p><strong>Result:</strong> semantic drift, duplicated maintenance and expensive reconciliation.</p></div>
+    <div class="good"><h3>Governed pattern</h3><p>The contract references registered data element <span class="code">DE-CARE-SETTING</span> and value-set binding <span class="code">VS-CARE-SETTING</span>. The registry records provenance and status. The terminology or reference-data service supplies the current permitted values.</p><p><strong>Result:</strong> one definition, one governed value source and many controlled uses.</p></div>
+  </div>
+</section>
+
+<section id="lifecycle" class="section">
+  <h2>Governance is what makes the architecture trustworthy</h2>
+  <p class="lede">The technology is the easy part. The hard part is agreeing who can define, approve, change and retire metadata. A registry is valuable because it makes those decisions explicit and traceable.</p>
+  <div class="flow">
+    <div class="step"><div class="n">1</div><strong>Identify need</strong><p class="small">A programme, service or analyst needs a shared definition.</p></div>
+    <div class="step"><div class="n">2</div><strong>Define concept</strong><p class="small">Agree the business meaning before choosing a technical format.</p></div>
+    <div class="step"><div class="n">3</div><strong>Register</strong><p class="small">Assign persistent ID, steward, provenance and initial status.</p></div>
+    <div class="step"><div class="n">4</div><strong>Specify representation</strong><p class="small">Datatype, cardinality, units and value-domain pattern.</p></div>
+    <div class="step"><div class="n">5</div><strong>Bind values</strong><p class="small">Reference terminology or authoritative reference data where required.</p></div>
+    <div class="step"><div class="n">6</div><strong>Review & approve</strong><p class="small">Check semantics, safety, legal constraints and technical feasibility.</p></div>
+    <div class="step"><div class="n">7</div><strong>Publish</strong><p class="small">Expose human-readable dictionary views and machine-readable metadata.</p></div>
+    <div class="step"><div class="n">8</div><strong>Apply in contracts</strong><p class="small">Use registered IDs in APIs, feeds, datasets and procurements.</p></div>
+    <div class="step"><div class="n">9</div><strong>Monitor & evolve</strong><p class="small">Version changes, deprecate safely and preserve history.</p></div>
+  </div>
+
+  <h2>What a useful registry records</h2>
+  <div class="grid3">
+    <div class="card"><h3>Identity and meaning</h3><p>Persistent identifier, preferred name, definition, synonyms, domain, object class, property and usage context.</p></div>
+    <div class="card"><h3>Representation</h3><p>Datatype, format, unit, cardinality, conceptual domain, value domain and any terminology or reference-data binding.</p></div>
+    <div class="card"><h3>Governance</h3><p>Steward, registration status, version, approval date, effective date, provenance, evidence, change history and retirement status.</p></div>
+    <div class="card"><h3>Relationships</h3><p>Broader and narrower concepts, component fields, aliases, maps, equivalence claims and relationships to datasets or contracts.</p></div>
+    <div class="card"><h3>Implementation mappings</h3><p>How local database columns, message fields, API properties or legacy codes correspond to the registered element.</p></div>
+    <div class="card"><h3>Assurance information</h3><p>Validation rules, known limitations, quality expectations, jurisdiction, sensitivity and constraints on reuse where appropriate.</p></div>
+  </div>
+
+  <div class="notice"><strong>Versioning rule of thumb:</strong> a wording clarification that does not change meaning may be a minor metadata revision. A change that alters the meaning, value domain or consumer expectation may require a new version, transition period or sometimes a new identifier. The governance process should make this predictable.</div>
+</section>
+
+<section id="questions" class="section">
+  <h2>Common questions and misconceptions</h2>
+  <div id="faqArea"></div>
+
+  <h2>Practical implementation principles</h2>
+  <div class="grid2">
+    <div class="card"><h3>Start with high-value shared concepts</h3><p>Do not attempt to register every database column in the enterprise on day one. Start with the data that is exchanged, reused, regulated, reported nationally or required by major transformation programmes.</p></div>
+    <div class="card"><h3>Publish role-specific dictionary views</h3><p>A clinician, analyst and integration engineer may need different detail, but they should be looking at views of the same registered metadata rather than separate definitions.</p></div>
+    <div class="card"><h3>Bind, do not copy</h3><p>If an authoritative terminology or reference-data source exists, the registry should point to it. Copying lists into spreadsheets creates unmanaged forks.</p></div>
+    <div class="card"><h3>Make contracts machine-checkable where practical</h3><p>Contract rules are more useful when validation can be automated. Required fields, datatype, code bindings and quality rules can often be tested at build and run time.</p></div>
+    <div class="card"><h3>Preserve local mappings</h3><p>Standardising metadata does not require every system to have the same physical schema. Register mappings from local fields to shared concepts and assess whether the mapping is exact, broader, narrower or lossy.</p></div>
+    <div class="card"><h3>Treat metadata as a service</h3><p>The registry, dictionary, terminology and reference-data capabilities need owners, APIs, support, release management and service levels. A static spreadsheet is a useful seed but not a sustainable enterprise service.</p></div>
+  </div>
+</section>
+
+<div class="closing-note">Illustrative educational demonstrator. It describes a generic service pattern and does not prescribe a particular product, standard or organisational implementation. All registry records, stewards, dates, value-set identifiers, catalogue assets and contracts are made up for teaching.</div>
+</div>
+<footer><div class="footer-inner"><div class="footer-brand"><img alt="Agile Health Informatics Ltd logo" src="data:image/webp;base64,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"/><div><strong>Agile Health Informatics Ltd</strong><span>Creative ideas &amp; solutions for health data and digital transformation.</span></div></div><div class="footer-meta">Principal consultant: Dr Tito Castillo PhD FBCS CITP<br/><a href="https://www.linkedin.com/in/titocastillo-fbcs/" rel="noopener noreferrer" target="_blank">Connect with Dr Tito Castillo on LinkedIn ↗</a></div></div></footer>
+<script>
+document.documentElement.classList.add('js');
+(function(){
+  const root=document.documentElement;
+  const saved=localStorage.getItem('ahi-theme');
+  if(saved==='dark'||saved==='light') root.dataset.theme=saved;
+  const theme=document.getElementById('themeToggle');
+  const syncTheme=()=>theme?.setAttribute('aria-pressed',String(root.dataset.theme==='dark'));
+  syncTheme();
+  theme?.addEventListener('click',()=>{root.dataset.theme=root.dataset.theme==='dark'?'light':'dark';localStorage.setItem('ahi-theme',root.dataset.theme);syncTheme();});
+  const menu=document.getElementById('menuToggle'),nav=document.getElementById('siteNav');
+  menu?.addEventListener('click',()=>{const open=nav.classList.toggle('open');menu.setAttribute('aria-expanded',String(open));menu.setAttribute('aria-label',open?'Close navigation':'Open navigation');});
+  nav?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');menu?.setAttribute('aria-expanded','false');}));
+})();
+const ITEMS = [
+ {id:'DE-PERSON-DOB',name:'Date of birth',domain:'Identity & demographics',entity:'Person',property:'date of birth',definition:'The calendar date on which the person was born.',datatype:'date',representation:'YYYY-MM-DD',controlled:'Metadata registry',binding:'No external value set. The registry governs datatype, format and definition.',registry:'Data Element Concept: Person + date of birth. Data Element: Date of birth. Value Domain: valid calendar date.',contract:'A contract may make the field required, define whether estimated dates are allowed, and specify how unknown dates are represented.',example:'1984-06-19'},
+ {id:'DE-PERSON-ID',name:'Person identifier',domain:'Identity & demographics',entity:'Person',property:'identifier',definition:'An identifier used to distinguish a person within a defined identifier system.',datatype:'identifier',representation:'identifier value + assigning authority',controlled:'Reference / identity service',binding:'The registry references the identifier namespace and assigning authority. The identity service owns issuance and resolution.',registry:'Concept: Person + identifier. Value Domain: identifier conforming to a named namespace.',contract:'A contract states which identifier system is mandatory, whether alternatives are allowed and how unmatched identities are handled.',example:'1234567890'},
+ {id:'DE-DIAGNOSIS',name:'Diagnosis',domain:'Clinical',entity:'Clinical problem',property:'diagnostic concept',definition:'A clinical concept representing a condition assessed or diagnosed for a person in a stated context and time.',datatype:'coded concept',representation:'code + code system + display + version/context',controlled:'Terminology service / CTS',binding:'The registry binds the element to an approved diagnosis value set or terminology. The terminology service owns the concepts and codes.',registry:'Concept: Clinical problem + diagnostic concept. Value Domain: coded concepts drawn from the approved binding.',contract:'A contract states whether diagnosis is required, the permitted binding, whether free text may accompany it and how historical or provisional diagnoses are represented.',example:'[coded clinical concept]'},
+ {id:'DE-CARE-SETTING',name:'Care setting',domain:'Service & encounter',entity:'Encounter',property:'care setting',definition:'The type of setting in which a healthcare encounter or service is delivered.',datatype:'coded value',representation:'code + display',controlled:'Reference-data or terminology service',binding:'The registry references an authoritative care-setting list or value set. The owning service maintains the valid values.',registry:'Concept: Encounter + care setting. Value Domain: approved care-setting list.',contract:'A contract may constrain the general list to the subset relevant to a particular feed, for example emergency, inpatient and outpatient.',example:'Inpatient'},
+ {id:'DE-ORGANISATION',name:'Responsible organisation',domain:'Organisation & location',entity:'Care activity',property:'responsible organisation',definition:'The organisation accountable for delivering, commissioning or recording the activity in the stated context.',datatype:'reference',representation:'organisation identifier + name',controlled:'Reference / master-data service',binding:'The registry references the authoritative organisation directory. Its value domain draws on the organisation identifiers registered separately as DE-ORG-ID: this element records a role an organisation plays in a care activity, not the identity of the organisation itself.',registry:'Concept: Care activity + responsible organisation. Value Domain: active organisation identifiers from the authoritative directory.',contract:'A contract specifies which organisation role is required, the identifier namespace and whether inactive historical organisations remain valid for older records.',example:'ORG-001234'},
+ {id:'DE-LAB-TEST',name:'Laboratory test / analyte',domain:'Diagnostics',entity:'Laboratory observation',property:'test concept',definition:'The concept identifying what was measured, detected or assessed by a laboratory observation.',datatype:'coded concept',representation:'code + code system + display',controlled:'Terminology service / CTS',binding:'The registry binds the field to an approved laboratory-test terminology or value set.',registry:'Concept: Laboratory observation + test concept. Value Domain: coded laboratory-test concepts.',contract:'A laboratory feed contract can require a bound test code, define which profile is supported and prohibit local codes unless a governed mapping is supplied.',example:'[coded test concept]'},
+ {id:'DE-LAB-VALUE',name:'Laboratory result value',domain:'Diagnostics',entity:'Laboratory observation',property:'result value',definition:'The reported result of a laboratory observation, interpreted together with its test concept, unit, reference range, method and status where relevant.',datatype:'decimal / coded / text',representation:'value + datatype-specific context',controlled:'Metadata registry + terminology where coded',binding:'The registry defines the allowed representation pattern. Coded qualitative values may bind to a terminology value set.',registry:'Concept: Laboratory observation + result value. Value Domain: representation depends on the test and may be numeric, coded or textual.',contract:'A feed contract specifies which representations are supported, whether units are mandatory for numeric values and how preliminary, amended or cancelled results are handled.',example:'4.8'},
+ {id:'DE-UNIT',name:'Unit of measure',domain:'Diagnostics',entity:'Quantity',property:'unit',definition:'The unit in which a quantitative value is expressed.',datatype:'coded unit',representation:'code + display',controlled:'Terminology service / unit code service',binding:'The registry binds quantities to an approved unit system and, where necessary, constrains permissible units by data element.',registry:'Concept: Quantity + unit. Value Domain: approved units appropriate to the measured property.',contract:'A contract can require a canonical unit or permit several units while requiring the code system and explicit conversion rules.',example:'mmol/L'},
+ {id:'DE-MEDICATION',name:'Medication product',domain:'Medicines',entity:'Medication activity',property:'medicinal product',definition:'The medicinal product associated with a prescription, dispensing, administration or medication statement.',datatype:'coded concept',representation:'product code + code system + display',controlled:'Terminology service / medicines service',binding:'The registry references an approved medicinal-product terminology or authoritative product dictionary.',registry:'Concept: Medication activity + medicinal product. Value Domain: approved medicinal product concepts.',contract:'A prescribing or dispensing contract specifies the required product identifier, version policy and whether ingredient-level concepts are acceptable in specific contexts.',example:'[medicinal product code]'},
+ {id:'DE-DISCHARGE-DEST',name:'Discharge destination',domain:'Service & encounter',entity:'Encounter',property:'discharge destination',definition:'The destination or setting to which a person is discharged at the end of an episode of care.',datatype:'coded value',representation:'code + display',controlled:'Reference-data or terminology service',binding:'The registry references the approved discharge-destination value set or reference list.',registry:'Concept: Encounter + discharge destination. Value Domain: approved destination categories.',contract:'A discharge contract may require the field only when the encounter status is completed and can define which values trigger follow-up workflows.',example:'Home'},
+ {id:'DE-EFFECTIVE-TIME',name:'Clinical effective time',domain:'Provenance & time',entity:'Clinical statement',property:'effective time',definition:'The time or period to which a clinical statement or observation applies, which may differ from the time it was recorded or transmitted.',datatype:'dateTime / period',representation:'ISO date-time or start/end period',controlled:'Metadata registry',binding:'No external code list. The registry governs the temporal meaning and representation.',registry:'Concept: Clinical statement + effective time. Value Domain: point-in-time or period as defined for the element.',contract:'A contract states whether time zone is mandatory, whether a period is allowed and how late-arriving data is treated.',example:'2026-10-10T15:42:00+01:00'},
+ {id:'DE-DISCHARGE-TIME',name:'Discharge date and time',domain:'Service & encounter',entity:'Encounter',property:'discharge date and time',definition:'The date and time at which a person was discharged from the care of the discharging service at the end of an episode of care.',datatype:'dateTime',representation:'ISO date-time with time-zone offset',controlled:'Metadata registry',binding:'No external code list. The registry governs the temporal meaning, precision and representation. It is registered separately from clinical effective time because it describes an encounter event, not the period to which a clinical statement applies.',registry:'Concept: Encounter + discharge date and time. Value Domain: point-in-time date-time.',contract:'A discharge contract makes the field required at completed discharge and states that it must not be replaced by the time the discharge document was generated or sent.',example:'2026-10-10T11:20:00+01:00'},
+ {id:'DE-ORG-ID',name:'Organisation identifier',domain:'Organisation & location',entity:'Organisation',property:'identifier',definition:'An identifier that uniquely distinguishes an organisation within a defined organisation identifier system.',datatype:'identifier',representation:'identifier value + identifier namespace',controlled:'Reference / master-data service',binding:'The registry references the identifier namespace. The organisation master-data service owns issuance, attributes and lifecycle of the identifiers.',registry:'Concept: Organisation + identifier. Value Domain: identifiers conforming to the named organisation namespace. Related elements such as Responsible organisation draw their values from this domain.',contract:'A reference-data feed contract states that identifiers are persistent, are never silently reassigned and remain resolvable after an organisation closes or merges.',example:'ORG-001234'},
+ {id:'DE-ORG-PERIOD',name:'Organisation operational period',domain:'Organisation & location',entity:'Organisation',property:'operational period',definition:'The period during which an organisation record is in force, from its legal or operational start to its closure, where applicable.',datatype:'period',representation:'start date + optional end date',controlled:'Reference / master-data service',binding:'No external code list. The registry governs the meaning and representation; the master-data service maintains the values for each organisation. It is distinct from clinical effective time, which applies to clinical statements.',registry:'Concept: Organisation + operational period. Value Domain: date period with a mandatory start.',contract:'A reference-data feed contract requires a start date, requires an end date when the organisation is inactive and states how retrospective corrections are notified.',example:'2013-04-01 to (open)'},
+ {id:'DE-SENSITIVITY',name:'Information sensitivity',domain:'Governance',entity:'Information object',property:'sensitivity classification',definition:'A classification indicating handling or access constraints that apply to an information object in a defined governance context.',datatype:'coded value',representation:'classification code + display',controlled:'Reference / policy service',binding:'The registry references an approved information-classification scheme or policy-controlled list.',registry:'Concept: Information object + sensitivity classification. Value Domain: approved classifications.',contract:'A contract may prohibit particular sensitivity classes, require additional controls, or specify the handling obligations that travel with the data.',example:'Restricted'},
+ {id:'DE-EPISODE-END',name:'Episode end date',domain:'Service & encounter',entity:'Episode',property:'end date',definition:'The date on which an episode of care ended.',datatype:'date',representation:'YYYY-MM-DD',controlled:'Metadata registry',binding:'No external code list.',registry:'Concept: Episode + end date. Value Domain: calendar date. Retired as insufficiently specific: it did not distinguish discharge from other ways an episode ends and held no time.',contract:'New contracts should not reference retired elements. Existing uses should be reviewed and moved to an event-specific element, such as DE-DISCHARGE-TIME, only where the source field records the same event.',example:'2026-10-10'}
+];
+
+const CONTRACTS = [
+ {id:'lab',name:'Laboratory results feed',purpose:'Deliver validated laboratory results from a laboratory service to receiving clinical systems.',producer:'Laboratory service',consumer:'Clinical record, GP system or shared-record service',version:'2.1',frequency:'Event driven, normally within 5 minutes of result release',change:'Minimum 90 days notice for breaking changes',fields:[
+   ['DE-PERSON-ID','Person identifier','Required','Valid identifier in agreed namespace','Identity service'],
+   ['DE-LAB-TEST','Laboratory test / analyte','Required','Must validate against agreed laboratory-test binding','CTS'],
+   ['DE-LAB-VALUE','Laboratory result value','Required when result is reportable','Datatype must be permitted for the selected test','Registry + CTS if coded'],
+   ['DE-UNIT','Unit of measure','Required for quantitative results unless the registered test definition states otherwise','Must use approved unit coding','Terminology / unit service'],
+   ['DE-EFFECTIVE-TIME','Clinical effective time','Required','Timezone required; must not be later than transmission time except for corrected source data','Registry'],
+   ['DE-ORGANISATION','Responsible organisation','Required','Organisation identifier must resolve in directory','Reference data']
+ ]},
+ {id:'discharge',name:'Discharge information feed',purpose:'Transmit the information needed by a receiving service when responsibility for care changes after discharge.',producer:'Discharging service',consumer:'Primary, community or receiving care service',version:'1.4',frequency:'Event driven at discharge; corrections sent as new versions',change:'Breaking semantic changes require a new major contract version',fields:[
+   ['DE-PERSON-ID','Person identifier','Required','Must resolve or be explicitly flagged for reconciliation','Identity service'],
+   ['DE-DISCHARGE-DEST','Discharge destination','Required at completed discharge','Must validate against approved destination list','Reference / terminology service'],
+   ['DE-DIAGNOSIS','Diagnosis','Conditionally required','Must be drawn from VS-DIAGNOSIS-DISCHARGE, a contract-specific subset of the registered binding; provisional status must be retained','CTS'],
+   ['DE-MEDICATION','Medication product','Required when medication information is supplied','Use approved medicinal-product identifiers','Medicines terminology service'],
+   ['DE-ORGANISATION','Responsible organisation','Required','Organisation responsible for the discharging service must resolve in the directory','Reference data'],
+   ['DE-DISCHARGE-TIME','Discharge date and time','Required at completed discharge','Must represent the time of discharge, not document-generation or transmission time; time-zone offset required','Registry']
+ ]},
+ {id:'analytics',name:'Population analytics dataset',purpose:'Provide a repeatable dataset for approved analytical use without redefining source-system semantics.',producer:'Data product team',consumer:'Approved analysts and reporting services',version:'3.0',frequency:'Daily refresh by 07:00',change:'Schema changes are announced one release in advance; deprecated fields remain for one transition release',fields:[
+   ['DE-PERSON-ID','Person identifier','Conditional','Use only the approved pseudonymous or linkable identifier for the purpose','Identity / governance service'],
+   ['DE-CARE-SETTING','Care setting','Required','Must use the published grouping and version','Reference data'],
+   ['DE-ORGANISATION','Responsible organisation','Required','Historical organisation identifiers remain resolvable','Reference data'],
+   ['DE-DIAGNOSIS','Diagnosis','Optional by dataset scope','Codes and terminology version must be retained','CTS'],
+   ['DE-EFFECTIVE-TIME','Clinical effective time','Required','Date/time precision must match approved data-minimisation rules','Registry'],
+   ['DE-SENSITIVITY','Information sensitivity','Required as dataset metadata','Must state handling classification for the published dataset','Policy / reference service']
+ ]},
+ {id:'organisation',name:'Organisation reference-data feed',purpose:'Distribute authoritative organisation identifiers and attributes to subscribing systems.',producer:'Organisation master-data service',consumer:'Clinical, operational, finance and analytics systems',version:'1.8',frequency:'Daily full snapshot plus event notifications',change:'Merges, closures and identifier changes are notified with effective dates',fields:[
+   ['DE-ORG-ID','Organisation identifier','Required','Persistent identifier must never be silently reassigned','Reference-data service'],
+   ['DE-ORG-PERIOD','Organisation operational period','Required','Start date required; end date supplied when inactive','Registry + reference-data service']
+ ]}
+];
+
+const BOUNDARIES = [
+ ['DE-DIAGNOSIS','Diagnosis'],['DE-ORGANISATION','Responsible organisation'],['DE-LAB-TEST','Laboratory test / analyte'],['DE-PERSON-DOB','Date of birth'],['DE-CARE-SETTING','Care setting'],['DE-LAB-VALUE','Laboratory result value']
+];
+
+const QUIZ = [
+ {q:'The plain-language definition of “date of birth”.',a:'Dictionary',why:'The dictionary publishes the agreed meaning. The registry holds the controlled metadata record from which that definition is published.'},
+ {q:'The persistent identifier and approval status of the data element “diagnosis”.',a:'Registry',why:'Identity, lifecycle status, provenance and governance metadata are registry responsibilities.'},
+ {q:'The current members of an approved clinical diagnosis value set.',a:'Terminology',why:'The terminology service owns the controlled clinical concepts and value-set membership. The registry stores the binding.'},
+ {q:'The current list of healthcare organisations and their identifiers.',a:'Reference',why:'An organisation directory or master/reference-data service should own these reusable operational values.'},
+ {q:'A rule that a discharge message must arrive within five minutes.',a:'Contract',why:'Timeliness for one exchange is a context-specific producer/consumer obligation, so it belongs in the data contract.'},
+ {q:'A local database column called PAT_DOB mapped to the shared concept “date of birth”.',a:'Registry',why:'The registry can hold implementation mappings between local technical fields and shared registered concepts.'},
+ {q:'A requirement that an analytics extract contains at least 99.5% valid organisation identifiers.',a:'Contract',why:'A measurable quality expectation for a particular dataset or exchange belongs in its contract, while the organisation identifier itself is governed elsewhere.'},
+ {q:'The hierarchy and synonyms associated with a clinical concept.',a:'Terminology',why:'These are properties of the controlled terminology rather than of the data dictionary.'}
+];
+
+const FAQ = [
+ ['Is a data dictionary just a spreadsheet?','A spreadsheet can be a useful starting format, but a mature data dictionary is a governed publication. Its entries need stable identity, stewardship, provenance and lifecycle control. Those controls are better provided by a metadata registry than by a standalone spreadsheet.'],
+ ['Why not put all the terminology codes directly in the dictionary?','Because the dictionary would become a duplicate terminology repository. Clinical terminologies change, contain hierarchies and synonyms, and often need specialised validation and mapping operations. The dictionary should show the binding and perhaps useful display examples, while the terminology service remains authoritative.'],
+ ['What is the difference between terminology and reference data?','Terminology is primarily about the meaning of concepts and often supports hierarchy, synonyms, subsumption and mappings. Reference data is primarily about shared operational values such as organisations, sites, countries or service classifications. Some lists can reasonably be treated either way. The important point is to identify one authoritative owning service and reference it consistently.'],
+ ['Does a metadata registry contain actual patient or operational data?','Normally it contains metadata about data, not the patient records themselves. It records definitions, value domains, identifiers, bindings, mappings and governance information. It may contain example values, but it should not need live personal data to perform its core role.'],
+ ['Is a data contract the same as an API specification?','No. An API specification describes technical interaction such as endpoints, payload structure and transport. A data contract can include or reference that detail, but it also states semantic, quality, timeliness, versioning and governance expectations. The contract should connect the interface to registered metadata.'],
+ ['Must every system use exactly the same database schema?','No. Shared metadata standardises meaning and controlled values, not necessarily physical storage. A legacy system can keep a local column name if a governed mapping to the shared concept is recorded and the transformation is understood.'],
+ ['Where does a data catalogue fit?','A data catalogue usually helps people discover datasets, reports, systems and data products. It answers “what data assets exist and where are they?”. It can reference dictionary and registry definitions so that discovered assets use shared semantics. The catalogue is adjacent to, rather than a substitute for, the metadata registry. The Data catalogue tab shows six example assets and how their fields map to registry elements.'],
+ ['Can the dictionary have several views?','Yes. The same registered metadata can be presented differently for clinicians, analysts, integration teams, procurement or the public. Different views are useful as long as they are generated from the same governed source rather than manually maintained as conflicting copies.'],
+ ['What makes a definition authoritative?','Authority comes from governance, not from the wording alone. The record should identify who owns the concept, what evidence or source supports it, who approved it, its effective version and whether it is draft, approved, deprecated or retired.'],
+ ['Why are persistent identifiers important?','Names change and similar labels can mean different things. A persistent identifier lets contracts, mappings, APIs and catalogues point to the same governed concept even when the display name or explanatory wording changes.']
+];
+
+function esc(v){return String(v??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
+function item(id){return ITEMS.find(x=>x.id===id)}
+
+// Tabs
+document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.tab,.section').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.getElementById(b.dataset.tab).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}));
+
+// Boundaries
+const boundarySelect=document.getElementById('boundarySelect');
+BOUNDARIES.forEach(([id,label])=>boundarySelect.add(new Option(label,id)));
+function boundaryText(i){
+ const term = /Diagnosis|Laboratory test/.test(i.name) ? `The terminology service owns the actual clinical concepts, code-system versions and value-set membership referenced by <span class="code">${esc(i.id)}</span>.` : /organisation|Care setting/i.test(i.name) ? `An authoritative reference-data service owns the reusable operational values. The registry records which list or directory is bound to <span class="code">${esc(i.id)}</span>.` : `No separate terminology or reference list is necessarily required. The registry still governs meaning, datatype and representation.`;
+ return `
+ <div class="storyLabel">Business question</div><div class="storyBody">What does <strong>${esc(i.name)}</strong> mean, and how should people use it consistently?</div>
+ <div class="storyLabel">Data Dictionary</div><div class="storyBody"><strong>${esc(i.name)}</strong>: ${esc(i.definition)}<div class="small">The dictionary is designed to be readable. It may also show examples, usage notes, steward and links to more detailed metadata.</div></div>
+ <div class="storyLabel">Metadata Registry</div><div class="storyBody"><span class="code">${esc(i.id)}</span><br><strong>Concept:</strong> ${esc(i.entity)} + ${esc(i.property)}<br><strong>Representation:</strong> ${esc(i.representation)}<div class="small">The registry gives this meaning a stable identity, version and governance record. It can also record local mappings and relationships to datasets.</div></div>
+ <div class="storyLabel">Terminology / reference service</div><div class="storyBody">${term}<div class="small">The registry stores the binding. It does not become the master copy of the controlled values.</div></div>
+ <div class="storyLabel">Data Contract</div><div class="storyBody">${esc(i.contract)}<div class="small">The contract adds context-specific obligations. It should reference the registered identifier rather than rewrite the definition.</div></div>
+ <div class="storyLabel last">Operational data</div><div class="storyBody last"><strong>Example value:</strong> <span class="code">${esc(i.example)}</span><div class="small">The live value travels in the operational message, API or dataset. The metadata services describe and govern what that value means.</div></div>`;
+}
+function renderBoundary(){document.getElementById('boundaryStory').innerHTML=boundaryText(item(boundarySelect.value))}
+boundarySelect.addEventListener('change',renderBoundary);renderBoundary();
+
+// Quiz
+const quizArea=document.getElementById('quizArea');
+const labels=['Dictionary','Registry','Terminology','Reference','Contract'];
+quizArea.innerHTML=QUIZ.map((q,idx)=>`<div class="quiz" data-q="${idx}"><div><strong>${esc(q.q)}</strong><div class="quizAnswer">${esc(q.why)}</div></div><div class="quizBtns">${labels.map(l=>`<button class="quizBtn" data-answer="${l}">${l}</button>`).join('')}</div></div>`).join('');
+quizArea.querySelectorAll('.quizBtn').forEach(btn=>btn.addEventListener('click',()=>{const box=btn.closest('.quiz');const q=QUIZ[+box.dataset.q];box.classList.add('answered');box.querySelectorAll('.quizBtn').forEach(b=>{b.classList.remove('correct','wrong');if(b.dataset.answer===q.a)b.classList.add('correct')});if(btn.dataset.answer!==q.a)btn.classList.add('wrong')}));
+
+// Field walkthrough
+const fieldSelect=document.getElementById('fieldSelect');ITEMS.filter(i=>i.id!=='DE-EPISODE-END').forEach(i=>fieldSelect.add(new Option(`${i.name} · ${i.domain}`,i.id)));
+function renderField(){const i=item(fieldSelect.value);document.getElementById('fieldWalkthrough').innerHTML=`
+ <div class="grid2">
+  <div class="card"><div class="kicker">1 · Start with meaning</div><h3>Dictionary view</h3><p><strong>${esc(i.name)}</strong></p><p>${esc(i.definition)}</p><p class="small"><strong>Why this exists:</strong> people should not have to read an API schema or database design to understand the meaning.</p></div>
+  <div class="card"><div class="kicker">2 · Create the governed record</div><h3>Registry view</h3><div class="objectBox"><div class="objectType">Persistent data element ID</div><span class="code">${esc(i.id)}</span></div><div class="objectBox"><div class="objectType">Data Element Concept</div>${esc(i.entity)} + ${esc(i.property)}</div><div class="objectBox"><div class="objectType">Representation</div>${esc(i.representation)}</div><p class="small">The registry keeps every approved version and records who changed it and why. <a href="#" class="xlink" data-reg="${esc(i.id)}">Open the full registry record</a>.</p></div>
+  <div class="card"><div class="kicker">3 · Bind controlled values where needed</div><h3>Terminology / reference-data view</h3><p>${esc(i.binding)}</p><p class="small"><strong>Controlled by:</strong> ${esc(i.controlled)}</p></div>
+  <div class="card"><div class="kicker">4 · Apply it in context</div><h3>Contract view</h3><p>${esc(i.contract)}</p><p><strong>Example operational value:</strong> <span class="code">${esc(i.example)}</span></p><p class="small">A contract adds rules for one use without changing the shared definition.</p></div>
+ </div>
+ <div class="notice"><strong>What stays stable?</strong> The registered meaning and identifier should be as stable as possible. <strong>What can vary by use?</strong> Whether the field is mandatory, expected timeliness, quality threshold, profile constraints and supported local mappings can vary by contract.</div>`}
+fieldSelect.addEventListener('change',renderField);fieldSelect.value='DE-DIAGNOSIS';renderField();
+
+// Contracts
+const contractSelect=document.getElementById('contractSelect');CONTRACTS.forEach(c=>contractSelect.add(new Option(c.name,c.id)));
+function renderContract(){const c=CONTRACTS.find(x=>x.id===contractSelect.value)||CONTRACTS[0];document.getElementById('contractPanel').innerHTML=`<div class="card"><div class="contractHeader"><div><div class="kicker">Illustrative data contract</div><h2 style="margin:3px 0 6px">${esc(c.name)}</h2><p>${esc(c.purpose)}</p><div class="contractMeta"><span class="pill green">Producer: ${esc(c.producer)}</span><span class="pill blue">Consumer: ${esc(c.consumer)}</span><span class="pill purple">Version ${esc(c.version)}</span></div></div><div class="small"><strong>Delivery:</strong> ${esc(c.frequency)}<br><strong>Change rule:</strong> ${esc(c.change)}</div></div></div>
+ <div class="contractTableWrap" style="margin-top:12px"><table><thead><tr><th>Registry ID</th><th>Status</th><th>Field</th><th>Contract obligation</th><th>Quality / validation rule</th><th>Authority referenced</th></tr></thead><tbody>${c.fields.map(r=>`<tr><td>${regLink(r[0])}</td><td>${st(GOV[r[0]].status)}</td><td class="term">${esc(r[1])}</td><td>${esc(r[2])}</td><td>${esc(r[3])}</td><td>${esc(r[4])}</td></tr>`).join('')}</tbody></table></div>
+ ${(()=>{const x=c.fields.filter(r=>!PUBLISHED.includes(GOV[r[0]].status));return x.length?`<div class="callout amber" style="margin-top:12px"><strong>Governance exception (deliberate example).</strong> This contract references ${x.map(r=>`${regLink(r[0])} at ${GOV[r[0]].status} status`).join(' and ')}. ${x.length>1?'Those definitions have':'That definition has'} not been approved, so the dictionary does not publish ${x.length>1?'them':'it'}. In a real service the contract would either wait for approval or record a time-limited exception agreed by the steward.</div>`:''})()}
+ <div class="grid grid3" style="margin-top:12px"><div class="callout"><strong>Semantic promise</strong><br>The field means what the registry says it means.</div><div class="callout blue"><strong>Value promise</strong><br>Controlled codes resolve against the named terminology or reference-data authority.</div><div class="callout amber"><strong>Operational promise</strong><br>The producer meets the contract's requiredness, quality, timing and change rules.</div></div>`}
+contractSelect.addEventListener('change',renderContract);
+
+
+// ---------- Governance metadata held by the illustrative registry ----------
+const RA = '[National registration authority]';
+const GOV = {
+ 'DE-PERSON-DOB':{status:'Standard',ver:'1.1',steward:'Identity & demographics steward',review:'2027-06',vs:null,rel:[],
+   note:'Record the date the person was born. Where only an estimate is known, record it and flag it as estimated rather than leaving the field empty.',limits:'Estimated dates are flagged in a separate indicator, which some older systems do not hold.',
+   hist:[['1.0','2024-03-12','Initial registration','Initial'],['1.1','2025-06-02','Usage note clarified for estimated dates; meaning unchanged','Minor']]},
+ 'DE-PERSON-ID':{status:'Standard',ver:'1.0',steward:'Identity & demographics steward',review:'2027-03',vs:['NS-PERSON-ID','Person identifier namespace','required','current','Identity service'],rel:[],
+   note:'Always send the identifier together with its namespace. A number on its own is ambiguous.',limits:'Records awaiting identity resolution may carry a temporary local identifier.',
+   hist:[['1.0','2024-03-12','Initial registration','Initial']]},
+ 'DE-DIAGNOSIS':{status:'Standard',ver:'2.0',steward:'Clinical terminology steward',review:'2026-11',vs:['VS-DIAGNOSIS','Diagnosis concepts (disorders and clinical findings)','extensible','[terminology release 2026-09]','Terminology service'],rel:[],
+   note:'Record a provisional diagnosis with its provisional status. Do not upgrade it to confirmed when it is exchanged.',limits:'Diagnoses recorded before version 2.0 may contain procedure or administrative concepts that the current binding excludes. Uses with narrower needs, such as discharge, constrain the binding in their contracts.',
+   hist:[['1.0','2024-05-20','Initial registration bound to an unrestricted clinical terminology','Initial'],['2.0','2025-11-03','Binding constrained to diagnosis concepts; context-specific subsets moved to contracts; 90-day transition','Major']]},
+ 'DE-CARE-SETTING':{status:'Standard',ver:'2.0',steward:'Encounter & activity steward',review:'2027-04',vs:['VS-CARE-SETTING','Care setting categories','required','v4','Reference data service'],rel:[],
+   note:'Describes the type of setting, not the specific site. Use the organisation and site elements for location.',limits:'Version 4 of the value set added a virtual ward category, so earlier data cannot use it.',
+   hist:[['1.0','2024-04-08','Initial registration','Initial'],['1.1','2025-02-14','Definition reworded; meaning unchanged','Minor'],['2.0','2026-04-01','Value domain moved to value set v4, which adds a new category','Major']]},
+ 'DE-ORGANISATION':{status:'Standard',ver:'1.1',steward:'Organisation reference data steward',review:'2027-04',vs:['DE-ORG-ID','Values drawn from the registered organisation identifier','required','current','Organisation master-data service'],rel:[['draws values from','DE-ORG-ID']],
+   note:'Every use must state the role the organisation plays in that context, for example performing, recording or commissioning.',limits:'Historical records may refer to organisations that have since closed or merged.',
+   hist:[['1.0','2024-04-08','Initial registration','Initial'],['1.1','2026-10-01','Value domain now references DE-ORG-ID explicitly; meaning unchanged','Minor']]},
+ 'DE-LAB-TEST':{status:'Standard',ver:'1.0',steward:'Diagnostics information steward',review:'2027-01',vs:['VS-LAB-TEST','Laboratory test concepts','extensible','[terminology release 2026-09]','Terminology service'],rel:[],
+   note:'Identifies what was measured. Method and specimen are separate elements where they affect interpretation.',limits:'Because the binding is extensible, local codes may appear with a governed mapping while national concepts are requested.',
+   hist:[['1.0','2024-09-16','Initial registration','Initial']]},
+ 'DE-LAB-VALUE':{status:'Qualified',ver:'1.0',steward:'Diagnostics information steward',review:'2026-12',vs:['VS-LAB-QUALITATIVE','Qualitative result values (coded results only)','preferred','[terminology release 2026-09]','Terminology service'],rel:[['interpreted with','DE-UNIT'],['interpreted with','DE-LAB-TEST']],
+   note:'Always read the value together with its test, unit and result status. A number on its own has no clinical meaning.',limits:'Qualified, not yet Standard: the representation rules for textual results are still under review.',
+   hist:[['1.0','2025-01-15','Initial registration','Initial']]},
+ 'DE-UNIT':{status:'Standard',ver:'1.0',steward:'Diagnostics information steward',review:'2027-01',vs:['VS-UNITS-LAB','Approved units of measure','required','v2','Unit code service'],rel:[],
+   note:'Send the coded unit, not free text. Display text is for people only.',limits:'Some legacy analysers report units as text that need mapping.',
+   hist:[['1.0','2024-09-16','Initial registration','Initial']]},
+ 'DE-MEDICATION':{status:'Standard',ver:'1.2',steward:'Medicines information steward',review:'2027-01',vs:['VS-MED-PRODUCT','Medicinal product concepts','required','[medicines release 2026-10]','Medicines terminology service'],rel:[],
+   note:'Use product-level concepts for dispensing. Ingredient-level concepts are acceptable only where a contract allows them.',limits:'Products withdrawn from the medicines terminology remain valid for historical records.',
+   hist:[['1.0','2024-06-03','Initial registration','Initial'],['1.1','2025-03-10','Usage note added on ingredient-level concepts','Minor'],['1.2','2026-01-19','Terminology release policy updated','Minor']]},
+ 'DE-DISCHARGE-DEST':{status:'Standard',ver:'1.0',steward:'Encounter & activity steward',review:'2027-02',vs:['VS-DISCHARGE-DEST','Discharge destination categories','required','v3','Reference data service'],rel:[],
+   note:'Record where the person went at the end of the episode, not where they were originally expected to go.',limits:'Temporary destinations may be recorded where the final destination was not known at discharge.',
+   hist:[['1.0','2024-04-08','Initial registration','Initial']]},
+ 'DE-EFFECTIVE-TIME':{status:'Standard',ver:'1.1',steward:'Clinical information standards group',review:'2027-05',vs:null,rel:[],
+   note:'The time the clinical statement applies to. This is not the time it was recorded or sent.',limits:'Some sources only hold the recorded time; mappings from those sources are marked lossy.',
+   hist:[['1.0','2024-03-12','Initial registration','Initial'],['1.1','2025-05-07','Distinction from recorded and transmission time made explicit; meaning unchanged','Minor']]},
+ 'DE-DISCHARGE-TIME':{status:'Qualified',ver:'1.0',steward:'Encounter & activity steward',review:'2027-04',vs:null,rel:[['distinct from','DE-EFFECTIVE-TIME']],
+   note:'The time the person left the care of the discharging service. This is not the time the discharge summary was written or sent.',limits:'Qualified, not yet Standard: due for review after the first contract period.',
+   hist:[['1.0','2026-10-01','Initial registration, separated from clinical effective time','Initial']]},
+ 'DE-ORG-ID':{status:'Standard',ver:'1.0',steward:'Organisation reference data steward',review:'2027-10',vs:['NS-ORG-ID','Organisation identifier namespace','required','current','Organisation master-data service'],rel:[],
+   note:'Identifies the organisation itself. Elements that describe the role an organisation plays draw their values from this one.',limits:'Identifiers of closed organisations remain valid for historical records.',
+   hist:[['1.0','2026-10-01','Initial registration','Initial']]},
+ 'DE-ORG-PERIOD':{status:'Recorded',ver:'0.1',steward:'Organisation reference data steward',review:'2026-12',vs:null,rel:[['distinct from','DE-EFFECTIVE-TIME']],
+   note:'The period during which an organisation record is in force.',limits:'Recorded only: the definition has not yet passed quality review, so it is not published in the dictionary.',
+   hist:[['0.1','2026-10-01','Recorded for review','Initial']]},
+ 'DE-SENSITIVITY':{status:'Candidate',ver:'0.3',steward:'Information governance steward',review:'2026-11',vs:['VS-SENSITIVITY','Information classification scheme','required','draft 0.3','Policy service'],rel:[],
+   note:'A classification of handling constraints that applies to a dataset or record.',limits:'Candidate only: the classification scheme is still under review by the policy service.',
+   hist:[['0.1','2026-02-10','Submitted as candidate','Initial'],['0.3','2026-06-22','Draft classification scheme revised','Minor']]},
+ 'DE-EPISODE-END':{status:'Retired',ver:'1.0',steward:'Encounter & activity steward',review:'',vs:null,rel:[['review mappings against','DE-DISCHARGE-TIME']],
+   note:'Retired because its meaning is not specific enough. Review existing mappings and migrate them to an event-specific element only where the two mean the same thing.',limits:'Did not distinguish discharge from other ways an episode ends, such as transfer or death, and held a date without a time.',
+   hist:[['1.0','2024-03-12','Initial registration','Initial'],['1.0','2026-10-01','Retired as insufficiently specific; no single successor','Retirement']]}
+};
+const APPROVALS={
+ 'DE-PERSON-DOB':['DEC-2025-022','2025-05-28','Approved v1.1 as a minor revision','Steward review; no consumer impact'],
+ 'DE-PERSON-ID':['DEC-2024-003','2024-03-05','Approved v1.0 as Standard','Identity service confirmation of namespace'],
+ 'DE-DIAGNOSIS':['DEC-2025-041','2025-10-14','Approved v2.0 as Standard with a 90-day transition','Clinical safety review; terminology impact assessment; consultation with 4 contract owners'],
+ 'DE-CARE-SETTING':['DEC-2026-011','2026-03-18','Approved v2.0 as Standard','Reference data impact assessment'],
+ 'DE-ORGANISATION':['DEC-2026-030','2026-09-24','Approved v1.1 as a minor revision','Steward review; meaning unchanged'],
+ 'DE-LAB-TEST':['DEC-2024-019','2024-09-09','Approved v1.0 as Standard','Diagnostics working group review'],
+ 'DE-LAB-VALUE':['DEC-2025-002','2025-01-08','Accepted v1.0 as Qualified','Diagnostics working group review; textual results deferred'],
+ 'DE-UNIT':['DEC-2024-019','2024-09-09','Approved v1.0 as Standard','Diagnostics working group review'],
+ 'DE-MEDICATION':['DEC-2026-004','2026-01-12','Approved v1.2 as a minor revision','Medicines terminology release review'],
+ 'DE-DISCHARGE-DEST':['DEC-2024-008','2024-04-02','Approved v1.0 as Standard','Encounter working group review'],
+ 'DE-EFFECTIVE-TIME':['DEC-2025-018','2025-04-30','Approved v1.1 as a minor revision','Steward review; meaning unchanged'],
+ 'DE-DISCHARGE-TIME':['DEC-2026-031','2026-09-24','Accepted v1.0 as Qualified','Encounter working group review; full review after first contract period'],
+ 'DE-ORG-ID':['DEC-2026-030','2026-09-24','Approved v1.0 as Standard','Organisation master-data service confirmation'],
+ 'DE-ORG-PERIOD':null,
+ 'DE-SENSITIVITY':null,
+ 'DE-EPISODE-END':['DEC-2026-032','2026-09-24','Retired; existing mappings to be reviewed individually','Mapping review of 1 catalogued asset']
+};
+const APPROVER='[Standards approval board]';
+const STATUSES=['Standard','Qualified','Recorded','Candidate','Retired'];
+const PUBLISHED=['Standard','Qualified'];
+const INV={'draws values from':'values used by','review mappings against':'possible successor to (subject to mapping review)','interpreted with':'interpreted with','distinct from':'distinct from'};
+
+// ---------- Illustrative data catalogue ----------
+const CATALOGUE=[
+ {id:'CAT-001',name:'Laboratory results feed',type:'Event feed / API',owner:'Laboratory service',location:'Integration platform · results topic',access:'Subscription approved by the laboratory service',refresh:'Event driven',sensitivity:'Identifiable health data',contract:'lab',desc:'Validated laboratory results released to receiving clinical systems.',
+  elements:[['DE-PERSON-ID','patient.identifier','exact'],['DE-LAB-TEST','test.code','exact'],['DE-LAB-VALUE','result.value','exact'],['DE-UNIT','result.unit','exact'],['DE-EFFECTIVE-TIME','observation.effective','exact'],['DE-ORGANISATION','performer.organisation','exact']]},
+ {id:'CAT-002',name:'Discharge information feed',type:'Event feed / API',owner:'Discharging service',location:'Integration platform · discharge topic',access:'Subscription by receiving care services',refresh:'Event driven at discharge',sensitivity:'Identifiable health data',contract:'discharge',desc:'Information a receiving service needs when responsibility for care changes after discharge.',
+  elements:[['DE-PERSON-ID','subject.identifier','exact'],['DE-DISCHARGE-TIME','encounter.dischargeTime','exact'],['DE-DISCHARGE-DEST','encounter.destination','exact'],['DE-DIAGNOSIS','diagnoses[].code','exact'],['DE-MEDICATION','medications[].product','exact'],['DE-ORGANISATION','author.organisation','exact']]},
+ {id:'CAT-003',name:'Population analytics dataset',type:'Curated dataset',owner:'Data product team',location:'Analytics platform · curated zone',access:'Approved analysts via access request',refresh:'Daily by 07:00',sensitivity:'Pseudonymised',contract:'analytics',desc:'A repeatable dataset for approved analysis, built without redefining source-system meanings.',
+  elements:[['DE-PERSON-ID','pseudo_id','narrower','Pseudonymised derivative of the person identifier'],['DE-CARE-SETTING','care_setting','exact'],['DE-ORGANISATION','org_code','exact'],['DE-DIAGNOSIS','diag_code','exact'],['DE-EFFECTIVE-TIME','activity_dt','lossy','Date only; time removed to minimise data'],['DE-SENSITIVITY','dataset_classification','exact']]},
+ {id:'CAT-004',name:'Organisation reference data',type:'Reference data distribution',owner:'Organisation master-data service',location:'Reference data service · download and API',access:'Open to all subscribing systems',refresh:'Daily snapshot plus change events',sensitivity:'Not personal data',contract:'organisation',desc:'Authoritative organisation identifiers and attributes for subscribing systems.',
+  elements:[['DE-ORG-ID','org_id','exact'],['DE-ORG-PERIOD','open_date / close_date','exact']]},
+ {id:'CAT-005',name:'Inpatient episodes table',type:'Warehouse table',owner:'Hospital data warehouse team',location:'Data warehouse · ip_episodes',access:'Internal reporting roles',refresh:'Nightly load',sensitivity:'Identifiable health data',contract:null,desc:'Legacy table of inpatient episodes used for local reporting.',
+  elements:[['DE-PERSON-ID','PAT_ID','exact'],['DE-PERSON-DOB','PAT_DOB','exact'],['DE-CARE-SETTING','SETTING_CD','exact'],['DE-DIAGNOSIS','DX_PRIMARY','narrower','Holds the primary diagnosis only'],['DE-DISCHARGE-DEST','DISCH_DEST','exact'],['DE-DISCHARGE-TIME','DISCH_DATE','lossy','Date only; time of discharge not held'],['DE-EPISODE-END','EPISODE_END_DT','exact'],['DE-ORGANISATION','PROVIDER_CD','exact']]},
+ {id:'CAT-006',name:'Dispensing activity report',type:'Report',owner:'Pharmacy service',location:'Reporting portal · medicines folder',access:'Medicines management roles',refresh:'Monthly',sensitivity:'Aggregated',contract:null,desc:'Monthly summary of dispensing activity by product and setting.',
+  elements:[['DE-MEDICATION','Product','exact'],['DE-ORGANISATION','Dispensing organisation','exact'],['DE-CARE-SETTING','Setting','exact']]}
+];
+
+// ---------- Helpers ----------
+function g(id){return GOV[id]}
+function st(s){return `<span class="st st-${s.toLowerCase()}">${s}</span>`}
+function regLink(id){return `<a href="#" class="xlink code" data-reg="${esc(id)}">${esc(id)}</a>`}
+function relations(id){const out=(g(id).rel||[]).slice();Object.keys(GOV).forEach(k=>(GOV[k].rel||[]).forEach(([t,x])=>{if(x===id)out.push([INV[t]||t,k])}));return out}
+function contractsUsing(id){return CONTRACTS.filter(c=>c.fields.some(f=>f[0]===id))}
+function assetsUsing(id){return CATALOGUE.filter(a=>a.elements.some(e=>e[0]===id)).map(a=>({a,e:a.elements.find(e=>e[0]===id)}))}
+function effective(id){const h=g(id).hist;return h[h.length-1][1]}
+function matchTag(m){return `<span class="match m-${m}">${m}</span>`}
+function bindingText(id,full){const v=g(id).vs;if(!v)return 'No external value set. The registry governs the value domain directly.';const src=v[0].startsWith('DE-')?regLink(v[0]):`<span class="code">${esc(v[0])}</span>`;return full?`${src} ${esc(v[1])}<br><span class="small">Binding strength: <strong>${esc(v[2])}</strong> · Version: ${esc(v[3])} · Maintained by: ${esc(v[4])}</span>`:`${esc(v[1])}, maintained by the ${esc(v[4].charAt(0).toLowerCase()+v[4].slice(1))}`}
+function showTab(name){document.querySelectorAll('.tab,.section').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.tab').forEach(x=>x.setAttribute('aria-pressed',String(x.dataset.tab===name)));document.querySelector(`.tab[data-tab="${name}"]`).classList.add('active');document.getElementById(name).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}
+function rowKeys(container,fn){container.querySelectorAll('[data-open]').forEach(r=>{r.addEventListener('click',()=>fn(r.dataset.open));r.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();fn(r.dataset.open)}})})}
+function markSelected(container,id){container.querySelectorAll('[data-open]').forEach(r=>r.classList.toggle('selected',r.dataset.open===id))}
+
+// ---------- Registry ----------
+const regSearch=document.getElementById('regSearch'),regStatus=document.getElementById('regStatus'),regBody=document.getElementById('regBody'),regDetail=document.getElementById('regDetail');
+STATUSES.forEach(s=>regStatus.add(new Option(s,s)));
+let regCurrent='DE-DIAGNOSIS';
+function renderRegistry(){const q=regSearch.value.toLowerCase().trim(),s=regStatus.value;const rows=ITEMS.filter(i=>(!q||(JSON.stringify(i)+JSON.stringify(g(i.id))).toLowerCase().includes(q))&&(!s||g(i.id).status===s));
+ regBody.innerHTML=rows.map(i=>`<tr data-open="${i.id}" tabindex="0" aria-label="Open registry record ${esc(i.name)}"><td><span class="code">${i.id}</span></td><td class="term">${esc(i.name)}</td><td>${g(i.id).ver}</td><td>${st(g(i.id).status)}</td><td>${esc(g(i.id).steward)}</td></tr>`).join('')||'<tr><td colspan="5" class="muted">No records match.</td></tr>';
+ rowKeys(regBody,showReg);markSelected(regBody,regCurrent)}
+function showReg(id){regCurrent=id;const i=item(id),r=g(id);markSelected(regBody,id);
+ const rels=relations(id),cs=contractsUsing(id),as=assetsUsing(id);
+ const warn=[];if(!PUBLISHED.includes(r.status)&&cs.length)warn.push(`${cs.length} data contract${cs.length>1?'s reference':' references'} this element although its status is ${r.status}. A governance review should confirm whether ${cs.length>1?'they':'it'} can rely on it. <em>This is a deliberate example: it shows how a registry exposes a dependency on metadata that has not finished its lifecycle.</em>`);
+ if(r.status==='Retired'&&as.length)warn.push(`${as.length} catalogue asset${as.length>1?'s still map':' still maps'} a field to this retired element. Each mapping needs review: there is no automatic successor, because the replacement depends on what the source field records.`);
+ regDetail.innerHTML=`<div class="kicker">${esc(i.domain)}</div><h2 style="margin:4px 0 6px">${esc(i.name)}</h2>
+ <div class="contractMeta"><span class="code">${id}</span><span class="pill purple">Version ${r.ver}</span>${st(r.status)}</div>
+ ${warn.map(w=>`<div class="callout amber" style="margin-top:10px">${w}</div>`).join('')}
+ <div class="objectBox"><div class="objectType">Definition</div>${esc(i.definition)}</div>
+ <div class="objectBox"><div class="objectType">Data element concept</div>Object class: <strong>${esc(i.entity)}</strong> · Property: <strong>${esc(i.property)}</strong></div>
+ <div class="objectBox"><div class="objectType">Value domain</div>${esc(i.datatype)} · ${esc(i.representation)}</div>
+ <div class="objectBox"><div class="objectType">Binding</div>${bindingText(id,true)}</div>
+ <div class="objectBox"><div class="objectType">Administration</div><table class="kv"><tr><th>Steward</th><td>${esc(r.steward)}</td></tr><tr><th>Registration authority</th><td>${esc(RA)}</td></tr><tr><th>Status since</th><td>${effective(id)}</td></tr><tr><th>Latest decision</th><td>${APPROVALS[id]?`<span class="code">${APPROVALS[id][0]}</span> ${esc(APPROVER)}, ${APPROVALS[id][1]}<br>${esc(APPROVALS[id][2])}<div class="small">Evidence: ${esc(APPROVALS[id][3])}</div>`:'<span class="muted">No decision yet: awaiting review</span>'}</td></tr><tr><th>Next review</th><td>${r.review||'Not applicable (retired)'}</td></tr></table></div>
+ <div class="objectBox"><div class="objectType">Relationships</div>${rels.length?rels.map(([t,x])=>`${esc(t)} ${regLink(x)} <span class="small">${esc(item(x).name)}</span>`).join('<br>'):'<span class="muted">None recorded</span>'}</div>
+ <div class="objectBox"><div class="objectType">Implementation mappings</div>${as.length?`<table class="mini"><tr><th>Asset</th><th>Local field</th><th>Match</th></tr>${as.map(({a,e})=>`<tr><td><a href="#" class="xlink" data-cat="${a.id}">${esc(a.name)}</a></td><td><span class="code">${esc(e[1])}</span></td><td>${matchTag(e[2])}${e[3]?`<div class="small">${esc(e[3])}</div>`:''}</td></tr>`).join('')}</table>`:'<span class="muted">No mapped assets in the catalogue</span>'}</div>
+ <div class="objectBox"><div class="objectType">Referenced by data contracts</div>${cs.length?cs.map(c=>`<a href="#" class="xlink" data-contract="${c.id}">${esc(c.name)}</a> <span class="small">v${c.version}</span>`).join('<br>'):'<span class="muted">None</span>'}</div>
+ <div class="objectBox"><div class="objectType">Version history</div><table class="mini"><tr><th>Version</th><th>Date</th><th>Change</th><th>Class</th></tr>${r.hist.map(h=>`<tr><td>${h[0]}</td><td class="nowrap">${h[1]}</td><td>${esc(h[2])}</td><td>${h[3]}</td></tr>`).join('')}</table></div>
+ <div class="toolbar">${PUBLISHED.includes(r.status)?`<button class="btn primary" data-dict="${id}">Open dictionary entry</button>`:`<span class="small">Not published in the dictionary (status ${r.status}).</span>`}${r.status!=='Retired'?`<button class="btn" data-field="${id}">Follow this field</button>`:''}</div>`}
+[regSearch,regStatus].forEach(x=>x.addEventListener('input',renderRegistry));renderRegistry();showReg(regCurrent);
+
+// ---------- Dictionary ----------
+const dictSearch=document.getElementById('dictSearch'),dictList=document.getElementById('dictList'),dictDetail=document.getElementById('dictDetail'),dictExcluded=document.getElementById('dictExcluded');
+let dictRole='clinical',dictCurrent='DE-DIAGNOSIS';
+function renderDict(){const q=dictSearch.value.toLowerCase().trim();const pub=ITEMS.filter(i=>PUBLISHED.includes(g(i.id).status)).sort((a,b)=>a.name.localeCompare(b.name));const rows=pub.filter(i=>!q||(i.name+' '+i.definition+' '+g(i.id).note).toLowerCase().includes(q));
+ dictList.innerHTML=rows.map(i=>`<div class="dictItem" data-open="${i.id}" tabindex="0" role="button"><strong>${esc(i.name)}</strong><span class="small">${esc(i.domain)}</span></div>`).join('')||'<div class="muted">No published entries match.</div>';
+ rowKeys(dictList,showDict);markSelected(dictList,dictCurrent);
+ const hidden=ITEMS.filter(i=>!PUBLISHED.includes(g(i.id).status));
+ dictExcluded.innerHTML=`<strong>Not published:</strong> ${hidden.map(i=>`${regLink(i.id)} ${esc(i.name)} (${g(i.id).status}${g(i.id).status==='Retired'?', no direct successor':''})`).join('; ')}. The registry holds these records, but the dictionary publishes only records at Standard or Qualified status.`}
+function showDict(id){dictCurrent=id;markSelected(dictList,id);const i=item(id),r=g(id),as=assetsUsing(id),cs=contractsUsing(id);
+ let html=`<div class="kicker">Dictionary entry · ${dictRole==='clinical'?'clinical reader':dictRole==='analyst'?'analyst':'integration engineer'} view</div><h2 style="margin:4px 0 8px">${esc(i.name)}</h2>
+ <p style="font-size:16px">${esc(i.definition)}</p>
+ <div class="objectBox"><div class="objectType">How to use it</div>${esc(r.note)}</div>
+ <div class="objectBox"><div class="objectType">Permitted values</div>${bindingText(id,dictRole==='integration')}</div>
+ <div class="objectBox"><div class="objectType">Example</div><span class="code">${esc(i.example)}</span></div>`;
+ if(dictRole!=='clinical'){html+=`<div class="objectBox"><div class="objectType">Datatype</div>${esc(i.datatype)}</div>
+ <div class="objectBox"><div class="objectType">Known limitations</div>${esc(r.limits)}</div>
+ <div class="objectBox"><div class="objectType">Found in these catalogued assets</div>${as.length?as.map(({a,e})=>`<a href="#" class="xlink" data-cat="${a.id}">${esc(a.name)}</a> ${matchTag(e[2])}`).join('<br>'):'<span class="muted">None</span>'}</div>`}
+ if(dictRole==='integration'){html+=`<div class="objectBox"><div class="objectType">Representation</div>${esc(i.representation)}</div>
+ <div class="objectBox"><div class="objectType">Local mappings</div>${as.length?as.map(({a,e})=>`<span class="code">${esc(e[1])}</span> in ${esc(a.name)} ${matchTag(e[2])}`).join('<br>'):'<span class="muted">None</span>'}</div>
+ <div class="objectBox"><div class="objectType">Data contracts</div>${cs.length?cs.map(c=>`<a href="#" class="xlink" data-contract="${c.id}">${esc(c.name)}</a>`).join('<br>'):'<span class="muted">None</span>'}</div>`}
+ html+=`<p class="small" style="margin-top:12px">Published from registry record ${regLink(id)} version ${r.ver} · ${st(r.status)} · Steward: ${esc(r.steward)}</p>`;
+ dictDetail.innerHTML=html}
+document.querySelectorAll('.roleBtn').forEach(b=>b.addEventListener('click',()=>{dictRole=b.dataset.role;document.querySelectorAll('.roleBtn').forEach(x=>{x.classList.toggle('active',x===b);x.setAttribute('aria-pressed',x===b)});showDict(dictCurrent)}));
+dictSearch.addEventListener('input',renderDict);renderDict();showDict(dictCurrent);
+
+// ---------- Data catalogue ----------
+const catSearch=document.getElementById('catSearch'),catType=document.getElementById('catType'),catList=document.getElementById('catList'),catDetail=document.getElementById('catDetail');
+[...new Set(CATALOGUE.map(a=>a.type))].sort().forEach(t=>catType.add(new Option(t,t)));
+let catCurrent='CAT-005';
+function renderCatalogueList(){const q=catSearch.value.toLowerCase().trim(),t=catType.value;const rows=CATALOGUE.filter(a=>(!q||JSON.stringify(a).toLowerCase().includes(q))&&(!t||a.type===t));
+ catList.innerHTML=rows.map(a=>`<div class="assetCard" data-open="${a.id}" tabindex="0" role="button"><div class="small">${esc(a.type)} · ${a.id}</div><strong>${esc(a.name)}</strong><div class="small">${esc(a.owner)} · ${a.elements.length} fields · ${a.contract?'<span class="pill green">Data contract</span>':'<span class="pill amber">No contract</span>'}</div></div>`).join('')||'<div class="muted">No assets match.</div>';
+ rowKeys(catList,showAsset);markSelected(catList,catCurrent)}
+function showAsset(id){catCurrent=id;markSelected(catList,id);const a=CATALOGUE.find(x=>x.id===id),c=a.contract&&CONTRACTS.find(x=>x.id===a.contract);
+ const flags=[];a.elements.forEach(e=>{const s=g(e[0]).status;if(s==='Retired')flags.push(`<span class="code">${esc(e[1])}</span> maps to a retired element. Review what the source field records, and migrate it to ${regLink(relations(e[0]).find(r=>r[0]==='review mappings against')[1])} only if it records the time of discharge.`);else if(!PUBLISHED.includes(s))flags.push(`<span class="code">${esc(e[1])}</span> maps to an element at ${s} status, which is not yet approved.`);if(e[2]==='lossy'||e[2]==='narrower')flags.push(`<span class="code">${esc(e[1])}</span> is a ${e[2]} match: ${esc(e[3]||'')}.`)});
+ catDetail.innerHTML=`<div class="kicker">${esc(a.type)}</div><h2 style="margin:4px 0 6px">${esc(a.name)}</h2><span class="code">${a.id}</span>
+ <p>${esc(a.desc)}</p>
+ <table class="kv"><tr><th>Owner</th><td>${esc(a.owner)}</td></tr><tr><th>Location</th><td>${esc(a.location)}</td></tr><tr><th>Access</th><td>${esc(a.access)}</td></tr><tr><th>Refresh</th><td>${esc(a.refresh)}</td></tr><tr><th>Sensitivity</th><td>${esc(a.sensitivity)}</td></tr><tr><th>Data contract</th><td>${c?`<a href="#" class="xlink" data-contract="${c.id}">${esc(c.name)} v${c.version}</a>`:'None. Users can find this asset, but nothing has been agreed about what they can rely on.'}</td></tr></table>
+ <div class="objectBox"><div class="objectType">Fields and the registry elements they map to</div><table class="mini"><tr><th>Local field</th><th>Registry element</th><th>Status</th><th>Match</th></tr>${a.elements.map(e=>`<tr><td><span class="code">${esc(e[1])}</span></td><td>${regLink(e[0])}<div class="small">${esc(item(e[0]).name)}</div></td><td>${st(g(e[0]).status)}</td><td>${matchTag(e[2])}</td></tr>`).join('')}</table></div>
+ ${flags.length?`<div class="callout amber"><strong>What the registry links reveal</strong><ul style="margin:6px 0 0;padding-left:18px">${flags.map(f=>`<li>${f}</li>`).join('')}</ul></div>`:'<div class="callout"><strong>No issues found.</strong> Every field maps exactly to an approved registry element.</div>'}`}
+[catSearch,catType].forEach(x=>x.addEventListener('input',renderCatalogueList));renderCatalogueList();showAsset(catCurrent);
+
+renderContract();
+
+// ---------- Cross-navigation between views ----------
+document.addEventListener('click',e=>{const t=e.target.closest('[data-reg],[data-dict],[data-cat],[data-contract],[data-field]');if(!t||t.classList.contains('tab'))return;e.preventDefault();
+ if(t.dataset.reg){regSearch.value='';regStatus.value='';renderRegistry();showReg(t.dataset.reg);showTab('registry')}
+ else if(t.dataset.dict){dictSearch.value='';renderDict();showDict(t.dataset.dict);showTab('dictionary')}
+ else if(t.dataset.cat){catSearch.value='';catType.value='';renderCatalogueList();showAsset(t.dataset.cat);showTab('catalogue')}
+ else if(t.dataset.contract){contractSelect.value=t.dataset.contract;renderContract();showTab('contracts')}
+ else if(t.dataset.field){fieldSelect.value=t.dataset.field;renderField();showTab('field')}});
+
+// FAQ
+const faqArea=document.getElementById('faqArea');faqArea.innerHTML=FAQ.map(([q,a])=>`<div class="accordion"><button>${esc(q)}<span>＋</span></button><div class="content">${esc(a)}</div></div>`).join('');
+faqArea.querySelectorAll('.accordion button').forEach(b=>b.addEventListener('click',()=>{const a=b.parentElement;a.classList.toggle('open');b.querySelector('span').textContent=a.classList.contains('open')?'−':'＋'}));
+</script>
+</body>
+</html>
