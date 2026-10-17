@@ -1,72 +1,49 @@
 # Endoscopy Pathway Navigator
 
-Interactive Agile Health Informatics resource for exploring a draft endoscopy pathway catalogue represented using the proposed Healthcare Pathway Description Standard (HPDS).
+An interactive reference catalogue for exploring endoscopy pathways, their relationships, evidence dependencies and jurisdictional variants. The navigator is intended for service analysis and design. It is not clinical guidance.
 
-## Purpose
+## Contents
 
-The navigator presents endoscopy pathways as technology-neutral business artefacts rather than as an EPR workflow or clinical decision-support system. It is intended to help users inspect pathway scope, entry and exit conditions, activities, decisions, roles, information requirements, evidence dependencies, relationships and jurisdictional variants.
+- `endoscopy-navigator.html` — self-contained viewer with embedded pathway data, styles and JavaScript.
+- `README.md` — project overview and use notes.
 
-**This is a reference catalogue, not clinical guidance.** The pathway definitions are draft and unapproved and are intended for analysis and service design. Conformance to HPDS does not imply clinical correctness or approval.
+## Open the navigator
 
-## Files
+Open `endoscopy-navigator.html` in a modern web browser. No server, package installation or build step is required. The viewer’s functionality uses embedded CSS and vanilla JavaScript. It requests web fonts when an internet connection is available and falls back to system fonts when they are not.
 
-```text
-endoscopy-pathway-navigator/
-├── index.html
-└── README.md
-```
+## Explore the catalogue
 
-`index.html` is self-contained. The catalogue data, styling and JavaScript are embedded in the file and there is no build step or external JavaScript dependency.
+The navigator contains 29 draft pathway definitions across referral and readiness, suspected cancer, symptomatic diagnosis, urgent and emergency endoscopy, screening, surveillance, endoscopic therapy, procedure episodes, and governance. Use the tabs to:
 
-## Recommended website location
+- **Navigate** definitions by pathway, search, class and evidence basis, then follow pathway relationships.
+- **Pathway map** inspect connections between definitions.
+- **Evidence and impact** see which pathway definitions use a source.
+- **Variants** compare the recorded jurisdictional parameters.
+- **Stakeholder views** examine pathway entry, activities, decisions, information and onward hand-offs from a selected role’s point of view.
 
-```text
-/resources/clinical-pathways/healthcare-pathway-description/endoscopy-pathway-navigator/
-```
+The stakeholder view includes:
 
-The page uses root-relative links to the Agile Health Informatics corporate pages and to the parent Healthcare Pathway Description Standard resource.
+- General Practice / primary care
+- Straight-to-Test Clinical Nurse Specialist (CNS)
+- Endoscopy vetting / triage clinician
+- Endoscopy pre-assessment nurse / CNS
+- Endoscopist / procedure team
+- Pathology / results owner
+- Cancer CNS / navigator
+- Person receiving care / carer
 
-## Navigator views
+Select a role and then a pathway to see the relevant pathway-wide information fields alongside role-specific considerations. Potential hand-offs can be followed within the view, or the full pathway definition can be opened in the navigator.
 
-The application provides four complementary views:
+## Interpretation and local validation
 
-- **Navigate**: search and filter pathway definitions, enter a pathway by route into care, and follow its exits and relationships.
-- **Pathway map**: inspect transitions, escalations and inclusion relationships across pathway domains.
-- **Evidence and impact**: identify which pathway definitions depend on a source and which definitions may therefore require review when that source changes.
-- **Variants**: compare jurisdiction-specific specialisations of a reference pathway where programme parameters differ.
+The catalogue is draft and unapproved. Its pathway definitions are for analysis and service design, and do not establish clinical correctness, local policy or operational approval. Jurisdictional rules, referral thresholds, role boundaries, clinical authority, escalation arrangements, result ownership and hand-off procedures must be validated with the relevant services.
 
-## Agile Health Informatics integration
+In particular, the source catalogue refers to a triage clinician in the colorectal straight-to-test pathway and a clinical nurse specialist in an upper GI cancer pathway. It does not establish that these are the same role or define an STT CNS’s scope of practice. The STT CNS lens is therefore a proposed way to inspect the work and its hand-offs, not an assertion about local staffing or delegated authority. Pathway activities and decisions shown in a role view remain pathway-wide unless local governance assigns them to that role.
 
-The page follows the current Agile Health Informatics website pattern. It includes the standard embedded logo and corporate navigation, breadcrumb trail, compact blue resource hero, pale blue-grey page canvas, rounded resource surfaces, restrained lime accent, responsive mobile navigation, the shared `ahi-theme` light/dark preference and the standard dark footer.
+The **Evidence and impact** tab exposes the sources recorded by the catalogue. Check source currency and local applicability before relying on any definition or variant.
 
-The navigator keeps semantic colours for pathway relationships and status cues, but these sit within the shared AHI colour and typography system. The application layout remains deliberately wider than a normal article page because the pathway map and evidence tables require additional horizontal space.
+## Implementation notes
 
-## Catalogue structure
+The HTML file is designed to be usable as a standalone viewer. When embedding it in a website, retain the complete file and ensure the host page provides enough viewport width for the navigation and map views. The stakeholder view adapts to narrower screens by stacking its controls above the content.
 
-The embedded JavaScript object `D` is the catalogue source used by the interface. Its principal collections are:
-
-- `D.domains` for pathway domains;
-- `D.p` for pathway definitions and relationships;
-- `D.s` for evidence sources and verification metadata;
-- `D.v` for jurisdictional variants.
-
-Pathway identifiers such as `END-REF-001` are used as stable references between records. Relationship types currently include `transitionsTo`, `escalatesTo` and `includes`.
-
-## Updating the catalogue
-
-When changing the embedded data:
-
-1. Preserve stable pathway identifiers unless an identifier is intentionally retired.
-2. Keep relationship targets synchronised with the pathway records they reference.
-3. Update evidence source metadata and verification information when guidance changes.
-4. Review jurisdictional variants when national screening or waiting-time parameters change.
-5. Update the catalogue version displayed by the application when the content model changes materially.
-6. Keep the clinical-guidance disclaimer visible and do not present draft definitions as approved care instructions.
-
-## Accessibility and responsive behaviour
-
-The navigator supports keyboard operation for pathway lists, tables and the SVG pathway map. Form controls have associated accessible labels, focus states are visible, tables and the map can scroll horizontally on smaller screens, and the site navigation collapses to a mobile menu. A print treatment removes the corporate shell and prints the active navigator view.
-
-## Deployment
-
-No compilation is required. Place `index.html` and this `README.md` in the target directory and commit them to the website repository. The page can also be opened locally for review, although root-relative corporate navigation links will only resolve correctly when served from the website root.
+The catalogue reports version `0.1.0`; the stakeholder-view addition changes the viewer experience and does not constitute approval or clinical versioning of the pathway definitions.
