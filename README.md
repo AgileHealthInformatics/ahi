@@ -165,3 +165,15 @@ preserve the existing Jekyll and redirect configuration.
 For local review, serve the repository root over HTTP rather than opening nested
 HTML files directly; this allows root-relative navigation to resolve correctly.
 This documentation update does not change the HTML or publish the website.
+## Optional website analytics
+
+The website uses consent-managed Google Analytics 4 (`G-EF8ZF37K5H`). Shared assets
+in `assets/js/analytics.js` and `assets/css/analytics-consent.css` are included on
+all public HTML pages, with Privacy notice and Privacy settings links in the footer.
+Google's tag loads only after acceptance and only on the production HTTPS domains.
+
+See [analytics setup and maintenance](docs/site/analytics.md) for the required GA4
+account settings, deployment checks, privacy notice review and reporting guidance.
+Include the shared assets and privacy links when adding a page. Run
+`python3 tools/site-maintenance/check_analytics.py` before publication; GitHub Actions
+also checks coverage on pull requests and pushes to main.

@@ -1,0 +1,16 @@
+name: Check analytics coverage
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  coverage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check public pages
+        run: python3 tools/site-maintenance/check_analytics.py
+      - name: Check analytics JavaScript syntax
+        run: node --check assets/js/analytics.js
