@@ -1,1 +1,167 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="An interactive, country-neutral educational demonstrator of an EHDS national health data catalogue, with synthetic records and simulated federation to HealthData@EU.">
+  <title>EHDS Data Catalogue Explorer | Agile Health Informatics Ltd</title>
+  <link rel="stylesheet" href="./assets/styles.css?v=1.0.2">
+  <script src="./assets/app.js?v=1.0.2" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+ <div class="nav-wrap">
+  <a class="brand-link" href="https://agilehealthinformatics.com/" aria-label="Agile Health Informatics home">
+    <img class="brand-logo" src="./assets/ahi-logo.webp" alt="" width="54" height="54">
+    <span class="brand-name"><strong>Agile Health Informatics Ltd</strong><span>creative ideas &amp; solutions</span></span>
+  </a>
+  <nav id="siteNav" class="site-nav" aria-label="Site navigation">
+    <a href="https://agilehealthinformatics.com/">Home</a>
+    <a href="https://agilehealthinformatics.com/services.html">Services</a>
+    <a class="active" aria-current="page" href="https://agilehealthinformatics.com/resources.html">Resources</a>
+    <a href="https://agilehealthinformatics.com/resources/professional-development/health-care-computing/index.html">Professional Development</a>
+    <a href="https://agilehealthinformatics.com/about.html">About</a>
+  </nav>
+  <div class="nav-actions">
+    <button class="icon-btn" id="themeToggle" aria-label="Switch colour theme" aria-pressed="false" title="Switch colour theme">◐</button>
+    <button class="menu-btn" id="menuToggle" aria-controls="siteNav" aria-expanded="false" aria-label="Open navigation">☰</button>
+  </div>
+ </div>
+</header>
+<div class="breadcrumbs"><a href="https://agilehealthinformatics.com/">Home</a> / <a href="https://agilehealthinformatics.com/resources.html">Resources</a> / EHDS Data Catalogue Explorer</div>
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero-inner">
+    <div>
+      <div class="kicker">Interactive explainer · European Health Data Space</div>
+      <h1 id="hero-title">A national health data catalogue, explained.</h1>
+      <p class="lead">Explore how a health dataset becomes discoverable, how its metadata is governed, and how a national catalogue could contribute to HealthData@EU without exposing patient-level data.</p>
+      <div class="hero-actions"><button class="cta primary" data-go="explore">Explore the datasets <span aria-hidden="true">→</span></button><button class="cta secondary" data-go="journey">Follow the federation journey <span aria-hidden="true">→</span></button></div>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <div class="art-node art-top"><span class="art-dot">01</span><div><strong>Data holders</strong><small>Describe and steward</small></div></div>
+      <div class="art-track"><span></span><span></span><span></span></div>
+      <div class="art-node art-mid"><span class="art-dot">02</span><div><strong>National catalogue</strong><small>Validate and publish</small></div></div>
+      <div class="art-track"><span></span><span></span><span></span></div>
+      <div class="art-node art-end"><span class="art-dot">03</span><div><strong>HealthData@EU</strong><small>Federated discovery</small></div></div>
+    </div>
+  </div>
+</section>
+<div class="assurance-strip"><div class="assurance-grid">
+  <div class="assurance-item"><strong>4 synthetic datasets</strong><span>No health data or real data holders</span></div>
+  <div class="assurance-item"><strong>3 user viewpoints</strong><span>Requester · provider · steward</span></div>
+  <div class="assurance-item"><strong>Local simulation</strong><span>Browser-only workflows</span></div>
+  <div class="assurance-item"><strong>Standards-informed</strong><span>Not an official conformance test</span></div>
+</div></div>
+<main id="main">
+  <div class="context-callout"><strong>What this demonstrates.</strong> A metadata catalogue describes datasets, their origin, coverage, variables and conditions of access. It does not contain clinical records, and discovering a dataset does not authorise access to it. All content and interactions here are illustrative.</div>
+  <div class="workspace-head">
+    <div><div class="eyebrow">Explore the architecture by role</div><h2>Inside the catalogue</h2><p class="muted">Choose a workspace. Changes made in this browser affect only your local demonstration.</p></div>
+    <button id="resetDemo" class="btn btn-subtle" title="Restore the four original synthetic records">↺ Reset this demonstration</button>
+  </div>
+  <div class="tabs-wrap"><div class="tabs" role="tablist" aria-label="Catalogue workspaces">
+    <button type="button" role="tab" id="tab-explore" data-tab="explore" aria-controls="panel-explore" aria-selected="true" tabindex="0">Discover datasets</button>
+    <button type="button" role="tab" id="tab-request" data-tab="request" aria-controls="panel-request" aria-selected="false" tabindex="-1">Data requester</button>
+    <button type="button" role="tab" id="tab-provider" data-tab="provider" aria-controls="panel-provider" aria-selected="false" tabindex="-1">Data provider</button>
+    <button type="button" role="tab" id="tab-steward" data-tab="steward" aria-controls="panel-steward" aria-selected="false" tabindex="-1">National steward</button>
+    <button type="button" role="tab" id="tab-journey" data-tab="journey" aria-controls="panel-journey" aria-selected="false" tabindex="-1">Federation journey</button>
+    <button type="button" role="tab" id="tab-standards" data-tab="standards" aria-controls="panel-standards" aria-selected="false" tabindex="-1">Standards &amp; limits</button>
+  </div></div>
 
+  <section class="work-panel active" id="panel-explore" role="tabpanel" aria-labelledby="tab-explore" tabindex="0">
+    <div class="panel-heading"><div><div class="eyebrow">01 / Data discovery</div><h3>Find datasets across the health system</h3><p>Search published metadata by topic, data holder or coverage, then inspect its variables and access conditions.</p></div><div class="count-bubble"><strong id="resultCount">4</strong><span>datasets found</span></div></div>
+    <div class="filter-bar">
+      <label class="field"><span>Search catalogue</span><input id="searchInput" type="search" placeholder="Search title, summary, provider, variable…" autocomplete="off"></label>
+      <label class="field"><span>Health theme</span><select id="themeFilter"><option value="all">All themes</option></select></label>
+      <label class="field"><span>Access category</span><select id="accessFilter"><option value="all">All categories</option><option value="non-public">Non-public</option><option value="restricted">Restricted</option><option value="public">Public</option></select></label>
+      <button id="clearFilters" class="btn btn-subtle">Clear filters</button>
+    </div>
+    <div class="catalogue-layout"><div id="datasetList" class="dataset-list" aria-live="polite"></div><div id="datasetDetail" class="detail-panel" aria-live="polite"></div></div>
+  </section>
+
+  <section class="work-panel" id="panel-request" role="tabpanel" aria-labelledby="tab-request" tabindex="0" hidden>
+    <div class="panel-heading"><div><div class="eyebrow">02 / Data requester</div><h3>From discovery to an access enquiry</h3><p>View the published dataset description and formulate an illustrative enquiry. A real request would be handled by the competent national process, not this catalogue.</p></div></div>
+    <div class="grid-two"><div class="card">
+      <h4>Prepare an illustrative enquiry</h4>
+      <form id="requestForm">
+        <label class="field"><span>Dataset</span><select id="requestDataset" required></select></label>
+        <label class="field"><span>Intended purpose</span><select id="requestPurpose" required><option value="">Choose a purpose…</option><option>Scientific research</option><option>Public health policy</option><option>Health system evaluation</option><option>Statistics and reporting</option></select></label>
+        <label class="field"><span>Outline of proposed use</span><textarea id="requestNarrative" required maxlength="350" rows="4" placeholder="Describe a hypothetical analysis using synthetic information only."></textarea></label>
+        <p class="micro">Do not enter personal information, identifiable patient data, real requests or confidential details. This form is processed only in your browser.</p>
+        <button type="submit" class="btn btn-primary">Create simulated enquiry</button>
+      </form>
+    </div><div class="card">
+      <h4>What follows in an operational EHDS service?</h4>
+      <div class="numbered-note"><span>1</span><p><strong>Discover</strong> metadata in a national or European catalogue.</p></div>
+      <div class="numbered-note"><span>2</span><p><strong>Apply</strong> through the appropriate access-application process.</p></div>
+      <div class="numbered-note"><span>3</span><p><strong>Assess</strong> purpose, legal grounds, safeguards and feasibility.</p></div>
+      <div class="numbered-note"><span>4</span><p><strong>Provide controlled access</strong> only where authorised, commonly through an approved secure processing environment.</p></div>
+      <div class="notice blue"><strong>Important boundary:</strong> An enquiry in this demonstration never becomes a real data-access application or permit.</div>
+    </div></div>
+    <div class="card space-top"><div class="row-between"><h4>Local demonstration enquiries</h4><button id="clearEnquiries" class="btn btn-subtle btn-small">Clear enquiries</button></div><div id="enquiryList" aria-live="polite"></div></div>
+  </section>
+
+  <section class="work-panel" id="panel-provider" role="tabpanel" aria-labelledby="tab-provider" tabindex="0" hidden>
+    <div class="panel-heading"><div><div class="eyebrow">03 / Data provider</div><h3>Describe and submit a dataset</h3><p>Try the metadata quality gate. Each field describes the dataset rather than its underlying clinical records.</p></div></div>
+    <div class="grid-two wide-left"><div class="card">
+       <div class="row-between"><h4>Provider metadata editor</h4><span id="providerState" class="state-pill">New draft</span></div>
+       <form id="providerForm" novalidate>
+         <label class="field"><span>Existing draft or new record</span><select id="providerDataset"><option value="new">+ Start a new synthetic record</option></select></label>
+         <div class="form-grid"><label class="field"><span>Dataset title *</span><input name="title" required maxlength="120" placeholder="e.g. Synthetic prevention outcomes dataset"></label><label class="field"><span>Health theme *</span><select name="theme" required><option value="">Choose theme…</option><option>Screening</option><option>Hospital activity</option><option>Public health</option><option>Medicines</option><option>Rare diseases</option><option>Primary care</option></select></label></div>
+         <label class="field"><span>Dataset description *</span><textarea name="description" required rows="3" maxlength="800" placeholder="Explain population, source and intended analytical use."></textarea></label>
+         <div class="form-grid"><label class="field"><span>Data holder (fictional) *</span><input name="provider" required maxlength="120" placeholder="e.g. Synthetic Health Services Agency"></label><label class="field"><span>Access category *</span><select name="access" required><option value="non-public">Non-public</option><option value="restricted">Restricted</option><option value="public">Public</option></select></label></div>
+         <div class="form-grid"><label class="field"><span>Geographical coverage *</span><input name="coverage" required maxlength="120" placeholder="e.g. National coverage"></label><label class="field"><span>Temporal coverage *</span><input name="period" required maxlength="70" placeholder="e.g. 2019–2025"></label></div>
+         <div class="form-grid"><label class="field"><span>Number of records (illustrative)</span><input name="records" type="number" min="0" step="1" placeholder="Optional"></label><label class="field"><span>Contact point or organisation *</span><input name="contact" required maxlength="120" placeholder="e.g. Synthetic Data Access Office"></label></div>
+         <label class="field"><span>Dataset variables (one per line) *</span><textarea name="variables" rows="4" placeholder="person_token | string | Pseudonymous linkage token&#10;event_year | integer | Year of event"></textarea><small>Use <code>name | type | description</code>. This is a simplified variable dictionary for teaching purposes.</small></label>
+         <div class="form-actions"><button type="submit" class="btn btn-primary">Save draft</button><button type="button" id="providerValidate" class="btn">Check metadata</button><button type="button" id="providerSubmit" class="btn btn-outline">Submit for stewardship</button></div>
+       </form>
+       <div id="providerFeedback" class="feedback" aria-live="polite"></div>
+    </div><div class="card"><h4>Provider responsibilities</h4><p>In a real catalogue, data holders maintain accurate, timely and complete descriptions, apply the relevant controlled terms, and attest to material changes.</p><div class="note-grid"><div><strong>Identity &amp; ownership</strong><span>Know who is accountable for the metadata.</span></div><div><strong>Metadata completeness</strong><span>Describe coverage, access and variables.</span></div><div><strong>Terminology alignment</strong><span>Use the required shared vocabularies.</span></div><div><strong>Maintenance</strong><span>Review revisions, corrections and updates.</span></div></div><div class="notice amber"><strong>Educational checks only:</strong> field checks below are not the European Commission's SHACL or controlled-vocabulary validation.</div></div></div>
+  </section>
+
+  <section class="work-panel" id="panel-steward" role="tabpanel" aria-labelledby="tab-steward" tabindex="0" hidden>
+    <div class="panel-heading"><div><div class="eyebrow">04 / National steward</div><h3>Review, approve and publish metadata</h3><p>Operate a simulated national governance gate with decisions and an audit history visible in this browser.</p></div></div>
+    <div class="grid-two"><div class="card"><h4>Stewardship queue</h4><label class="field"><span>Select a catalogue record</span><select id="stewardDataset"></select></label><div id="stewardDetail"></div><div class="form-actions"><button id="stewardValidate" class="btn">Check metadata</button><button id="stewardPublish" class="btn btn-primary">Approve and publish</button><button id="stewardReturn" class="btn btn-outline">Return for correction</button></div><p class="micro">This review simulates decisions. No identity, authorisation or independent approval service exists.</p></div><div class="card"><h4>Validation evidence</h4><div id="validationFindings"></div><div class="notice blue"><strong>Operational distinction:</strong> formal publication would additionally depend on an accredited governance process, verified controlled vocabularies and the official HealthDCAT-AP validation profile.</div></div></div>
+    <div class="card space-top"><h4>Local decision and change history</h4><div id="auditTrail" class="timeline"></div></div>
+  </section>
+
+  <section class="work-panel" id="panel-journey" role="tabpanel" aria-labelledby="tab-journey" tabindex="0" hidden>
+    <div class="panel-heading"><div><div class="eyebrow">05 / Metadata federation</div><h3>Follow one record from provider to EU-level discovery</h3><p>Select a published dataset and advance through six stages, examining evidence at each transition. The receiver and receipts are simulated entirely in your browser.</p></div></div>
+    <div class="journey-top"><label class="field"><span>Dataset for federation</span><select id="journeyDataset"></select></label><div><button id="runJourney" class="btn btn-primary">Start guided journey</button><button id="prevJourney" class="btn" disabled>← Previous stage</button><button id="nextJourney" class="btn" disabled>Next stage →</button><button id="downloadEvidence" class="btn" disabled>Download evidence JSON</button></div></div>
+    <p id="journeyInstruction" class="journey-instruction" aria-live="polite">Start the journey, then use Next stage to reveal each transition.</p>
+    <div class="journey-grid" id="journeyGrid">
+      <div class="journey-step" data-stage="0"><span class="step-no">01</span><strong>Data holder</strong><small>Metadata authored</small></div>
+      <div class="journey-step" data-stage="1"><span class="step-no">02</span><strong>Local checks</strong><small>Illustrative field checks</small></div>
+      <div class="journey-step" data-stage="2"><span class="step-no">03</span><strong>National review</strong><small>Stewardship decision</small></div>
+      <div class="journey-step" data-stage="3"><span class="step-no">04</span><strong>National catalogue</strong><small>Public metadata record</small></div>
+      <div class="journey-step" data-stage="4"><span class="step-no">05</span><strong>Outbox package</strong><small>RDF + manifest + digest</small></div>
+      <div class="journey-step" data-stage="5"><span class="step-no">06</span><strong>HealthData@EU</strong><small>Simulated receipt only</small></div>
+    </div>
+    <div class="grid-two space-top"><div class="card"><div class="row-between"><h4>Journey evidence</h4><span id="journeyState" class="state-pill" aria-live="polite">Not started</span></div><div id="journeyEvidence"><p class="muted">Choose a published synthetic record and run the journey to see the evidence generated.</p></div></div><div class="card"><div class="row-between"><h4>Illustrative RDF output</h4><button id="downloadRdf" class="btn btn-small" disabled>Download Turtle</button></div><pre id="rdfPreview" class="code-pane" tabindex="0"># Select a dataset, then run the journey.</pre></div></div>
+    <div class="notice amber space-top"><strong>Not a live federation:</strong> this interaction does not transmit metadata to the European Health Data Space, register a dataset, produce an official acknowledgement or prove HealthDCAT-AP conformance.</div>
+  </section>
+
+  <section class="work-panel" id="panel-standards" role="tabpanel" aria-labelledby="tab-standards" tabindex="0" hidden>
+    <div class="panel-heading"><div><div class="eyebrow">06 / Standards and implementation boundaries</div><h3>Which standards belong where?</h3><p>The demonstration separates catalogue discovery, the metadata exchange model, publication governance and the authorisation of data use.</p></div></div>
+    <div class="standards-grid">
+      <article class="card"><div class="tier">Foundation</div><h4>DCAT and DCAT-AP</h4><p>RDF modelling of catalogues, datasets, records, distributions and agents. Interoperable descriptions support discovery and metadata exchange.</p><a href="https://semiceu.github.io/DCAT-AP/releases/3.0.1/" target="_blank" rel="noopener noreferrer">Read DCAT-AP ↗</a></article>
+      <article class="card"><div class="tier">Health-specific profile</div><h4>HealthDCAT-AP Release 8</h4><p>Health-specific metadata and access categories for secondary use. A full implementation requires cardinalities, required vocabularies and applicable validation constraints.</p><a href="https://data.health.europa.eu/healthdcat-ap/releases/release-8/" target="_blank" rel="noopener noreferrer">Read HealthDCAT-AP ↗</a></article>
+      <article class="card"><div class="tier">EU legal framework</div><h4>European Health Data Space</h4><p>National dataset catalogue obligations and the arrangements for secondary-use discovery, access applications and secure processing remain distinct capabilities.</p><a href="https://eur-lex.europa.eu/eli/reg/2025/327/oj/eng" target="_blank" rel="noopener noreferrer">Read EHDS Regulation ↗</a></article>
+    </div>
+    <h4 class="space-top">What is and is not implemented</h4>
+    <div class="capability-table-wrap"><table class="capability-table"><thead><tr><th scope="col">Capability</th><th scope="col">This demonstrator</th><th scope="col">Operational implementation</th></tr></thead><tbody>
+       <tr><th scope="row">Dataset discovery</th><td>Search and filters over synthetic records</td><td>Authoritative national catalogue with governed feeds</td></tr>
+       <tr><th scope="row">Provider submissions</th><td>Browser-only metadata form</td><td>Authenticated, authorised providers with persistent versions</td></tr>
+       <tr><th scope="row">Metadata validation</th><td>Educational field checks</td><td>Official applicable SHACL profile and versioned vocabularies</td></tr>
+       <tr><th scope="row">Stewardship</th><td>Simulated publication decisions</td><td>Independent governance, identity and audit evidence</td></tr>
+       <tr><th scope="row">Federation</th><td>Locally generated RDF and simulated receipt</td><td>Contracted interface, secure exchange and real acknowledgement</td></tr>
+       <tr><th scope="row">Data access</th><td>Local hypothetical enquiry only</td><td>Legal assessment, permission and secure processing workflow</td></tr>
+    </tbody></table></div>
+    <div class="notice blue space-top"><strong>Conformance statement:</strong> This teaching tool follows the concepts of HealthDCAT-AP but neither the application nor its sample metadata has undergone authoritative conformance validation. Illustrative URIs are not official catalogue identifiers.</div>
+  </section>
+</main>
+<footer class="footer"><div class="footer-inner"><div><strong>Agile Health Informatics Ltd</strong><p>Creative ideas &amp; solutions for health data and digital transformation.</p></div><div><p><strong>EHDS Data Catalogue Explorer</strong> · Public educational demonstrator v1.0.2</p><p>Synthetic data · No server-side processing · No affiliation with or endorsement by EU institutions.</p><p><a href="https://agilehealthinformatics.com/resources.html">Resource library</a> · <a href="https://agilehealthinformatics.com/privacy.html">Privacy notice</a> · <a href="https://data.health.europa.eu/healthdcat-ap/releases/release-8/" target="_blank" rel="noopener noreferrer">HealthDCAT-AP specification</a></p></div></div></footer>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
