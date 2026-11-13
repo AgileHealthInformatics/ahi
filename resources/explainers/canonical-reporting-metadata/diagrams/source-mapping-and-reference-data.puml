@@ -1,0 +1,35 @@
+@startuml
+' Proposed conceptual UML, not a claim about a particular repository product
+skinparam classAttributeIconSize 0
+hide empty methods
+package "Canonical reporting metadata" {
+class MeasureVersion { +versionId: URI; +state: LifecycleState }
+class LogicalInput { +inputId: URI; +semanticRole: Code; +requiredGrain: Code }
+class MappingRelease { +mappingId: URI; +version: String; +status: LifecycleState; +testedAt: DateTime }
+class ElementMapping { +mappingRole: Code; +transformationId: URI; +equivalenceClaim: Code }
+class ReferenceDataBinding { +schemeUri: URI; +releaseId: String; +asOfPolicy: Code }
+}
+package "Source catalogue metadata" {
+class SourceSystem { +systemId: URI; +owner: URI }
+class SourceAsset { +assetId: URI; +grain: Code; +refreshCadence: Code }
+class SourceSchemaVersion { +schemaId: URI; +observedAt: DateTime }
+class SourceDataElement { +fieldId: URI; +physicalName: String; +datatype: String; +eventMeaning: String }
+}
+package "Independent governed authorities" {
+class ReferenceSchemeVersion { +schemeUri: URI; +releaseId: String; +validFrom: Date }
+class ValueMap { +mapId: URI; +coverage: Decimal; +validFrom: Date }
+class TerminologyRelease { +canonicalUri: URI; +releaseId: String }
+}
+MeasureVersion "1" *-- "1..*" LogicalInput : requires
+MeasureVersion "1" -- "0..*" MappingRelease : realised by
+MappingRelease "1" *-- "1..*" ElementMapping : records
+ElementMapping "0..*" --> "1" LogicalInput : fulfils
+ElementMapping "0..*" --> "1" SourceDataElement : reads
+SourceSystem "1" *-- "0..*" SourceAsset : contains
+SourceAsset "1" *-- "1..*" SourceSchemaVersion : has releases
+SourceSchemaVersion "1" *-- "0..*" SourceDataElement : defines
+MappingRelease "1" --> "0..*" ReferenceDataBinding : pins
+ReferenceDataBinding "0..*" --> "1" ReferenceSchemeVersion : resolves
+ReferenceDataBinding "1" --> "0..*" ValueMap : converts local codes
+MappingRelease "0..*" --> "0..*" TerminologyRelease : clinical membership
+@enduml

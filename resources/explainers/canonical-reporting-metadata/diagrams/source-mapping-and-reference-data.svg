@@ -1,0 +1,220 @@
+<svg aria-label="Proposed UML conceptual class diagram" class="uml-svg" height="805pt" role="img" viewBox="0.00 0.00 1035.68 804.68" width="1036pt" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g class="graph" id="uml-sources-graph0" transform="scale(1 1) rotate(0) translate(15.84 788.84)">
+<title>G</title>
+<!-- MeasureVersion&#45;&gt;LogicalInput -->
+<g class="edge" id="uml-sources-edge1">
+<title>MeasureVersion-&gt;LogicalInput</title>
+<path d="M279.38,-685.88C333.13,-690.8 401,-697 401,-697 401,-697 742.47,-714.31 878.52,-721.21" fill="none" stroke="#7795a1"></path>
+<polygon fill="#7795a1" points="279.33,-685.88 275.21,-688.11 271.56,-685.17 275.68,-682.94 279.33,-685.88" stroke="#7795a1"></polygon>
+<text fill="#45606b" font-family="Arial" font-size="9.00" text-anchor="middle" x="573.5" y="-708.8">requires</text>
+<text fill="#45606b" font-family="Arial" font-size="9.00" text-anchor="middle" x="859.99" y="-726.54">1..*</text>
+<text fill="#45606b" font-family="Arial" font-size="9.00" text-anchor="middle" x="290.38" y="-676.2">1</text>
+</g>
+<!-- MeasureVersion&#45;&gt;MappingRelease -->
+<g class="edge" id="uml-sources-edge2">
+<title>MeasureVersion-&gt;MappingRelease</title>
+<path d="M271.75,-669.62C311.05,-662.43 363.22,-652.89 402.83,-645.64" fill="none" stroke="#7795a1"></path>
+<text fill="#45606b" font-family="Arial" font-size="9.00" text-anchor="middle" x="352" y="-660.8">realised by</text>
+<text fill="#45606b" font-family="Arial" font-size="9.00" text-anchor="middle" x="386.52" y="-655.02">0..*</text>
+<text fill="#45606b" font-family="Arial" font-size="9.00" text-anchor="middle" x="288.06" y="-655.84">1</text>
+</g>
+<!-- MappingRelease&#45;&gt;ElementMapping -->
+<g class="edge" id="uml-sources-edge3">
+<title>MappingRelease-&gt;ElementMapping</title>
+<path d="M529.16,-635C563.03,-635 604.08,-635 637.68,-635" fill="none" stroke="#7795a1"></path>
+<polygon fill="#7795a1" points="528.96,-635 525.06,-637.6 521.16,-635 525.06,-632.4 528.96,-635" stroke="#7795a1"></polygon>
+<text fill="#45606b" font-family="Arial" font-size="9.00" text-anchor="middle" x="573.5" y="-637.8">contains</text>
+<text fill="#45606b" font-family="Arial" font-size="9.00" text-anchor="middle" x="619.56" y="-641.25">1..*</text>
+<text fill="#45606b" font-family="Arial" font-size="9.00" text-anchor="middle" x="539.29" y="-624.35">1</text>
+</g>
+<!-- MappingRelease&#45;&gt;ReferenceDataBinding -->
+<g class="edge" id="uml-sources-edge9">
+<title>MappingRelease-&gt;ReferenceDataBinding</title>
+<path d="M413.43,-585.85C406.15,-578.32 401,-573 401,-573 401,-573 375,-495 375,-495 375,-495 333.42,-470.05 292.66,-445.59" fill="none" stroke="#7795a1"></path>
+<text fill="#45606b" font-family="Arial" font-size="9.00" text-anchor="middle" x="352" y="-497.8">pins</text>
+<text fill="#45606b" font-family="Arial" font-size="9.00" text-anchor="middle" x="312.55" y="-445.47">0..*</text>
+<text fill="#45606b" font-family="Arial" font-size="9.00" text-anchor="middle" x="394.75" y="-576.5">1</text>
+</g>
+<!-- MappingRelease&#45;&gt;TerminologyRelease -->
+<g class="edge" id="uml-sources-edge12">
+<title>MappingRelease-&gt;TerminologyRelease</title>
+<path d="M413.43,-585.85C406.15,-578.32 401,-573 401,-573 401,-573 303,-87 303,-87 303,-87 293.3,-81.49 280.34,-74.12" fill="none" stroke="#7795a1"></path>
+<text fill="#45606b" font-family="Arial" font-size="9.00" text-anchor="middle" x="352" y="-444.8">uses</text>
+<text fill="#45606b" font-family="Arial" font-size="9.00" text-anchor="middle" x="300.27" y="-73.53">0..*</text>
+<text fill="#45606b" font-family="Arial" font-size="9.00" text-anchor="middle" x="394.75" y="-576.5">0..*</text>
+</g>
+<!-- ElementMapping&#45;&gt;LogicalInput -->
+<g class="edge" id="uml-sources-edge4">
+<title>ElementMapping-&gt;LogicalInput</title>
+<path d="M768.23,-659.91C802.98,-673.38 845.44,-689.85 878.62,-702.72" fill="none" stroke="#7795a1"></path>
+<text fill="#45606b" font-family="Arial" font-size="9.00" text-anchor="middle" x="823.5" y="-686.8">fulfils</text>
+<text fill="#45606b" font-family="Arial" font-size="9.00" text-anchor="middle" x="858.67" y="-701.84">1</text>
+<text fill="#45606b" font-family="Arial" font-size="9.00" text-anchor="middle" x="788.19" y="-656.38">0..*</text>
+</g>
+<!-- ElementMapping&#45;&gt;SourceDataElement -->
+<g class="edge" id="uml-sources-edge5">
+<title>ElementMapping-&gt;SourceDataElement</title>
+<path d="M768.23,-625.2C798.34,-620.61 834.23,-615.14 864.87,-610.47" fill="none" stroke="#7795a1"></path>
+<text fill="#45606b" font-family="Arial" font-size="9.00" text-anchor="middle" x="823.5" y="-620.8">reads</text>
+<text fill="#45606b" font-family="Arial" font-size="9.00" text-anchor="middle" x="848.22" y="-619.36">1</text>
+<text fill="#45606b" font-family="Arial" font-size="9.00" text-anchor="middle" x="784.88" y="-611.92">0..*</text>
+</g>
+<!-- ReferenceDataBinding&#45;&gt;ReferenceSchemeVersion -->
+<g class="edge" id="uml-sources-edge10">
+<title>ReferenceDataBinding-&gt;ReferenceSchemeVersion</title>
+<path d="M214,-349.95C214,-332.97 214,-314.23 214,-298.34" fill="none" stroke="#7795a1"></path>
+<text fill="#45606b" font-family="Arial" font-size="9.00" text-anchor="middle" x="206" y="-321.8">resolves</text>
+<text fill="#45606b" font-family="Arial" font-size="9.00" text-anchor="middle" x="222.45" y="-314.27">1</text>
+<text fill="#45606b" font-family="Arial" font-size="9.00" text-anchor="middle" x="205.55" y="-329.62">0..*</text>
+</g>
+<!-- ReferenceDataBinding&#45;&gt;ValueMap -->
+<g class="edge" id="uml-sources-edge11">
+<title>ReferenceDataBinding-&gt;ValueMap</title>
+<path d="M164.3,-349.85C143.91,-329.7 125,-311 125,-311 125,-311 99,-279 99,-279 99,-279 99,-269 99,-269 99,-269 125,-211 125,-211 125,-211 142.96,-198.49 162.74,-184.71" fill="none" stroke="#7795a1"></path>
+<text fill="#45606b" font-family="Arial" font-size="9.00" text-anchor="middle" x="89" y="-271.8">uses</text>
+<text fill="#45606b" font-family="Arial" font-size="9.00" text-anchor="middle" x="152.7" y="-199.8">0..*</text>
+<text fill="#45606b" font-family="Arial" font-size="9.00" text-anchor="middle" x="145.46" y="-340.92">1</text>
+</g>
+<!-- SourceSystem&#45;&gt;SourceAsset -->
+<g class="edge" id="uml-sources-edge6">
+<title>SourceSystem-&gt;SourceAsset</title>
+<path d="M275.14,-511C313.29,-511 362.48,-511 400.67,-511" fill="none" stroke="#7795a1"></path>
+<polygon fill="#7795a1" points="274.97,-511 271.07,-513.6 267.17,-511 271.07,-508.4 274.97,-511" stroke="#7795a1"></polygon>
+<text fill="#45606b" font-family="Arial" font-size="9.00" text-anchor="middle" x="352" y="-513.8">contains</text>
+<text fill="#45606b" font-family="Arial" font-size="9.00" text-anchor="middle" x="382.55" y="-517.25">0..*</text>
+<text fill="#45606b" font-family="Arial" font-size="9.00" text-anchor="middle" x="285.3" y="-500.35">1</text>
+</g>
+<!-- SourceAsset&#45;&gt;SourceSchemaVersion -->
+<g class="edge" id="uml-sources-edge7">
+<title>SourceAsset-&gt;SourceSchemaVersion</title>
+<path d="M531.03,-511C559.97,-511 593.91,-511 623.87,-511" fill="none" stroke="#7795a1"></path>
+<polygon fill="#7795a1" points="530.8,-511 526.9,-513.6 523,-511 526.9,-508.4 530.8,-511" stroke="#7795a1"></polygon>
+<text fill="#45606b" font-family="Arial" font-size="9.00" text-anchor="middle" x="573.5" y="-513.8">has release</text>
+<text fill="#45606b" font-family="Arial" font-size="9.00" text-anchor="middle" x="605.75" y="-517.25">1..*</text>
+<text fill="#45606b" font-family="Arial" font-size="9.00" text-anchor="middle" x="541.13" y="-500.35">1</text>
+</g>
+<!-- SourceSchemaVersion&#45;&gt;SourceDataElement -->
+<g class="edge" id="uml-sources-edge8">
+<title>SourceSchemaVersion-&gt;SourceDataElement</title>
+<path d="M789.34,-544.09C814.26,-553.76 841.17,-564.19 864.92,-573.4" fill="none" stroke="#7795a1"></path>
+<polygon fill="#7795a1" points="789.29,-544.08 784.71,-545.09 782.02,-541.26 786.59,-540.24 789.29,-544.08" stroke="#7795a1"></polygon>
+<text fill="#45606b" font-family="Arial" font-size="9.00" text-anchor="middle" x="823.5" y="-562.8">defines</text>
+<text fill="#45606b" font-family="Arial" font-size="9.00" text-anchor="middle" x="844.96" y="-572.53">0..*</text>
+<text fill="#45606b" font-family="Arial" font-size="9.00" text-anchor="middle" x="801.97" y="-537.73">1</text>
+</g>
+<!-- MeasureVersion -->
+<g aria-label="Inspect MeasureVersion" class="node uml-class" data-uml-class="MeasureVersion" id="uml-sources-uMeasureVersion" role="button" tabindex="0">
+<title>MeasureVersion</title>
+<polygon fill="#e8f4f3" points="156.5,-643 156.5,-717 271.5,-717 271.5,-643 156.5,-643" stroke="transparent"></polygon>
+<polygon fill="#006f74" points="157,-691 157,-717 272,-717 272,-691 157,-691" stroke="transparent"></polygon>
+<text fill="white" font-family="Arial" font-size="13.00" font-weight="bold" text-anchor="start" x="163" y="-701.6">MeasureVersion</text>
+<text fill="#324e5a" font-family="Arial" font-size="11.00" text-anchor="start" x="163" y="-676.2">versionId: URI</text>
+<text fill="#324e5a" font-family="Arial" font-size="11.00" text-anchor="start" x="163" y="-652.2">state: LifecycleState</text>
+</g>
+<!-- LogicalInput -->
+<g aria-label="Inspect LogicalInput" class="node uml-class" data-uml-class="LogicalInput" id="uml-sources-uLogicalInput" role="button" tabindex="0">
+<title>LogicalInput</title>
+<polygon fill="#e8f4f3" points="879,-675 879,-773 990,-773 990,-675 879,-675" stroke="transparent"></polygon>
+<polygon fill="#006f74" points="879.5,-747 879.5,-773 990.5,-773 990.5,-747 879.5,-747" stroke="transparent"></polygon>
+<text fill="white" font-family="Arial" font-size="13.00" font-weight="bold" text-anchor="start" x="885.5" y="-757.6">LogicalInput</text>
+<text fill="#324e5a" font-family="Arial" font-size="11.00" text-anchor="start" x="885.5" y="-732.2">inputId: URI</text>
+<text fill="#324e5a" font-family="Arial" font-size="11.00" text-anchor="start" x="885.5" y="-708.2">role: Code</text>
+<text fill="#324e5a" font-family="Arial" font-size="11.00" text-anchor="start" x="885.5" y="-684.2">requiredGrain: Code</text>
+</g>
+<!-- MappingRelease -->
+<g aria-label="Inspect MappingRelease" class="node uml-class" data-uml-class="MappingRelease" id="uml-sources-uMappingRelease" role="button" tabindex="0">
+<title>MappingRelease</title>
+<polygon fill="#e8f4f3" points="403,-586 403,-684 521,-684 521,-586 403,-586" stroke="transparent"></polygon>
+<polygon fill="#006f74" points="403,-658 403,-684 521,-684 521,-658 403,-658" stroke="transparent"></polygon>
+<text fill="white" font-family="Arial" font-size="13.00" font-weight="bold" text-anchor="start" x="409" y="-668.6">MappingRelease</text>
+<text fill="#324e5a" font-family="Arial" font-size="11.00" text-anchor="start" x="409" y="-643.2">mappingId: URI</text>
+<text fill="#324e5a" font-family="Arial" font-size="11.00" text-anchor="start" x="409" y="-619.2">version: String</text>
+<text fill="#324e5a" font-family="Arial" font-size="11.00" text-anchor="start" x="409" y="-595.2">status: LifecycleState</text>
+</g>
+<!-- ElementMapping -->
+<g aria-label="Inspect ElementMapping" class="node uml-class" data-uml-class="ElementMapping" id="uml-sources-uElementMapping" role="button" tabindex="0">
+<title>ElementMapping</title>
+<polygon fill="#e8f4f3" points="638,-598 638,-672 768,-672 768,-598 638,-598" stroke="transparent"></polygon>
+<polygon fill="#006f74" points="638,-646 638,-672 768,-672 768,-646 638,-646" stroke="transparent"></polygon>
+<text fill="white" font-family="Arial" font-size="13.00" font-weight="bold" text-anchor="start" x="644" y="-656.6">ElementMapping</text>
+<text fill="#324e5a" font-family="Arial" font-size="11.00" text-anchor="start" x="644" y="-631.2">transformationId: URI</text>
+<text fill="#324e5a" font-family="Arial" font-size="11.00" text-anchor="start" x="644" y="-607.2">equivalenceClaim: Code</text>
+</g>
+<!-- ReferenceDataBinding -->
+<g aria-label="Inspect ReferenceDataBinding" class="node uml-class" data-uml-class="ReferenceDataBinding" id="uml-sources-uReferenceDataBinding" role="button" tabindex="0">
+<title>ReferenceDataBinding</title>
+<polygon fill="#e8f4f3" points="135.5,-350 135.5,-448 292.5,-448 292.5,-350 135.5,-350" stroke="transparent"></polygon>
+<polygon fill="#006f74" points="136,-422 136,-448 293,-448 293,-422 136,-422" stroke="transparent"></polygon>
+<text fill="white" font-family="Arial" font-size="13.00" font-weight="bold" text-anchor="start" x="142" y="-432.6">ReferenceDataBinding</text>
+<text fill="#324e5a" font-family="Arial" font-size="11.00" text-anchor="start" x="142" y="-407.2">schemeUri: URI</text>
+<text fill="#324e5a" font-family="Arial" font-size="11.00" text-anchor="start" x="142" y="-383.2">releaseId: String</text>
+<text fill="#324e5a" font-family="Arial" font-size="11.00" text-anchor="start" x="142" y="-359.2">asOfPolicy: Code</text>
+</g>
+<!-- SourceSystem -->
+<g aria-label="Inspect SourceSystem" class="node uml-class" data-uml-class="SourceSystem" id="uml-sources-uSourceSystem" role="button" tabindex="0">
+<title>SourceSystem</title>
+<polygon fill="#ebf0fa" points="161,-474 161,-548 267,-548 267,-474 161,-474" stroke="transparent"></polygon>
+<polygon fill="#265d91" points="161,-522 161,-548 267,-548 267,-522 161,-522" stroke="transparent"></polygon>
+<text fill="white" font-family="Arial" font-size="13.00" font-weight="bold" text-anchor="start" x="167" y="-532.6">SourceSystem</text>
+<text fill="#324e5a" font-family="Arial" font-size="11.00" text-anchor="start" x="167" y="-507.2">systemId: URI</text>
+<text fill="#324e5a" font-family="Arial" font-size="11.00" text-anchor="start" x="167" y="-483.2">ownerId: URI</text>
+</g>
+<!-- SourceAsset -->
+<g aria-label="Inspect SourceAsset" class="node uml-class" data-uml-class="SourceAsset" id="uml-sources-uSourceAsset" role="button" tabindex="0">
+<title>SourceAsset</title>
+<polygon fill="#ebf0fa" points="401,-462 401,-560 523,-560 523,-462 401,-462" stroke="transparent"></polygon>
+<polygon fill="#265d91" points="401,-534 401,-560 523,-560 523,-534 401,-534" stroke="transparent"></polygon>
+<text fill="white" font-family="Arial" font-size="13.00" font-weight="bold" text-anchor="start" x="407" y="-544.6">SourceAsset</text>
+<text fill="#324e5a" font-family="Arial" font-size="11.00" text-anchor="start" x="407" y="-519.2">assetId: URI</text>
+<text fill="#324e5a" font-family="Arial" font-size="11.00" text-anchor="start" x="407" y="-495.2">grain: Code</text>
+<text fill="#324e5a" font-family="Arial" font-size="11.00" text-anchor="start" x="407" y="-471.2">refreshCadence: Code</text>
+</g>
+<!-- SourceSchemaVersion -->
+<g aria-label="Inspect SourceSchemaVersion" class="node uml-class" data-uml-class="SourceSchemaVersion" id="uml-sources-uSourceSchemaVersion" role="button" tabindex="0">
+<title>SourceSchemaVersion</title>
+<polygon fill="#ebf0fa" points="624,-474 624,-548 782,-548 782,-474 624,-474" stroke="transparent"></polygon>
+<polygon fill="#265d91" points="624,-522 624,-548 782,-548 782,-522 624,-522" stroke="transparent"></polygon>
+<text fill="white" font-family="Arial" font-size="13.00" font-weight="bold" text-anchor="start" x="630" y="-532.6">SourceSchemaVersion</text>
+<text fill="#324e5a" font-family="Arial" font-size="11.00" text-anchor="start" x="630" y="-507.2">schemaId: URI</text>
+<text fill="#324e5a" font-family="Arial" font-size="11.00" text-anchor="start" x="630" y="-483.2">observedAt: DateTime</text>
+</g>
+<!-- SourceDataElement -->
+<g aria-label="Inspect SourceDataElement" class="node uml-class" data-uml-class="SourceDataElement" id="uml-sources-uSourceDataElement" role="button" tabindex="0">
+<title>SourceDataElement</title>
+<polygon fill="#ebf0fa" points="865,-551 865,-649 1004,-649 1004,-551 865,-551" stroke="transparent"></polygon>
+<polygon fill="#265d91" points="865.5,-623 865.5,-649 1004.5,-649 1004.5,-623 865.5,-623" stroke="transparent"></polygon>
+<text fill="white" font-family="Arial" font-size="13.00" font-weight="bold" text-anchor="start" x="871.5" y="-633.6">SourceDataElement</text>
+<text fill="#324e5a" font-family="Arial" font-size="11.00" text-anchor="start" x="871.5" y="-608.2">fieldId: URI</text>
+<text fill="#324e5a" font-family="Arial" font-size="11.00" text-anchor="start" x="871.5" y="-584.2">datatype: String</text>
+<text fill="#324e5a" font-family="Arial" font-size="11.00" text-anchor="start" x="871.5" y="-560.2">eventMeaning: String</text>
+</g>
+<!-- ReferenceSchemeVersion -->
+<g aria-label="Inspect ReferenceSchemeVersion" class="node uml-class" data-uml-class="ReferenceSchemeVersion" id="uml-sources-uReferenceSchemeVersion" role="button" tabindex="0">
+<title>ReferenceSchemeVersion</title>
+<polygon fill="#fff3df" points="125,-224 125,-298 303,-298 303,-224 125,-224" stroke="transparent"></polygon>
+<polygon fill="#805612" points="125,-272 125,-298 303,-298 303,-272 125,-272" stroke="transparent"></polygon>
+<text fill="white" font-family="Arial" font-size="13.00" font-weight="bold" text-anchor="start" x="131" y="-282.6">ReferenceSchemeVersion</text>
+<text fill="#324e5a" font-family="Arial" font-size="11.00" text-anchor="start" x="131" y="-257.2">schemeUri: URI</text>
+<text fill="#324e5a" font-family="Arial" font-size="11.00" text-anchor="start" x="131" y="-233.2">releaseId: String</text>
+</g>
+<!-- ValueMap -->
+<g aria-label="Inspect ValueMap" class="node uml-class" data-uml-class="ValueMap" id="uml-sources-uValueMap" role="button" tabindex="0">
+<title>ValueMap</title>
+<polygon fill="#fff3df" points="163,-100 163,-198 265,-198 265,-100 163,-100" stroke="transparent"></polygon>
+<polygon fill="#805612" points="163,-172 163,-198 265,-198 265,-172 163,-172" stroke="transparent"></polygon>
+<text fill="white" font-family="Arial" font-size="13.00" font-weight="bold" text-anchor="start" x="169" y="-182.6">ValueMap</text>
+<text fill="#324e5a" font-family="Arial" font-size="11.00" text-anchor="start" x="169" y="-157.2">mapId: URI</text>
+<text fill="#324e5a" font-family="Arial" font-size="11.00" text-anchor="start" x="169" y="-133.2">coverage: Decimal</text>
+<text fill="#324e5a" font-family="Arial" font-size="11.00" text-anchor="start" x="169" y="-109.2">validFrom: Date</text>
+</g>
+<!-- TerminologyRelease -->
+<g aria-label="Inspect TerminologyRelease" class="node uml-class" data-uml-class="TerminologyRelease" id="uml-sources-uTerminologyRelease" role="button" tabindex="0">
+<title>TerminologyRelease</title>
+<polygon fill="#fff3df" points="143,0 143,-74 285,-74 285,0 143,0" stroke="transparent"></polygon>
+<polygon fill="#805612" points="143,-48 143,-74 285,-74 285,-48 143,-48" stroke="transparent"></polygon>
+<text fill="white" font-family="Arial" font-size="13.00" font-weight="bold" text-anchor="start" x="149" y="-58.6">TerminologyRelease</text>
+<text fill="#324e5a" font-family="Arial" font-size="11.00" text-anchor="start" x="149" y="-33.2">canonicalUri: URI</text>
+<text fill="#324e5a" font-family="Arial" font-size="11.00" text-anchor="start" x="149" y="-9.2">releaseId: String</text>
+</g>
+</g>
+</svg>
