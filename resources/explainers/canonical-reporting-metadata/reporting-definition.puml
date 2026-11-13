@@ -1,0 +1,54 @@
+@startuml
+' Proposed conceptual UML, not a normative standard
+skinparam classAttributeIconSize 0
+hide empty methods
+package "Reporting specification authority" {
+class MeasureDefinition {
+ +measureId: URI
+ +name: String
+ +steward: URI
+}
+class MeasureVersion {
+ +versionId: URI
+ +effectiveFrom: Date
+ +state: LifecycleState
+ +contentHash: String
+}
+class PopulationCriterion {
+ +criterionId: URI
+ +role: Code
+ +expression: String
+}
+class CalculationSpecification {
+ +methodId: URI
+ +aggregation: Code
+ +unit: URI
+}
+class LogicalInput {
+ +inputId: URI
+ +semanticRole: Code
+ +requiredGrain: Code
+}
+class DimensionUse {
+ +dimensionId: URI
+ +asOfRule: Code
+}
+}
+package "Reporting consumption" {
+class ReportingProduct { +productId: URI; +audience: String }
+class IndicatorUse { +useId: URI; +decisionContext: String }
+class ReportedObservation { +resultId: URI; +period: Interval; +value: Decimal }
+}
+package "Independent reference data authority" {
+class ReferenceSchemeVersion { +schemeUri: URI; +releaseId: String; +validFrom: Date }
+}
+MeasureDefinition "1" *-- "1..*" MeasureVersion : versions
+MeasureVersion "1" *-- "1..*" PopulationCriterion : defines
+MeasureVersion "1" *-- "1" CalculationSpecification : specifies
+MeasureVersion "1" *-- "1..*" LogicalInput : requires
+MeasureVersion "1" *-- "0..*" DimensionUse : stratifies by
+DimensionUse "0..*" --> "1" ReferenceSchemeVersion : classifies using
+ReportingProduct "1" -- "1..*" IndicatorUse : contains
+IndicatorUse "0..*" --> "1" MeasureVersion : references
+ReportedObservation "0..*" --> "1" MeasureVersion : calculated under
+@enduml

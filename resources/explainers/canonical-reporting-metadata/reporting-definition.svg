@@ -1,0 +1,178 @@
+<svg aria-label="Proposed UML conceptual class diagram" class="uml-svg" height="516pt" role="img" viewBox="0.00 0.00 961.68 515.68" width="962pt" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g class="graph" id="uml-reporting-graph0" transform="scale(1 1) rotate(0) translate(15.84 499.84)">
+<title>G</title>
+<!-- MeasureDefinition&#45;&gt;MeasureVersion -->
+<g class="edge" id="uml-reporting-edge1">
+<title>MeasureDefinition-&gt;MeasureVersion</title>
+<path d="M147.59,-273C187.32,-273 236.04,-273 273.14,-273" fill="none" stroke="#7795a1"></path>
+<polygon fill="#7795a1" points="147.57,-273 143.67,-275.6 139.77,-273 143.67,-270.4 147.57,-273" stroke="#7795a1"></polygon>
+<text fill="#45606b" font-family="Arial" font-size="9.00" text-anchor="middle" x="209.5" y="-275.8">versions</text>
+<text fill="#45606b" font-family="Arial" font-size="9.00" text-anchor="middle" x="255.01" y="-279.25">1..*</text>
+<text fill="#45606b" font-family="Arial" font-size="9.00" text-anchor="middle" x="157.89" y="-262.35">1</text>
+</g>
+<!-- MeasureVersion&#45;&gt;PopulationCriterion -->
+<g class="edge" id="uml-reporting-edge2">
+<title>MeasureVersion-&gt;PopulationCriterion</title>
+<path d="M395.07,-321.58C440.2,-356.33 493,-397 493,-397 493,-397 502.21,-402.51 514.5,-409.88" fill="none" stroke="#7795a1"></path>
+<polygon fill="#7795a1" points="394.94,-321.48 390.27,-321.16 388.76,-316.72 393.44,-317.04 394.94,-321.48" stroke="#7795a1"></polygon>
+<text fill="#45606b" font-family="Arial" font-size="9.00" text-anchor="middle" x="443" y="-378.8">criteria</text>
+<text fill="#45606b" font-family="Arial" font-size="9.00" text-anchor="middle" x="494.61" y="-405.62">1..*</text>
+<text fill="#45606b" font-family="Arial" font-size="9.00" text-anchor="middle" x="408.28" y="-318.88">1</text>
+</g>
+<!-- MeasureVersion&#45;&gt;CalculationSpecification -->
+<g class="edge" id="uml-reporting-edge3">
+<title>MeasureVersion-&gt;CalculationSpecification</title>
+<path d="M396.46,-289.35C425.94,-296.82 461.24,-305.77 492.74,-313.76" fill="none" stroke="#7795a1"></path>
+<polygon fill="#7795a1" points="396.27,-289.3 391.85,-290.86 388.71,-287.38 393.13,-285.82 396.27,-289.3" stroke="#7795a1"></polygon>
+<text fill="#45606b" font-family="Arial" font-size="9.00" text-anchor="middle" x="443" y="-307.8">method</text>
+<text fill="#45606b" font-family="Arial" font-size="9.00" text-anchor="middle" x="473.09" y="-315.3">1</text>
+<text fill="#45606b" font-family="Arial" font-size="9.00" text-anchor="middle" x="408.36" y="-281.44">1</text>
+</g>
+<!-- MeasureVersion&#45;&gt;LogicalInput -->
+<g class="edge" id="uml-reporting-edge4">
+<title>MeasureVersion-&gt;LogicalInput</title>
+<path d="M396.4,-256.67C435.56,-246.74 485.02,-234.2 522.2,-224.77" fill="none" stroke="#7795a1"></path>
+<polygon fill="#7795a1" points="396.27,-256.7 393.13,-260.18 388.71,-258.62 391.85,-255.14 396.27,-256.7" stroke="#7795a1"></polygon>
+<text fill="#45606b" font-family="Arial" font-size="9.00" text-anchor="middle" x="443" y="-251.8">inputs</text>
+<text fill="#45606b" font-family="Arial" font-size="9.00" text-anchor="middle" x="506.71" y="-235.22">1..*</text>
+<text fill="#45606b" font-family="Arial" font-size="9.00" text-anchor="middle" x="404.2" y="-243.77">1</text>
+</g>
+<!-- MeasureVersion&#45;&gt;DimensionUse -->
+<g class="edge" id="uml-reporting-edge5">
+<title>MeasureVersion-&gt;DimensionUse</title>
+<path d="M395.07,-224.42C440.2,-189.67 493,-149 493,-149 493,-149 507.32,-140.43 524.09,-130.38" fill="none" stroke="#7795a1"></path>
+<polygon fill="#7795a1" points="394.94,-224.52 393.44,-228.96 388.76,-229.28 390.27,-224.84 394.94,-224.52" stroke="#7795a1"></polygon>
+<text fill="#45606b" font-family="Arial" font-size="9.00" text-anchor="middle" x="443" y="-205.8">dimensions</text>
+<text fill="#45606b" font-family="Arial" font-size="9.00" text-anchor="middle" x="512.88" y="-144.75">0..*</text>
+<text fill="#45606b" font-family="Arial" font-size="9.00" text-anchor="middle" x="397.97" y="-209.33">1</text>
+</g>
+<!-- DimensionUse&#45;&gt;ReferenceSchemeVersion -->
+<g class="edge" id="uml-reporting-edge6">
+<title>DimensionUse-&gt;ReferenceSchemeVersion</title>
+<path d="M630.79,-99C665.37,-99 711.57,-99 751.75,-99" fill="none" stroke="#7795a1"></path>
+<text fill="#45606b" font-family="Arial" font-size="9.00" text-anchor="middle" x="707" y="-101.8">classifies</text>
+<text fill="#45606b" font-family="Arial" font-size="9.00" text-anchor="middle" x="733.63" y="-105.25">1</text>
+<text fill="#45606b" font-family="Arial" font-size="9.00" text-anchor="middle" x="648.92" y="-88.35">0..*</text>
+</g>
+<!-- ReportingProduct&#45;&gt;IndicatorUse -->
+<g class="edge" id="uml-reporting-edge7">
+<title>ReportingProduct-&gt;IndicatorUse</title>
+<path d="M146.83,-37C185.17,-37 232.07,-37 268.81,-37" fill="none" stroke="#7795a1"></path>
+<polygon fill="#7795a1" points="146.59,-37 142.69,-39.6 138.79,-37 142.69,-34.4 146.59,-37" stroke="#7795a1"></polygon>
+<text fill="#45606b" font-family="Arial" font-size="9.00" text-anchor="middle" x="209.5" y="-39.8">presents</text>
+<text fill="#45606b" font-family="Arial" font-size="9.00" text-anchor="middle" x="250.69" y="-43.25">1..*</text>
+<text fill="#45606b" font-family="Arial" font-size="9.00" text-anchor="middle" x="156.91" y="-26.35">1</text>
+</g>
+<!-- IndicatorUse&#45;&gt;MeasureVersion -->
+<g class="edge" id="uml-reporting-edge8">
+<title>IndicatorUse-&gt;MeasureVersion</title>
+<path d="M331,-74.13C331,-114.5 331,-179.2 331,-223.78" fill="none" stroke="#7795a1"></path>
+<text fill="#45606b" font-family="Arial" font-size="9.00" text-anchor="middle" x="323" y="-146.8">uses</text>
+<text fill="#45606b" font-family="Arial" font-size="9.00" text-anchor="middle" x="322.55" y="-203.46">1</text>
+<text fill="#45606b" font-family="Arial" font-size="9.00" text-anchor="middle" x="339.45" y="-90.06">0..*</text>
+</g>
+<!-- ReportedObservation&#45;&gt;MeasureVersion -->
+<g class="edge" id="uml-reporting-edge9">
+<title>ReportedObservation-&gt;MeasureVersion</title>
+<path d="M150.15,-185.2C189.39,-204.36 236.83,-227.52 273.13,-245.24" fill="none" stroke="#7795a1"></path>
+<text fill="#45606b" font-family="Arial" font-size="9.00" text-anchor="middle" x="209.5" y="-231.8">evaluated under</text>
+<text fill="#45606b" font-family="Arial" font-size="9.00" text-anchor="middle" x="253.13" y="-242.68">1</text>
+<text fill="#45606b" font-family="Arial" font-size="9.00" text-anchor="middle" x="170.15" y="-183.36">0..*</text>
+</g>
+<!-- MeasureDefinition -->
+<g aria-label="Inspect MeasureDefinition" class="node uml-class" data-uml-class="MeasureDefinition" id="uml-reporting-uMeasureDefinition" role="button" tabindex="0">
+<title>MeasureDefinition</title>
+<polygon fill="#e8f4f3" points="10.5,-224 10.5,-322 139.5,-322 139.5,-224 10.5,-224" stroke="transparent"></polygon>
+<polygon fill="#006f74" points="11,-296 11,-322 140,-322 140,-296 11,-296" stroke="transparent"></polygon>
+<text fill="white" font-family="Arial" font-size="13.00" font-weight="bold" text-anchor="start" x="17" y="-306.6">MeasureDefinition</text>
+<text fill="#324e5a" font-family="Arial" font-size="11.00" text-anchor="start" x="17" y="-281.2">measureId: URI</text>
+<text fill="#324e5a" font-family="Arial" font-size="11.00" text-anchor="start" x="17" y="-257.2">stewardId: URI</text>
+<text fill="#324e5a" font-family="Arial" font-size="11.00" text-anchor="start" x="17" y="-233.2">name: String</text>
+</g>
+<!-- MeasureVersion -->
+<g aria-label="Inspect MeasureVersion" class="node uml-class" data-uml-class="MeasureVersion" id="uml-reporting-uMeasureVersion" role="button" tabindex="0">
+<title>MeasureVersion</title>
+<polygon fill="#e8f4f3" points="273.5,-224 273.5,-322 388.5,-322 388.5,-224 273.5,-224" stroke="transparent"></polygon>
+<polygon fill="#006f74" points="274,-296 274,-322 389,-322 389,-296 274,-296" stroke="transparent"></polygon>
+<text fill="white" font-family="Arial" font-size="13.00" font-weight="bold" text-anchor="start" x="280" y="-306.6">MeasureVersion</text>
+<text fill="#324e5a" font-family="Arial" font-size="11.00" text-anchor="start" x="280" y="-281.2">versionId: URI</text>
+<text fill="#324e5a" font-family="Arial" font-size="11.00" text-anchor="start" x="280" y="-257.2">state: LifecycleState</text>
+<text fill="#324e5a" font-family="Arial" font-size="11.00" text-anchor="start" x="280" y="-233.2">effectiveFrom: Date</text>
+</g>
+<!-- PopulationCriterion -->
+<g aria-label="Inspect PopulationCriterion" class="node uml-class" data-uml-class="PopulationCriterion" id="uml-reporting-uPopulationCriterion" role="button" tabindex="0">
+<title>PopulationCriterion</title>
+<polygon fill="#e8f4f3" points="508,-410 508,-484 647,-484 647,-410 508,-410" stroke="transparent"></polygon>
+<polygon fill="#006f74" points="508.5,-458 508.5,-484 647.5,-484 647.5,-458 508.5,-458" stroke="transparent"></polygon>
+<text fill="white" font-family="Arial" font-size="13.00" font-weight="bold" text-anchor="start" x="514.5" y="-468.6">PopulationCriterion</text>
+<text fill="#324e5a" font-family="Arial" font-size="11.00" text-anchor="start" x="514.5" y="-443.2">role: Code</text>
+<text fill="#324e5a" font-family="Arial" font-size="11.00" text-anchor="start" x="514.5" y="-419.2">expression: String</text>
+</g>
+<!-- CalculationSpecification -->
+<g aria-label="Inspect CalculationSpecification" class="node uml-class" data-uml-class="CalculationSpecification" id="uml-reporting-uCalculationSpecification" role="button" tabindex="0">
+<title>CalculationSpecification</title>
+<polygon fill="#e8f4f3" points="493,-286 493,-384 662,-384 662,-286 493,-286" stroke="transparent"></polygon>
+<polygon fill="#006f74" points="493.5,-358 493.5,-384 662.5,-384 662.5,-358 493.5,-358" stroke="transparent"></polygon>
+<text fill="white" font-family="Arial" font-size="13.00" font-weight="bold" text-anchor="start" x="499.5" y="-368.6">CalculationSpecification</text>
+<text fill="#324e5a" font-family="Arial" font-size="11.00" text-anchor="start" x="499.5" y="-343.2">methodId: URI</text>
+<text fill="#324e5a" font-family="Arial" font-size="11.00" text-anchor="start" x="499.5" y="-319.2">aggregation: Code</text>
+<text fill="#324e5a" font-family="Arial" font-size="11.00" text-anchor="start" x="499.5" y="-295.2">unit: URI</text>
+</g>
+<!-- LogicalInput -->
+<g aria-label="Inspect LogicalInput" class="node uml-class" data-uml-class="LogicalInput" id="uml-reporting-uLogicalInput" role="button" tabindex="0">
+<title>LogicalInput</title>
+<polygon fill="#e8f4f3" points="522.5,-162 522.5,-260 632.5,-260 632.5,-162 522.5,-162" stroke="transparent"></polygon>
+<polygon fill="#006f74" points="522.5,-234 522.5,-260 632.5,-260 632.5,-234 522.5,-234" stroke="transparent"></polygon>
+<text fill="white" font-family="Arial" font-size="13.00" font-weight="bold" text-anchor="start" x="528.5" y="-244.6">LogicalInput</text>
+<text fill="#324e5a" font-family="Arial" font-size="11.00" text-anchor="start" x="528.5" y="-219.2">inputId: URI</text>
+<text fill="#324e5a" font-family="Arial" font-size="11.00" text-anchor="start" x="528.5" y="-195.2">semanticRole: Code</text>
+<text fill="#324e5a" font-family="Arial" font-size="11.00" text-anchor="start" x="528.5" y="-171.2">grain: Code</text>
+</g>
+<!-- DimensionUse -->
+<g aria-label="Inspect DimensionUse" class="node uml-class" data-uml-class="DimensionUse" id="uml-reporting-uDimensionUse" role="button" tabindex="0">
+<title>DimensionUse</title>
+<polygon fill="#e8f4f3" points="524.5,-62 524.5,-136 630.5,-136 630.5,-62 524.5,-62" stroke="transparent"></polygon>
+<polygon fill="#006f74" points="524.5,-110 524.5,-136 630.5,-136 630.5,-110 524.5,-110" stroke="transparent"></polygon>
+<text fill="white" font-family="Arial" font-size="13.00" font-weight="bold" text-anchor="start" x="530.5" y="-120.6">DimensionUse</text>
+<text fill="#324e5a" font-family="Arial" font-size="11.00" text-anchor="start" x="530.5" y="-95.2">dimensionId: URI</text>
+<text fill="#324e5a" font-family="Arial" font-size="11.00" text-anchor="start" x="530.5" y="-71.2">asOfRule: Code</text>
+</g>
+<!-- ReferenceSchemeVersion -->
+<g aria-label="Inspect ReferenceSchemeVersion" class="node uml-class" data-uml-class="ReferenceSchemeVersion" id="uml-reporting-uReferenceSchemeVersion" role="button" tabindex="0">
+<title>ReferenceSchemeVersion</title>
+<polygon fill="#fff3df" points="752,-62 752,-136 930,-136 930,-62 752,-62" stroke="transparent"></polygon>
+<polygon fill="#805612" points="752,-110 752,-136 930,-136 930,-110 752,-110" stroke="transparent"></polygon>
+<text fill="white" font-family="Arial" font-size="13.00" font-weight="bold" text-anchor="start" x="758" y="-120.6">ReferenceSchemeVersion</text>
+<text fill="#324e5a" font-family="Arial" font-size="11.00" text-anchor="start" x="758" y="-95.2">schemeUri: URI</text>
+<text fill="#324e5a" font-family="Arial" font-size="11.00" text-anchor="start" x="758" y="-71.2">releaseId: String</text>
+</g>
+<!-- ReportingProduct -->
+<g aria-label="Inspect ReportingProduct" class="node uml-class" data-uml-class="ReportingProduct" id="uml-reporting-uReportingProduct" role="button" tabindex="0">
+<title>ReportingProduct</title>
+<polygon fill="#edf0f4" points="11.5,0 11.5,-74 138.5,-74 138.5,0 11.5,0" stroke="transparent"></polygon>
+<polygon fill="#385667" points="12,-48 12,-74 139,-74 139,-48 12,-48" stroke="transparent"></polygon>
+<text fill="white" font-family="Arial" font-size="13.00" font-weight="bold" text-anchor="start" x="18" y="-58.6">ReportingProduct</text>
+<text fill="#324e5a" font-family="Arial" font-size="11.00" text-anchor="start" x="18" y="-33.2">productId: URI</text>
+<text fill="#324e5a" font-family="Arial" font-size="11.00" text-anchor="start" x="18" y="-9.2">audience: String</text>
+</g>
+<!-- IndicatorUse -->
+<g aria-label="Inspect IndicatorUse" class="node uml-class" data-uml-class="IndicatorUse" id="uml-reporting-uIndicatorUse" role="button" tabindex="0">
+<title>IndicatorUse</title>
+<polygon fill="#edf0f4" points="269,0 269,-74 393,-74 393,0 269,0" stroke="transparent"></polygon>
+<polygon fill="#385667" points="269,-48 269,-74 393,-74 393,-48 269,-48" stroke="transparent"></polygon>
+<text fill="white" font-family="Arial" font-size="13.00" font-weight="bold" text-anchor="start" x="275" y="-58.6">IndicatorUse</text>
+<text fill="#324e5a" font-family="Arial" font-size="11.00" text-anchor="start" x="275" y="-33.2">useId: URI</text>
+<text fill="#324e5a" font-family="Arial" font-size="11.00" text-anchor="start" x="275" y="-9.2">decisionContext: String</text>
+</g>
+<!-- ReportedObservation -->
+<g aria-label="Inspect ReportedObservation" class="node uml-class" data-uml-class="ReportedObservation" id="uml-reporting-uReportedObservation" role="button" tabindex="0">
+<title>ReportedObservation</title>
+<polygon fill="#edf0f4" points="0,-100 0,-198 150,-198 150,-100 0,-100" stroke="transparent"></polygon>
+<polygon fill="#385667" points="0,-172 0,-198 150,-198 150,-172 0,-172" stroke="transparent"></polygon>
+<text fill="white" font-family="Arial" font-size="13.00" font-weight="bold" text-anchor="start" x="6" y="-182.6">ReportedObservation</text>
+<text fill="#324e5a" font-family="Arial" font-size="11.00" text-anchor="start" x="6" y="-157.2">resultId: URI</text>
+<text fill="#324e5a" font-family="Arial" font-size="11.00" text-anchor="start" x="6" y="-133.2">period: Interval</text>
+<text fill="#324e5a" font-family="Arial" font-size="11.00" text-anchor="start" x="6" y="-109.2">value: Decimal</text>
+</g>
+</g>
+</svg>
