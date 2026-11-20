@@ -1,1 +1,514 @@
+<!DOCTYPE html>
+<html data-theme="light" lang="en-GB"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><meta content="light dark" name="color-scheme"/><meta content="An interactive guide to establishing a national network of health data stewards, including clinical governance, metadata services, operating roles, roadmap and readiness questions." name="description"/><link href="https://agilehealthinformatics.com/resources/data-management/national-domain-data-stewardship/" rel="canonical"/><title>National Domain Data Stewardship | Agile Health Informatics Ltd</title><style>
+:root{--bg:#edf3f8;--surface:#fff;--surface-2:#f5f8fb;--surface-3:#dfe9f3;--text:#17324a;--muted:#5b7187;--line:#c7d5e3;--brand:#4f7eb1;--brand-deep:#3e6897;--brand-soft:#7399c0;--accent:#dce8b2;--accent-strong:#c9dc93;--accent-ink:#4d6220;--green:#4d7427;--amber:#946200;--shadow:0 12px 30px rgba(42,78,114,.10);--radius:20px;--max:1180px}
+[data-theme=dark]{--bg:#0f2032;--surface:#142d45;--surface-2:#193852;--surface-3:#244b6b;--text:#edf4fa;--muted:#c3d0dc;--line:#315979;--brand:#75a1ce;--brand-deep:#9bbfe0;--brand-soft:#84aacf;--accent:#dce8b2;--accent-strong:#e6efc4;--accent-ink:#233211;--green:#cfe39a;--amber:#f0cd86;--shadow:none}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.65 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}body:before{content:"";position:fixed;left:0;top:0;width:var(--scroll,0%);height:3px;background:var(--accent-strong);z-index:9999}a{color:var(--brand-deep);text-underline-offset:.18em}a:hover{color:var(--brand)}button,input,select{font:inherit}img{max-width:100%;height:auto}:focus-visible{outline:3px solid var(--accent-strong);outline-offset:3px}
+.site-header{position:sticky;top:0;z-index:1000;background:color-mix(in srgb,var(--surface) 92%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid color-mix(in srgb,var(--line) 80%,transparent)}.nav-wrap{max-width:var(--max);margin:0 auto;padding:10px 24px;display:flex;align-items:center;gap:22px}.brand-link{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text);min-width:275px}.brand-link img{width:54px;height:54px;border-radius:12px;box-shadow:0 5px 14px rgba(30,54,82,.15);object-fit:cover}.brand-name{line-height:1.08}.brand-name strong{display:block;color:var(--brand-deep);font-size:1rem;letter-spacing:-.015em}.brand-name span{display:block;margin-top:4px;color:var(--muted);font-size:.72rem;letter-spacing:.17em;text-transform:lowercase}.site-nav{display:flex;align-items:center;gap:4px;margin-left:auto}.site-nav a{padding:9px 10px;border-radius:9px;text-decoration:none;color:var(--muted);font-size:.9rem;font-weight:650}.site-nav a:hover,.site-nav a.active{background:var(--surface-3);color:var(--brand-deep)}.nav-actions{display:flex;gap:8px;margin-left:6px}.icon-btn,.menu-btn{border:1px solid var(--line);background:var(--surface);color:var(--text);width:40px;height:40px;border-radius:10px;cursor:pointer;display:grid;place-items:center}.menu-btn{display:none}
+.hero{position:relative;overflow:hidden;background:linear-gradient(135deg,#3e6897 0%,#4f7eb1 62%,#7198c0 100%);color:#fff}.hero:before,.hero:after{content:"";position:absolute;border-radius:50%;background:rgba(220,232,178,.14);pointer-events:none}.hero:before{width:560px;height:560px;right:-210px;top:-240px}.hero:after{width:280px;height:280px;left:52%;bottom:-180px}.hero-inner{max-width:var(--max);margin:0 auto;padding:72px 24px 68px;position:relative;z-index:1}.hero.compact .hero-inner{padding:56px 24px 54px}.kicker,.eyebrow,.resource-kicker{font-size:.78rem;text-transform:uppercase;letter-spacing:.14em;font-weight:800}.kicker{color:var(--accent)}.eyebrow{color:var(--brand);margin-bottom:6px}.resource-kicker{color:var(--accent-ink);display:inline-block;margin-bottom:8px}h1{margin:12px 0 20px;font-size:clamp(2.7rem,5.8vw,5.3rem);line-height:1.02;letter-spacing:-.052em;max-width:880px}.hero.compact h1{font-size:clamp(2.5rem,5vw,4.5rem)}h2{font-size:clamp(2rem,4vw,3.05rem);line-height:1.08;letter-spacing:-.04em;color:var(--brand-deep);margin:0 0 14px}h3{font-size:1.18rem;line-height:1.3;color:var(--brand-deep);margin:0 0 9px}p{margin:0 0 14px}.hero .lead{font-size:clamp(1.08rem,2vw,1.28rem);max-width:880px;color:#edf5fb}.hero-actions{display:flex;flex-wrap:wrap;gap:11px;margin-top:28px}.cta{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:10px 17px;border:1px solid var(--line);border-radius:11px;text-decoration:none;font-weight:750;background:var(--surface);color:var(--brand-deep)}.cta.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}.cta.outline{background:#ffffff12;color:#fff;border-color:#ffffff80}.cta:hover{filter:brightness(.96)}main{max-width:var(--max);margin:0 auto;padding:26px 24px 72px}section{padding:46px 0;border-bottom:1px solid var(--line)}section:last-child{border-bottom:0}.section-head{margin-bottom:24px;max-width:900px}.lede{font-size:1.09rem;max-width:840px;color:var(--muted)}.grid{display:grid;gap:17px}.grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}.grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}.grid-4{grid-template-columns:repeat(4,minmax(0,1fr))}.card{min-width:0;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px;display:flex;flex-direction:column;align-items:stretch}.card>p{flex-grow:1;overflow-wrap:anywhere}.card-link{text-decoration:none;color:var(--text)}.card-link:hover{transform:translateY(-2px);border-color:var(--brand)}.card-link:hover h3{color:var(--brand)}.card h3{margin-top:5px}.action{display:block;color:var(--brand-deep);font-weight:750;margin-top:auto}.action a{font-weight:750}.tags{display:flex;flex-wrap:wrap;gap:6px;margin:15px 0 17px}.tags span{background:var(--surface-3);color:var(--text);padding:3px 9px;border-radius:99px;font-size:.75rem;font-weight:650}.feature{display:grid;grid-template-columns:1.3fr 1fr;gap:20px;background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow);border-radius:var(--radius);padding:26px}.feature-points{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.feature-points div{background:var(--surface-2);border:1px solid var(--line);border-radius:13px;padding:12px}.feature-points strong{display:block;color:var(--brand-deep)}.feature-points span{font-size:.84rem;color:var(--muted)}.breadcrumbs{max-width:var(--max);margin:auto;padding:14px 24px 0;color:var(--muted);font-size:.86rem}.breadcrumbs a{color:var(--muted)}.resource-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch;gap:17px}.resource-card .type{font-size:.76rem;text-transform:uppercase;font-weight:800;letter-spacing:.09em;color:var(--brand-deep)}.resource-card .action{margin-top:auto}.filterbar{display:grid;grid-template-columns:1.4fr 1fr;gap:12px;margin:22px 0}.filterbar input,.filterbar select{min-width:0;width:100%;border:1px solid var(--line);background:var(--surface);color:var(--text);border-radius:11px;padding:12px}.filterbar label{display:block;font-size:.84rem;font-weight:750;margin-bottom:4px}.resource-card[hidden]{display:none!important}.publication-list{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}.publication-list .card{min-height:180px}.hero-facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}.hero-facts span{border:1px solid #ffffff66;border-radius:99px;padding:5px 10px;font-size:.81rem}footer{background:#102b43;color:#dbe8f2}.footer-inner{max-width:var(--max);margin:0 auto;padding:32px 24px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center}.footer-brand{display:flex;align-items:center;gap:14px}.footer-brand img{width:62px;height:62px;border-radius:13px}.footer-brand strong{display:block;color:#fff}.footer-brand span{display:block;font-size:.83rem;color:#b9cbda;margin-top:3px}.footer-meta{text-align:right;font-size:.82rem;color:#b9cbda}.footer-meta a{color:#fff}.ahi-privacy-links{max-width:var(--max);margin:0 auto;padding:0 24px 24px;display:flex;gap:20px;font-size:.84rem}.ahi-privacy-links a{color:#fff}.cta-band{background:var(--surface-3);border:1px solid var(--line);border-radius:var(--radius);padding:30px;display:grid;grid-template-columns:1fr auto;align-items:center;gap:16px}.cta-band h2{font-size:1.7rem}.small{font-size:.86rem;color:var(--muted)}.pills{display:flex;flex-wrap:wrap;gap:8px}.pills span{background:var(--surface-3);padding:4px 10px;border-radius:99px;font-weight:700}.empty{padding:22px;border:1px solid var(--line);border-radius:var(--radius);color:var(--muted)}
+@media(max-width:980px){.site-nav{display:none;position:absolute;top:75px;left:14px;right:14px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:8px;box-shadow:var(--shadow);flex-direction:column;align-items:stretch}.site-nav.open{display:flex}.menu-btn{display:grid}.brand-link{min-width:0}.resource-grid,.grid-4{grid-template-columns:repeat(2,minmax(0,1fr))}.grid-3{grid-template-columns:repeat(2,minmax(0,1fr))}.feature{grid-template-columns:1fr}.footer-inner{grid-template-columns:1fr}.footer-meta{text-align:left}}
+@media(max-width:680px){.nav-wrap{padding:8px 14px}.brand-name span{display:none}.brand-link img{width:48px;height:48px}.breadcrumbs{padding:10px 16px 0}.hero-inner,.hero.compact .hero-inner{padding:48px 18px 52px}main{padding:14px 16px 54px}section{padding:38px 0}.grid-2,.grid-3,.grid-4,.resource-grid,.publication-list,.filterbar,.feature-points,.cta-band{grid-template-columns:1fr}.feature{padding:20px}.cta-band{padding:24px}.footer-inner{padding:26px 16px}.ahi-privacy-links{padding:0 16px 22px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.card-link{transition:none}}
+@media print{.site-header,.hero-actions,.icon-btn,.menu-btn,.breadcrumbs,.filterbar,.ahi-privacy-links{display:none!important}body{background:#fff;color:#000}.hero{background:#678eb8!important}.hero-inner{padding:28px}.card,.feature{box-shadow:none}footer{background:#12304a!important}.resource-grid{grid-template-columns:repeat(2,1fr)}}
 
+
+/* Resource-specific styles, following the AHI site design system. */
+:root{scroll-padding-top:100px}
+body{overflow-wrap:break-word}
+.resource-hero .hero-inner{padding:58px 24px 50px}
+.resource-hero h1{font-size:clamp(2.45rem,5vw,4.6rem);max-width:960px}
+.resource-hero .lead{max-width:860px}
+.resource-hero .hero-facts{margin-top:22px}
+.resource-hero .hero-facts span{background:#18394c28}
+.intro-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:26px 0 0;max-width:1080px}
+.intro-summary .item{border:1px solid #ffffff78;background:#ffffff16;border-radius:14px;padding:14px 16px;font-size:.93rem}
+.intro-summary strong{display:block;font-size:1.05rem;color:#fff;margin-bottom:4px}
+.intro-summary span{color:#eff6fc}
+.crumbs{max-width:var(--max);margin:0 auto;padding:13px 24px 5px;font-size:.84rem;color:var(--muted)}
+.crumbs a{color:var(--brand-deep)}
+.steward-layout{display:grid;grid-template-columns:224px minmax(0,1fr);gap:34px;max-width:var(--max);padding:12px 24px 72px;margin:0 auto;align-items:start}
+.steward-nav{position:sticky;top:96px;align-self:start;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow);max-height:calc(100vh - 116px);overflow-y:auto}
+.steward-nav h2{font-size:1rem;letter-spacing:0;line-height:1.3;margin:0 0 12px}
+.steward-nav a{display:block;padding:9px 10px;border-radius:9px;color:var(--muted);font-size:.88rem;line-height:1.35;font-weight:650;text-decoration:none}
+.steward-nav a:hover,.steward-nav a.active{background:var(--surface-3);color:var(--brand-deep)}
+.steward-nav .nav-num{display:inline-block;font-variant-numeric:tabular-nums;color:var(--brand-deep);min-width:25px}
+.steward-nav .related{border-top:1px solid var(--line);margin-top:16px;padding-top:10px}
+.steward-nav .related a{font-size:.82rem}
+.steward-content{min-width:0;padding:0;max-width:none;margin:0}
+.steward-content section{scroll-margin-top:95px;border-bottom:1px solid var(--line);padding:35px 0 41px}
+.steward-content section:last-child{border-bottom:0}
+.sec-head{display:grid;grid-template-columns:46px minmax(0,1fr);column-gap:10px;align-items:start;margin:0 0 23px}
+.sec-num{color:var(--brand-deep);font-size:1.25rem;font-weight:800;line-height:1.5;font-variant-numeric:tabular-nums}
+.sec-head h2{font-size:clamp(1.75rem,2.6vw,2.35rem);line-height:1.12;margin:0}
+.sec-head p{grid-column:2;color:var(--muted);max-width:750px;margin:11px 0 0}
+.steward-content .body{display:grid;gap:21px;min-width:0}
+.steward-content .body>h3{font-size:1.27rem;margin:13px 0 -7px}
+.steward-content .read{max-width:76ch}
+.steward-content .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+.steward-content .card{min-width:0;padding:19px 20px;display:block;box-shadow:var(--shadow)}
+.steward-content .card h3{font-size:1.06rem;margin:0 0 8px}
+.steward-content .card p{font-size:.94rem;color:var(--muted);margin:0}
+.note{background:var(--surface-3);border:1px solid var(--line);border-left:4px solid var(--brand);border-radius:12px;padding:15px 18px}
+.note.flag{background:var(--surface-2);border-left-color:var(--amber)}
+.note p{margin:0}
+.scroll{max-width:100%;overflow-x:auto;border:1px solid var(--line);border-radius:13px;background:var(--surface)}
+.scroll:focus-visible{outline:3px solid var(--accent-strong)}
+.steward-content table{border-collapse:collapse;width:100%;font-size:.9rem;min-width:610px}
+.steward-content th,.steward-content td{padding:11px 12px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+.steward-content th{background:var(--surface-2);color:var(--brand-deep);font-size:.8rem;white-space:normal}
+.steward-content tr:last-child td{border-bottom:0}
+.chain{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;padding:11px}
+.link{position:relative;background:var(--surface-2);border:1px solid var(--line);border-radius:11px;padding:13px;display:flex;flex-direction:column;gap:5px}
+.link b{font-size:.95rem;color:var(--brand-deep)}
+.link .q{font-size:.8rem;font-weight:800;color:var(--green)}
+.link small{font-size:.82rem;color:var(--muted);line-height:1.5}
+.tiers{display:grid;gap:10px}
+.tier{display:grid;grid-template-columns:146px minmax(0,1fr);gap:14px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:15px 18px}
+.tier.top{border-left:4px solid var(--brand)}
+.tier .lvl{font-weight:800;color:var(--brand-deep);font-size:.9rem}
+.tier p{font-size:.92rem;margin:0}
+.tier p span{color:var(--muted)}
+ol.steps{counter-reset:step;list-style:none;margin:0;padding:0;display:grid;gap:0}
+ol.steps li{counter-increment:step;display:grid;grid-template-columns:36px minmax(0,1fr);gap:13px;padding:13px 4px;border-top:1px solid var(--line)}
+ol.steps li:before{content:counter(step);color:var(--brand-deep);font-weight:800;font-size:1.1rem}
+ol.steps li b{font-weight:750}ol.steps li span{color:var(--muted)}
+.road{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;padding:12px}
+.phase{display:flex;flex-direction:column;gap:10px;border:1px solid var(--line);border-top:4px solid var(--brand);border-radius:13px;padding:19px;background:var(--surface)}
+.phase:nth-child(2){border-top-color:var(--brand-soft)}.phase:nth-child(3){border-top-color:var(--green)}.phase:nth-child(4){border-top-color:var(--accent-ink)}
+.phase .when{color:var(--brand-deep);font-size:.82rem;font-weight:800;letter-spacing:.03em}
+.phase h3{margin:0}.phase ul{padding-left:20px;margin:0;display:grid;gap:6px;font-size:.9rem}
+.phase .gate{margin-top:auto;background:var(--surface-2);padding:12px;border-radius:9px;font-size:.87rem}
+.phase .gate b{color:var(--brand-deep)}
+.qtools{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.qtools button,.role-nav button{border:1px solid var(--brand);background:var(--brand-deep);color:#fff;padding:10px 15px;font-size:.88rem;font-weight:700;border-radius:10px;cursor:pointer}
+.qtools button.ghost{color:var(--brand-deep);background:var(--surface)}
+.qtools button:hover,.role-nav button:hover{filter:brightness(.94)}
+.status{font-size:.9rem;color:var(--muted)}
+.qgroups{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+.qgroup{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+.qgroup h3{font-size:1.07rem;display:flex;justify-content:space-between;gap:10px;margin-bottom:15px}
+.qgroup h3 small{font-size:.78rem;color:var(--muted);font-weight:700}
+.qgroup ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.qgroup label{display:grid;grid-template-columns:20px minmax(0,1fr);gap:10px;font-size:.9rem;cursor:pointer;line-height:1.45}
+.qgroup input{width:18px;height:18px;margin:3px 0 0;accent-color:var(--brand-deep)}
+.qgroup input:checked+span{text-decoration:line-through;color:var(--muted)}
+.steward-content section.role-nav{padding:23px}
+.role-nav{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:23px}
+.role-nav h2{font-size:1.7rem;margin:0 0 12px}
+.role-nav p{color:var(--muted)}
+.role-nav label{font-weight:750;display:block;margin:0 0 7px}
+.role-nav select{width:100%;max-width:410px;background:var(--surface-2);color:var(--text);border:1px solid var(--line);border-radius:10px;padding:11px 13px}
+.role-summary{margin-top:16px;padding:17px 19px;border-radius:13px;background:var(--surface-2);border:1px solid var(--line)}
+.role-summary h3{margin:0 0 8px}.role-summary p{margin:0 0 10px;color:var(--text)}
+.role-summary ul{margin:0 0 12px;padding-left:20px}
+.role-summary li{margin:5px 0}
+.role-links{display:flex;flex-wrap:wrap;gap:8px}
+.role-links a{font-size:.87rem;font-weight:750;text-decoration:none;border:1px solid var(--line);padding:6px 10px;border-radius:9px;background:var(--surface)}
+.inline-nav{display:none}
+.steward-end{padding:24px;background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius);margin:20px 0}
+.steward-end p{margin:0}
+@media(max-width:980px){.steward-layout{grid-template-columns:180px minmax(0,1fr);gap:20px}.chain{grid-template-columns:repeat(3,minmax(0,1fr))}.qgroups{grid-template-columns:1fr}.intro-summary{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){.steward-layout{display:block;padding:10px 18px 45px}.steward-nav{display:none}.inline-nav{display:block;position:relative;margin:3px 0 12px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px}.inline-nav summary{cursor:pointer;font-weight:750;color:var(--brand-deep)}.inline-nav .links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:3px;margin-top:9px}.inline-nav a{display:block;text-decoration:none;padding:7px 5px;font-size:.9rem}.steward-content section{padding:29px 0 34px}.intro-summary{grid-template-columns:1fr}.resource-hero .hero-inner{padding:40px 18px}.steward-content .grid{grid-template-columns:1fr}.chain{grid-template-columns:repeat(2,minmax(0,1fr))}.road{grid-template-columns:1fr}.tier{grid-template-columns:1fr;gap:4px}}
+@media(max-width:490px){.chain{grid-template-columns:1fr}.sec-head{grid-template-columns:32px minmax(0,1fr)}.sec-head h2{font-size:1.7rem}.inline-nav .links{grid-template-columns:1fr}.steward-content .card{padding:16px}.qgroup{padding:15px}.steward-content section.role-nav{padding:17px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.card-link:hover{transform:none}}
+@media print{body{background:#fff!important;color:#000!important;font-size:10.5pt}.site-header,.steward-nav,.inline-nav,.qtools,.hero-actions,.ahi-consent,.ahi-privacy-links{display:none!important}.resource-hero{background:#fff!important;color:#000!important}.resource-hero *{color:#000!important}.resource-hero .hero-inner{padding:16px 0}.crumbs{padding:0}.steward-layout{display:block;max-width:none;padding:0}.steward-content section{padding:16px 0;break-inside:auto}.steward-content .card,.qgroup,.phase,.tier{box-shadow:none!important;break-inside:avoid}.steward-content .scroll{overflow:visible;border:0}.steward-content table{min-width:0;font-size:8pt}.steward-content th,.steward-content td{padding:5px 6px}.chain{grid-template-columns:repeat(5,1fr);padding:0}.road{grid-template-columns:repeat(2,1fr)}.qgroups{grid-template-columns:repeat(2,1fr)}footer{display:none!important}.role-nav{display:none!important}}
+
+/* Responsibility view: distinct role-specific content, with visible focus in the reference model. */
+.role-current{display:inline-flex;align-items:center;gap:6px;margin:16px 0 0!important;padding:5px 11px;border-radius:999px;background:var(--accent);color:var(--accent-ink)!important;font-size:.84rem;font-weight:800}
+.role-summary{border-left:4px solid var(--brand);padding:19px 20px}
+.role-summary .role-heading{margin-bottom:14px}
+.role-summary .role-heading h3{font-size:1.35rem;margin:0 0 6px}
+.role-summary .role-heading p{margin:0;max-width:74ch}
+.role-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:15px 0}
+.role-cards article{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:15px 16px;min-width:0}
+.role-cards h4{margin:0 0 9px;color:var(--brand-deep);font-size:.96rem;line-height:1.3}
+.role-cards ul{margin:0;padding-left:19px}
+.role-cards li{margin:6px 0;font-size:.91rem;line-height:1.48}
+.role-boundary{padding:13px 15px;background:var(--surface-3);border-radius:10px;border:1px solid var(--line);margin:0 0 12px}
+.role-boundary strong{color:var(--brand-deep)}
+.role-evidence{font-size:.91rem;margin:8px 0 14px;color:var(--text)}
+.role-links a{display:inline-flex;align-items:center;padding:8px 11px}
+.role-reference{font-size:.85rem;color:var(--muted);margin:10px 0 0!important}
+.steward-content tr.role-highlight td{background:var(--surface-3)}
+.steward-content tr.role-highlight td:first-child{border-left:4px solid var(--brand-deep);padding-left:8px}
+@media(max-width:680px){.role-cards{grid-template-columns:1fr}.role-summary{padding:14px}.role-cards article{padding:13px}}
+@media print{.role-current,.role-reference{display:none!important}.role-cards{grid-template-columns:repeat(2,minmax(0,1fr))}.role-summary{border:0}}
+</style><link href="/assets/css/analytics-consent.css" rel="stylesheet"/><script defer="" src="/assets/js/analytics.js"></script></head><body><header class="site-header"><div class="nav-wrap"><a aria-label="Agile Health Informatics Ltd home" class="brand-link" href="/"><img alt="Agile Health Informatics Ltd logo" height="100" src="data:image/webp;base64,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" width="100"/><span class="brand-name"><strong>Agile Health Informatics Ltd</strong><span>creative ideas &amp; solutions</span></span></a><nav aria-label="Primary navigation" class="site-nav" id="siteNav"><a href="/">Home</a><a href="/services.html">Services</a><a aria-current="page" class="active" href="/resources.html">Resources</a><a href="/resources/professional-development/health-care-computing/index.html">Professional Development</a><a href="/about.html">About</a><a href="/#contact">Connect</a></nav><div class="nav-actions"><button aria-label="Switch colour theme" aria-pressed="false" class="icon-btn" id="themeToggle" type="button">◐</button><button aria-controls="siteNav" aria-expanded="false" aria-label="Open navigation" class="menu-btn" id="menuToggle" type="button">☰</button></div></div></header><div class="hero resource-hero"><div class="hero-inner"><div class="kicker">Explainer · Health data governance</div><h1>A national network of domain data stewards</h1>
+<p class="lead">Why national health services need a stewardship network, how accountability and expertise can be organised, and the decisions required to establish a sustainable operating model.</p>
+<div class="hero-actions"><a class="cta primary" href="#role-navigation">Explore responsibilities</a><a class="cta outline" href="#questions">Review the readiness questions</a></div>
+<div class="hero-facts"><span>Proposed operating model</span><span>Jurisdiction-neutral</span><span>Indicative roadmap</span><span>Executive and clinical audience</span></div>
+<div class="intro-summary"><div class="item"><strong>The problem</strong><span>Shared data services rely on definitions that domain specialists can validate and maintain.</span></div><div class="item"><strong>The response</strong><span>Named stewards, protected participation, clear approval authority and a coordination hub.</span></div><div class="item"><strong>The first step</strong><span>Identify existing definitions, dictionaries and the people already maintaining them.</span></div></div>
+</div></div><div aria-label="Breadcrumb" class="crumbs"><a href="/">Home</a> / <a href="/resources.html">Resources</a> / Data stewardship</div><div class="steward-layout"><aside aria-label="Section navigator" class="steward-nav"><h2>On this page</h2><nav aria-label="Resource contents">
+<a href="#role-navigation"><span class="nav-num">↳</span>By responsibility</a>
+<a href="#why"><span class="nav-num">01</span>Why stewardship?</a>
+<a href="#scope"><span class="nav-num">02</span>What it covers</a>
+<a href="#principles"><span class="nav-num">03</span>Design principles</a>
+<a href="#setup"><span class="nav-num">04</span>Operating model</a>
+<a href="#roadmap"><span class="nav-num">05</span>Roadmap</a>
+<a href="#measures"><span class="nav-num">06</span>Measures and risks</a>
+<a href="#questions"><span class="nav-num">07</span>Decision checklist</a>
+</nav><div class="related"><a href="/resources.html">← Resource library</a><a href="/resources/explainers/data-dictionary-metadata-registry/">Related: metadata services</a><a href="/resources/explainers/canonical-reporting-metadata/">Related: reporting metadata</a></div></aside><main class="steward-content" id="main-content"><details class="inline-nav"><summary>Navigate this explainer</summary><nav aria-label="Mobile section navigator" class="links"><a href="#role-navigation">By responsibility</a><a href="#why">1 · Why stewardship?</a><a href="#scope">2 · What it covers</a><a href="#principles">3 · Principles</a><a href="#setup">4 · Operating model</a><a href="#roadmap">5 · Roadmap</a><a href="#measures">6 · Measures and risks</a><a href="#questions">7 · Decision checklist</a></nav></details><section aria-labelledby="role-nav-title" class="role-nav" id="role-navigation"><h2 id="role-nav-title">Explore the model by responsibility</h2><p>Choose a role to change the responsibilities, decision boundaries, priority actions and questions below. The complete reference remains available further down the page, with applicable governance rows highlighted.</p>
+<label for="roleSelect">Your perspective</label><select id="roleSelect"><option value="executive">Executive sponsor</option><option value="clinical">Clinical leadership</option><option value="data">Data office and services</option><option value="operational">Regional or operational leadership</option><option value="steward">Domain data steward</option><option value="partner">External partner or registry</option></select>
+<p class="role-current" id="roleCurrent" role="status" aria-live="polite">Viewing: Executive sponsor · perspective 1 of 6</p>
+<div class="role-summary" id="rolePanel" aria-label="Selected responsibility view"><h3>Executive sponsor</h3><p>Provides the mandate, assigns accountability and reviews progress. Select another perspective to explore a different responsibility.</p><p><a href="#setup">Read the complete operating model</a></p></div>
+<p class="role-reference">The full governance model below remains visible. Rows relevant to the selected role are highlighted in the operating-model tables.</p></section><section id="why">
+<div class="sec-head"><span class="sec-num">1</span><h2>Why a stewardship network</h2>
+<p>Terminology servers, metadata registries and data catalogues are now affordable and mature. What they hold is only as trustworthy as the people who define and maintain it.</p></div>
+<div class="body">
+<div class="grid">
+<div class="card"><h3>Infrastructure without content</h3><p>A national terminology or data dictionary platform can be live for years and still hold few definitions that clinicians trust. Platforms store meaning; they cannot decide it.</p></div>
+<div class="card"><h3>Expertise sits elsewhere</h3><p>The people who know what an observation, a pathway or an indicator means work in clinical programmes, registries, laboratories and community services, not in the national data office.</p></div>
+<div class="card"><h3>Authority sits elsewhere too</h3><p>A data office cannot set the priorities of clinicians, regional staff or independent registries. Asking for goodwill produces a voluntary community that fades when people get busy.</p></div>
+<div class="card"><h3>The same figure, calculated differently</h3><p>Without one owner per indicator, two reporting teams can publish different numbers for the same measure. Nobody can explain a published figure back to its source.</p></div>
+<div class="card"><h3>Assets lost when funding ends</h3><p>Research and EU-funded projects build excellent dictionaries and concept sets. When the grant ends, they stop being maintained unless a lasting organisation adopts them.</p></div>
+<div class="card"><h3>Rising legal and regulatory demands</h3><p>Data access and interoperability regulation increasingly requires health services to describe their datasets, their quality and their definitions. That needs someone accountable for each one.</p></div>
+</div>
+<div class="note read"><p><strong>Three bad alternatives.</strong> Without a network, a data office can write clinical content centrally (not credible, does not scale), import definitions in bulk with no owners (volume without trust), or wait for demand (services go unused). A stewardship network avoids all three.</p></div>
+</div>
+</section><section id="scope">
+<div class="sec-head"><span class="sec-num">2</span><h2>What stewardship covers</h2>
+<p>Stewardship is not only about a data dictionary. It covers a chain that lets anyone trace a published figure back to where the data was recorded.</p></div>
+<div class="body">
+<div aria-label="Metadata chain" class="scroll" role="region" tabindex="0">
+<div class="chain">
+<div class="link"><b>Terminology</b><span class="q">What codes mean</span><small>Code systems, value sets and maps, such as SNOMED CT and LOINC, held in a terminology service.</small></div>
+<div class="link"><b>Reference data</b><span class="q">Which values are allowed</span><small>Shared code lists: organisations, service types, specialties, medicinal products.</small></div>
+<div class="link"><b>Data dictionary</b><span class="q">What data items mean</span><small>Data elements and datasets with definitions, units, value domains and versions.</small></div>
+<div class="link"><b>Reporting metadata</b><span class="q">How figures are calculated</span><small>Indicators and measures: numerator, denominator, exclusions, derivation, reporting period.</small></div>
+<div class="link"><b>Data asset catalogue</b><span class="q">What data is held, and where it goes</span><small>Systems, datasets and registers with owners, classification, quality and lineage.</small></div>
+</div>
+</div>
+<p class="read">Each link in the chain has a named person responsible for it. A domain steward owns the link between a data element and its value set. A measure steward owns the link between an indicator and the data elements it uses. A data asset owner owns the link between an asset and the datasets it holds.</p>
+<div class="note flag read"><p><strong>Keep the parts separate, but link them.</strong> Terminology belongs in the terminology service and definitions in the dictionary. Stewardship connects them by identifier rather than copying content from one to the other.</p></div>
+</div>
+</section><section id="principles">
+<div class="sec-head"><span class="sec-num">3</span><h2>Design principles</h2>
+<p>Ten principles that keep the network credible, scalable and sustainable.</p></div>
+<div class="body">
+<div aria-label="Scrollable reference content" class="scroll" role="region" tabindex="0"><table>
+<thead><tr><th>Principle</th><th>What it means in practice</th></tr></thead>
+<tbody>
+<tr><td><strong>Expertise stays where it is</strong></td><td>The central team coordinates and assures. It does not try to become the clinical authority for every domain.</td></tr>
+<tr><td><strong>Authority follows accountability</strong></td><td>Each group of stewards is mandated through its own line: clinical leadership, operations, or a written agreement for bodies outside the health service.</td></tr>
+<tr><td><strong>Stewardship is separate from approval</strong></td><td>Stewards draft and recommend. Designated boards approve national standards. Taking part in a project does not confer authority over them.</td></tr>
+<tr><td><strong>Lasting organisations sponsor</strong></td><td>Domains are sponsored by bodies with ongoing remits. Time-limited projects contribute through them.</td></tr>
+<tr><td><strong>Reuse before writing anything new</strong></td><td>Every domain starts by finding and assessing what already exists.</td></tr>
+<tr><td><strong>Match the level of control to the asset</strong></td><td>Only national standards go to a board. Domain and project assets follow lighter routes.</td></tr>
+<tr><td><strong>Participation is formal and resourced</strong></td><td>Named roles, protected time and written agreements.</td></tr>
+<tr><td><strong>Give contributors something back</strong></td><td>Faster turnaround, published and versioned assets, less local mapping work, recognition.</td></tr>
+<tr><td><strong>No domain is left out</strong></td><td>Community, primary care, mental health and disability services help set priorities, not just review others' work.</td></tr>
+<tr><td><strong>Trace every figure to its source</strong></td><td>Indicators, definitions, value sets and data assets are linked, and stewardship covers the links.</td></tr>
+</tbody>
+</table></div>
+</div>
+</section><section id="setup">
+<div class="sec-head"><span class="sec-num">4</span><h2>How to set it up</h2>
+<p>No single function in a national health service controls everyone the network needs. Split accountability along existing management lines and bring it together under one executive mandate.</p></div>
+<div class="body">
+<h3>Leadership and accountability</h3>
+<div aria-label="Scrollable reference content" class="scroll" role="region" tabindex="0"><table>
+<thead><tr><th>Level</th><th>Typically</th><th>Accountable for</th><th>Does not</th></tr></thead>
+<tbody>
+<tr data-role-focus="executive"><td><strong>Executive sponsor</strong></td><td>Chief executive and executive team</td><td>Mandate, allocating accountability, settling disputes between lines, reviewing progress</td><td>Run the network or decide content</td></tr>
+<tr data-role-focus="clinical"><td><strong>Clinical co-lead</strong></td><td>Chief clinical, medical or nursing officer</td><td>Clinical meaning, sponsoring clinical domains, nominating stewards, clinical authority</td><td>Operate platforms or the approval workflow</td></tr>
+<tr data-role-focus="data"><td><strong>Data and services co-lead</strong></td><td>Chief data officer or national data office</td><td>Terminology, reference data and metadata services, process, technical assurance, the coordination team</td><td>Decide clinical meaning</td></tr>
+<tr data-role-focus="operational"><td><strong>Operational lead</strong></td><td>Regional or operational directors</td><td>Releasing local custodians, implementation evidence, adoption</td><td>Approve national content</td></tr>
+<tr data-role-focus="partner"><td><strong>External partners</strong></td><td>Regulators, registries, independent providers, universities</td><td>What their written agreements commit them to</td><td>Take instruction from health service management</td></tr>
+</tbody>
+</table></div>
+<p class="read">These meet in a <strong>stewardship council</strong>, co-chaired by the clinical and data co-leads. It sets priorities, admits new domains, owns the charter and reports to the executive team. It does not approve content.</p>
+<h3>Four tiers</h3>
+<div class="tiers">
+<div class="tier top"><span class="lvl">Executive</span><p>Chief executive and executive team. <span>Mandate down, reporting up.</span></p></div>
+<div class="tier"><span class="lvl">1. National governance</span><p>Stewardship council; a data definitions board and a terminology editorial board (or one board with two panels); national standards bodies. <span>Recommendations go up, approvals come down.</span></p></div>
+<div class="tier"><span class="lvl">2. Coordination hub</span><p>A small central team hosted by the data office with a clinical lead. <span>Charter, participation register, intake, onboarding, tooling, quality checks, reporting.</span></p></div>
+<div class="tier"><span class="lvl">3. Domain groups</span><p>One per domain, for example critical care, medicines, reporting and audit, community care, genomics. <span>Sponsor, lead steward, domain stewards, clinical authority.</span></p></div>
+<div class="tier"><span class="lvl">4. Local implementation</span><p>Regions, hospitals, registries and system programmes. <span>Local custodians show how definitions are actually recorded and whether they can be implemented.</span></p></div>
+</div>
+<h3>Roles</h3>
+<div aria-label="Scrollable reference content" class="scroll" role="region" tabindex="0"><table>
+<thead><tr><th>Role</th><th>Held by</th><th>Responsible for</th></tr></thead>
+<tbody>
+<tr data-role-focus="steward partner"><td><strong>Domain sponsor</strong></td><td>A senior leader in the sponsoring body</td><td>Committing resources and signing the participation agreement</td></tr>
+<tr data-role-focus="steward"><td><strong>Domain data steward</strong></td><td>Named people in the domain (at least two)</td><td>Upkeep of definitions, value sets and maps; proposing changes</td></tr>
+<tr data-role-focus="clinical"><td><strong>Clinical or professional authority</strong></td><td>An authorised clinical body or nominated experts</td><td>Clinical validation before content goes to a board</td></tr>
+<tr data-role-focus="operational"><td><strong>Local data custodian</strong></td><td>A source-system or service representative</td><td>Local maps, provenance and evidence of implementability</td></tr>
+<tr data-role-focus="steward"><td><strong>Measure steward</strong></td><td>The owner of an indicator</td><td>The meaning, calculation and versioning of the indicator</td></tr>
+<tr><td><strong>Data asset owner</strong></td><td>The head of the service holding the asset</td><td>Its purpose, access rules, quality statement and catalogue entry</td></tr>
+<tr data-role-focus="data"><td><strong>Coordination hub</strong></td><td>The central team</td><td>Process, tools, technical checks, versions, publication, escalation</td></tr>
+</tbody>
+</table></div>
+<h3>How content moves</h3>
+<ol class="steps read">
+<li><div><b>Propose.</b> <span>A steward submits a new item or a change, with its source and licence.</span></div></li>
+<li><div><b>Triage.</b> <span>The hub checks scope and duplicates, assigns an asset tier and sets a target turnaround.</span></div></li>
+<li><div><b>Author.</b> <span>The steward builds the content, with hub support. AI-drafted content is marked and reviewed by a named person.</span></div></li>
+<li><div><b>Validate.</b> <span>Technical checks by the hub; clinical review by the clinical authority.</span></div></li>
+<li><div><b>Test locally.</b> <span>At least one local custodian confirms it can be implemented.</span></div></li>
+<li><div><b>Consult.</b> <span>Affected domains and registered users can comment.</span></div></li>
+<li><div><b>Approve.</b> <span>The board decides and the decision is recorded.</span></div></li>
+<li><div><b>Publish.</b> <span>A versioned release through the services' interfaces, with release notes.</span></div></li>
+<li><div><b>Maintain.</b> <span>Scheduled review, changes, supersession or retirement. Nothing is deleted.</span></div></li>
+</ol>
+<h3>Three asset tiers</h3>
+<div class="grid">
+<div class="card"><h3>A · National</h3><p>A national standard users are expected to follow. Full workflow and board approval.</p></div>
+<div class="card"><h3>B · Domain-recognised</h3><p>Authoritative within a domain, versioned and published for reuse. Steward and clinical sign-off; the boards are informed.</p></div>
+<div class="card"><h3>C · Registered</h3><p>Has a named steward and can be found, but is not endorsed. For project dictionaries, research concept sets and legacy code lists.</p></div>
+</div>
+</div>
+</section><section id="roadmap">
+<div class="sec-head"><span class="sec-num">5</span><h2>Roadmap</h2>
+<p>A staged proposal: mobilisation and expansion over approximately 24 months, followed by ongoing operation. Each phase has explicit exit criteria. Durations are indicative.</p></div>
+<div class="body">
+<div aria-label="Roadmap" class="scroll" role="region" tabindex="0">
+<div class="road">
+<div class="phase"><span class="when">Phase 0 · months 0–4</span><h3>Mobilise</h3>
+<ul><li>Executive mandate naming the co-leads</li><li>Stewardship council and coordination hub set up</li><li>Charter drafted and endorsed</li><li>Participation register: existing assets and who maintains them</li><li>Minimum metadata standard for assets and indicators</li><li>Two or three pilot sponsors secured</li></ul>
+<div class="gate"><b>Exit:</b> mandate recorded, charter endorsed, signed agreements, named lead stewards.</div></div>
+<div class="phase"><span class="when">Phase 1 · months 4–12</span><h3>Pilot</h3>
+<ul><li>Two or three domain groups working</li><li>10 to 15 artefacts per domain through the full workflow</li><li>A local custodian in each pilot</li><li>National indicators registered for one reporting domain</li><li>Catalogue seeded with the pilot domains' assets</li></ul>
+<div class="gate"><b>Exit:</b> every workflow step tested, one change processed, effort and turnaround measured.</div></div>
+<div class="phase"><span class="when">Phase 2 · months 12–24</span><h3>Expand</h3>
+<ul><li>Further domains added in waves</li><li>Charter and workflow revised from pilot lessons</li><li>All national indicators registered</li><li>All in-scope datasets catalogued with owners</li><li>Steward training, forum and recognition</li></ul>
+<div class="gate"><b>Exit:</b> recurrent funding for steward time; quarterly report to the executive team.</div></div>
+<div class="phase"><span class="when">Phase 3 · month 24 on</span><h3>Sustain</h3>
+<ul><li>Stewardship part of normal business</li><li>Dataset descriptions produced from the catalogue</li><li>Procurement contracts reference stewarded content</li><li>Technical metadata harvested automatically</li><li>Formal review after three years</li></ul>
+<div class="gate"><b>Exit:</b> every national element, indicator and dataset has a named steward or owner.</div></div>
+</div>
+</div>
+<h3>Choosing pilot domains</h3>
+<p class="read">Good first domains combine a motivated clinical community, existing assets to reuse, and a clear operational need. Typical candidates are critical care (strong research assets), medicines (direct dependency on terminology and reference data), and national reporting and audit (mature dictionaries and indicators). Make sure community and longitudinal care is represented from the start, even if it is not a first pilot, so that hospital and research data do not shape the whole network.</p>
+<h3>The first 100 days</h3>
+<ol class="steps read">
+<li><div><b>Seek the mandate.</b> <span>A joint paper from the clinical and data co-leads to the executive team.</span></div></li>
+<li><div><b>Set up the council</b> <span>and name the coordination lead and clinical lead.</span></div></li>
+<li><div><b>Align with existing governance.</b> <span>Build on data standards and specification processes that already exist rather than creating a parallel structure.</span></div></li>
+<li><div><b>Start the participation register.</b> <span>Clinical programmes, registries, professional bodies, regional data leads, research consortia.</span></div></li>
+<li><div><b>Interview pilot sponsors.</b> <span>For each existing asset, record what exists, who maintains it, its licence and its users.</span></div></li>
+<li><div><b>Draft the charter.</b> <span>Roles, accountability, approval routes, contribution rights, maintenance duties, licensing, exit arrangements.</span></div></li>
+<li><div><b>Agree participation templates</b> <span>with HR and legal: one for internal services, one for external bodies.</span></div></li>
+<li><div><b>Set up minimum tooling.</b> <span>An intake form, steward workspaces and an issue log. Check whether existing platforms can hold indicators and the catalogue.</span></div></li>
+<li><div><b>Define baseline measures</b> <span>and start collecting them.</span></div></li>
+<li><div><b>Hold the Phase 0 review</b> <span>and report the outcome to the executive team.</span></div></li>
+</ol>
+</div>
+</section><section id="measures">
+<div class="sec-head"><span class="sec-num">6</span><h2>Measures and risks</h2>
+<p>Measure commitment and sustainability, not only volume. A dozen properly governed artefacts prove more than thousands imported with no steward.</p></div>
+<div class="body">
+<div aria-label="Scrollable reference content" class="scroll" role="region" tabindex="0"><table>
+<thead><tr><th>Measure</th><th>Shows</th></tr></thead>
+<tbody>
+<tr><td>Signed participation agreements and named stewards per domain</td><td>Commitment</td></tr>
+<tr><td>Share of national data elements, indicators and datasets with a named steward or owner</td><td>Coverage</td></tr>
+<tr><td>Time from change request to board decision</td><td>Whether contributors get a return for their effort</td></tr>
+<tr><td>Coded data elements with an approved terminology binding</td><td>Quality</td></tr>
+<tr><td>Indicators linked to the data elements they use</td><td>Traceability</td></tr>
+<tr><td>Artefacts reviewed on schedule; steward retention</td><td>Sustainability</td></tr>
+<tr><td>Stewarded artefacts used by systems, reports and programmes</td><td>Real use</td></tr>
+</tbody>
+</table></div>
+<div aria-label="Scrollable reference content" class="scroll" role="region" tabindex="0"><table>
+<thead><tr><th>Risk</th><th>Mitigation</th></tr></thead>
+<tbody>
+<tr><td><strong>Participation stays voluntary and fades</strong></td><td>Executive mandate, signed agreements, protected time, recurrent funding</td></tr>
+<tr><td><strong>Boards become a bottleneck</strong></td><td>Asset tiers; plan for board capacity, not drafting speed</td></tr>
+<tr><td><strong>Acute and research voices dominate</strong></td><td>Community representation from the start; a priority-setting panel</td></tr>
+<tr><td><strong>Licensing blocks reuse of project assets</strong></td><td>Licence check at intake; licence terms in agreements</td></tr>
+<tr><td><strong>Overlap with existing governance bodies</strong></td><td>Build on existing processes; clear boundaries in the charter</td></tr>
+<tr><td><strong>Suppliers become the authority on clinical meaning</strong></td><td>Suppliers advise on feasibility only</td></tr>
+<tr><td><strong>The catalogue goes stale</strong></td><td>Mandatory owners, review dates, automated harvesting, reuse for regulatory returns</td></tr>
+<tr><td><strong>AI drafting overwhelms review</strong></td><td>AI content marked and reviewed by a named person; only boards approve</td></tr>
+</tbody>
+</table></div>
+</div>
+</section><section id="questions">
+<div class="sec-head"><span class="sec-num">7</span><h2>Key questions to consider</h2>
+<p>Use these questions to prepare a decision or Phase 0 mobilisation. Ticks are saved in your browser, not sent to the website.</p></div>
+<div class="body">
+<div class="qtools">
+<button id="copyBtn" type="button">Copy all questions</button>
+<button class="ghost" id="resetBtn" type="button">Clear ticks</button>
+<span aria-live="polite" class="status" id="status" role="status"></span>
+<button class="ghost" id="printBtn" type="button">Print / save as PDF</button></div>
+<div class="qgroups" id="qgroups"></div>
+</div>
+</section><div class="steward-end"><p><strong>Scope and status.</strong> This is an illustrative, jurisdiction-neutral model for discussion, not a statement of national policy, an approved governance framework or evidence that the proposed timescales have been achieved. Approval routes, clinical authority, legislation, contractual obligations and institutional names must be validated for each health system.</p></div></main></div><footer><div class="footer-inner"><div class="footer-brand"><img alt="Agile Health Informatics Ltd logo" height="100" src="data:image/webp;base64,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" width="100"/><div><strong>Agile Health Informatics Ltd</strong><span>Creative ideas &amp; solutions for health data and digital transformation.</span></div></div><div class="footer-meta">Principal consultant: Dr Tito Castillo PhD FBCS CITP<br/><a href="https://www.linkedin.com/in/titocastillo-fbcs/" rel="noopener noreferrer" target="_blank">Connect with Dr Tito Castillo on LinkedIn ↗</a></div></div><div class="ahi-privacy-links"><a href="/privacy.html">Privacy notice</a><a data-ahi-privacy-settings="" href="/privacy.html#analytics-settings">Privacy settings</a></div></footer><script>(function(){const root=document.documentElement;fetch('/about.html',{credentials:'same-origin'}).then(r=>{if(!r.ok)throw Error('Unavailable');return r.text()}).then(h=>{const d=new DOMParser().parseFromString(h,'text/html'),src=d.querySelector('.brand-link img')?.getAttribute('src');if(src&&src.startsWith('data:image/'))document.querySelectorAll('.brand-link img,.footer-brand img').forEach(i=>i.src=src)}).catch(()=>{});try{const saved=localStorage.getItem('ahi-theme');if(saved==='dark'||saved==='light')root.dataset.theme=saved}catch(e){}const theme=document.getElementById('themeToggle');const sync=()=>theme?.setAttribute('aria-pressed',String(root.dataset.theme==='dark'));sync();theme?.addEventListener('click',()=>{root.dataset.theme=root.dataset.theme==='dark'?'light':'dark';try{localStorage.setItem('ahi-theme',root.dataset.theme)}catch(e){}sync()});const menu=document.getElementById('menuToggle'),nav=document.getElementById('siteNav');menu?.addEventListener('click',()=>{const open=nav.classList.toggle('open');menu.setAttribute('aria-expanded',String(open));menu.setAttribute('aria-label',open?'Close navigation':'Open navigation')});nav?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');menu?.setAttribute('aria-expanded','false')}));const update=()=>{const d=document.documentElement,total=d.scrollHeight-d.clientHeight,pct=total?Math.min(100,Math.max(0,(d.scrollTop/total)*100)):0;root.style.setProperty('--scroll',pct+'%')};addEventListener('scroll',update,{passive:true});addEventListener('resize',update);update()})();</script><script>
+const QUESTIONS = [
+  ["Mandate and leadership", [
+    "Who in the executive team will sponsor the network, and how will the mandate be recorded?",
+    "Which senior clinical leader is accountable for clinical meaning, and will they co-lead?",
+    "How is accountability split between clinical, data and operational leaders, and who settles disputes?",
+    "Where does the stewardship council sit relative to existing data governance forums?"
+  ]],
+  ["Scope", [
+    "Which layers are in scope: terminology, reference data, data dictionary, reporting metadata, data asset catalogue?",
+    "Which domains go first, and on what criteria?",
+    "What will the network explicitly not steward, and who does instead?",
+    "Who owns indicator definitions as opposed to performance targets?"
+  ]],
+  ["People and incentives", [
+    "How will steward time be protected and recognised in job plans and contracts?",
+    "What do contributors get back: faster turnaround, publication, recognition, less local work?",
+    "How are community, primary care, mental health and disability services represented in setting priorities?",
+    "How will patients and the public be involved in checking definitions and measures?"
+  ]],
+  ["Approval and process", [
+    "Which boards approve national content, and do they exist yet?",
+    "What qualifies an asset as national, domain-recognised or registered?",
+    "What turnaround will contributors be promised, and how will it be measured?",
+    "Where may AI draft content, and what human review is required before approval?"
+  ]],
+  ["Platforms and data", [
+    "Can existing platforms hold reporting metadata and a data asset catalogue, or is another tool needed?",
+    "How are terminology, definitions, indicators and assets linked by identifier rather than copied?",
+    "Which technical metadata and lineage can be harvested automatically?",
+    "How will dataset descriptions for regulators be produced from the catalogue?"
+  ]],
+  ["External partners", [
+    "Which registries, regulators, universities and independent providers must take part, and under what agreements?",
+    "Who owns assets built with research or EU funding, and can they be reused nationally?",
+    "Does a government department need to support participation by bodies outside the health service?"
+  ]],
+  ["Funding and sustainability", [
+    "Is there a recurrent budget for the hub, steward time and clinical review?",
+    "What is the cost baseline, and who will produce it?",
+    "What happens to a domain when its sponsor or lead steward leaves?",
+    "What evidence would show the model is not working, and when will it be reviewed?"
+  ]]
+];
+const KEY = "steward-explainer-ticks";
+let ticks = {};
+try { ticks = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch (e) { ticks = {}; }
+function save() { try { localStorage.setItem(KEY, JSON.stringify(ticks)); } catch (e) {} }
+const host = document.getElementById("qgroups");
+function render() {
+  host.innerHTML = "";
+  QUESTIONS.forEach(([group, qs], gi) => {
+    const box = document.createElement("div"); box.className = "qgroup";
+    const done = qs.filter((_, qi) => ticks[gi + "-" + qi]).length;
+    const h = document.createElement("h3");
+    h.innerHTML = "<span></span><small></small>";
+    h.firstChild.textContent = group; h.lastChild.textContent = done + " of " + qs.length;
+    box.appendChild(h);
+    const ul = document.createElement("ul");
+    qs.forEach((q, qi) => {
+      const id = "q-" + gi + "-" + qi;
+      const li = document.createElement("li");
+      const label = document.createElement("label"); label.setAttribute("for", id);
+      const cb = document.createElement("input"); cb.type = "checkbox"; cb.id = id; cb.checked = !!ticks[gi + "-" + qi];
+      cb.addEventListener("change", () => { ticks[gi + "-" + qi] = cb.checked; save(); h.lastChild.textContent = qs.filter((_, k) => ticks[gi + "-" + k]).length + " of " + qs.length; });
+      const span = document.createElement("span"); span.textContent = q;
+      label.append(cb, span); li.appendChild(label); ul.appendChild(li);
+    });
+    box.appendChild(ul); host.appendChild(box);
+  });
+}
+render();
+const status = document.getElementById("status");
+document.getElementById("copyBtn").addEventListener("click", async () => {
+  const text = QUESTIONS.map(([g, qs]) => g + "\n" + qs.map(q => "- " + q).join("\n")).join("\n\n");
+  try { await navigator.clipboard.writeText(text); status.textContent = "Questions copied."; }
+  catch (e) { status.textContent = "Copying isn't available here. Select the questions on the page and copy them instead."; }
+});
+document.getElementById("resetBtn").addEventListener("click", () => { ticks = {}; save(); render(); status.textContent = "Ticks cleared."; });
+</script><script>(function(){
+  'use strict';
+  const roles={
+    executive:{
+      title:'Executive sponsor',
+      desc:'Establishes the mandate across clinical, data and operational leadership. The network is accountable to executives, but professional content approval is delegated to the appropriate authorities.',
+      owns:['Mandate and sponsorship across organisational boundaries.','Assignment of accountable co-leads and a mechanism to settle disputes.','Sustainable resourcing and executive review of progress.'],
+      decisions:['Who will co-lead, and under what authority?','How will protected steward time be funded?','What adoption evidence will be reviewed, and how often?'],
+      boundary:'The executive sponsor does not operate the coordination hub or approve clinical content.',
+      evidence:'An endorsed charter, named co-leads, recorded participation agreements and a credible recurrent funding plan.',
+      links:[['Governance and accountability','#setup'],['Mobilisation phases','#roadmap'],['Measures and risks','#measures']]
+    },
+    clinical:{
+      title:'Clinical leadership',
+      desc:'Sponsors clinical domains, secures expert participation and protects clinical meaning through professional review.',
+      owns:['Nomination of clinical and professional domain authorities.','Clinical validation of proposed definitions, terminology and mappings.','Representation of primary, community, mental health and disability services.'],
+      decisions:['Which body is authorised to validate meaning in each domain?','How are competing interpretations resolved?','How will clinical experts be released and recognised?'],
+      boundary:'Clinical validation supports, but does not replace, formal approval of national standards. Clinical leadership does not operate the metadata platforms.',
+      evidence:'Named clinical leads and validation arrangements, protected reviewer time and recorded clinical decisions.',
+      links:[['Clinical governance roles','#setup'],['Network principles','#principles'],['Pilot domain selection','#roadmap']]
+    },
+    data:{
+      title:'Data office and shared services',
+      desc:'Hosts the coordination hub and supports interoperable terminology, reference data, metadata, catalogues, technical assurance and publication.',
+      owns:['Intake, versioning, publication, participation registers and technical quality checks.','Persistent links across terminology, definitions, indicators and data assets.','Operational measures for review, turnaround and reuse.'],
+      decisions:['Which existing services and governance workflows can be reused?','What identifiers and links are required across asset types?','What minimum metadata and quality checks are needed for publication?'],
+      boundary:'The data office coordinates process and technical assurance. It does not independently decide clinical meaning.',
+      evidence:'A service catalogue, intake workflow, identifier strategy, technical validation records and release history.',
+      links:[['Connected metadata services','#scope'],['Hub and workflow','#setup'],['Quality measures','#measures']]
+    },
+    operational:{
+      title:'Regional or operational leadership',
+      desc:'Enables local participation and confirms that proposed national definitions are workable in clinical services and source systems.',
+      owns:['Nominating and releasing local data custodians.','Providing source-system mappings, provenance and implementation evidence.','Reporting local adoption, exceptions and practical constraints.'],
+      decisions:['Which services and sites will validate pilot artefacts?','How will local system differences and defects be recorded?','What evidence is needed before wider adoption?'],
+      boundary:'Operational leaders validate implementability and adoption, but do not approve national clinical content.',
+      evidence:'Named custodians, local mapping records, pilot test results and documented implementation issues.',
+      links:[['Local roles and approvals','#setup'],['Pilot and expansion phases','#roadmap'],['Adoption measures','#measures']]
+    },
+    steward:{
+      title:'Domain data steward',
+      desc:'Maintains domain definitions and changes, working with professional authorities, measure stewards, local custodians and the central hub.',
+      owns:['Discovery, provenance and maintenance of domain data definitions, value sets and maps.','Versioned proposals, supporting evidence and impact assessment.','Engagement with clinical reviewers and local implementers.'],
+      decisions:['What assets already exist, and who owns them?','What is the appropriate registration or approval tier?','How will changes, reviews and supersession be managed?'],
+      boundary:'Stewards propose and maintain content, but cannot confer national authority on it. Approval remains with designated bodies.',
+      evidence:'A stewarded asset register, versioned change requests, sources and licences, review dates and linked approvals.',
+      links:[['Scope and data links','#scope'],['Roles and content workflow','#setup'],['Readiness checklist','#questions']]
+    },
+    partner:{
+      title:'External partner or registry',
+      desc:'Contributes maintained datasets, specialist terminology, indicators or dictionaries through agreements with an enduring sponsoring organisation.',
+      owns:['Defining the terms and scope of participation.','Clarifying ownership, reuse licences, maintenance and retirement.','Providing appropriate specialist review and provenance.'],
+      decisions:['What is contributed and under which licence?','Who remains responsible when a project or grant ends?','How will changes and independent approval rights be handled?'],
+      boundary:'An independent body participates through agreement; health service management does not automatically direct it.',
+      evidence:'A written contribution agreement, named enduring sponsor, licensing record and agreed maintenance route.',
+      links:[['Sustainable sponsorship','#principles'],['Partner governance','#setup'],['External partner questions','#questions']]
+    }
+  };
+  const selector=document.getElementById('roleSelect');
+  const panel=document.getElementById('rolePanel');
+  const current=document.getElementById('roleCurrent');
+  if(!selector||!panel||!current)return;
+  const roleNames=Object.keys(roles);
+  const el=(tag,text,cls)=>{const node=document.createElement(tag);if(cls)node.className=cls;if(text)node.textContent=text;return node;};
+  function list(items){const ul=el('ul');for(const value of items)ul.append(el('li',value));return ul;}
+  function roleCard(heading,items){const article=el('article');article.append(el('h4',heading),list(items));return article;}
+  function renderRole(){
+    const key=Object.prototype.hasOwnProperty.call(roles,selector.value)?selector.value:'executive';
+    const role=roles[key];
+    const index=roleNames.indexOf(key)+1;
+    current.textContent=`Viewing: ${role.title} · perspective ${index} of ${roleNames.length}`;
+    const heading=el('div',null,'role-heading');heading.append(el('h3',role.title),el('p',role.desc));
+    const cards=el('div',null,'role-cards');
+    cards.append(roleCard('Responsibilities in this model',role.owns),roleCard('Decisions to settle',role.decisions));
+    const boundary=el('p',null,'role-boundary');boundary.append(el('strong','Authority boundary: '),document.createTextNode(role.boundary));
+    const evidence=el('p',null,'role-evidence');evidence.append(el('strong','Evidence to look for: '),document.createTextNode(role.evidence));
+    const sectionlabel=el('h4','Read the relevant sections');
+    const links=el('nav',null,'role-links');links.setAttribute('aria-label','Relevant sections for '+role.title);
+    for(const [label,href] of role.links){const a=el('a',label);a.href=href;links.append(a);}
+    panel.replaceChildren(heading,cards,boundary,evidence,sectionlabel,links);
+    document.querySelectorAll('[data-role-focus]').forEach(row=>{
+      const relevant=row.dataset.roleFocus.split(' ').includes(key);
+      row.classList.toggle('role-highlight',relevant);
+    });
+  }
+  // Native change supports mouse, touch and keyboard. Input covers some mobile selectors that commit immediately.
+  selector.addEventListener('change',renderRole);
+  selector.addEventListener('input',renderRole);
+  renderRole();
+  document.getElementById('printBtn')?.addEventListener('click',()=>window.print());
+  const mobile=document.querySelector('.inline-nav');
+  mobile?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>mobile.open=false));
+  if('IntersectionObserver' in window){
+    const navlinks=[...document.querySelectorAll('.steward-nav nav a')];
+    const observer=new IntersectionObserver(entries=>{for(const entry of entries){
+      if(entry.isIntersecting)navlinks.forEach(a=>{const active=a.getAttribute('href')==='#'+entry.target.id;a.classList.toggle('active',active);if(active)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current');});
+    }},{rootMargin:'-100px 0px -65% 0px',threshold:0});
+    document.querySelectorAll('.steward-content section[id]').forEach(section=>observer.observe(section));
+  }
+})();</script></body></html>
